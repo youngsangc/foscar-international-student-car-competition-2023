@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+  <node pkg="lidar_team_erp42" type="parallel_parking" name="parallel_parking" />
+  <node pkg="pure_pursuit" type="supyeong_parking.py" name="supyeong_parking" output="screen"/>
+</launch>

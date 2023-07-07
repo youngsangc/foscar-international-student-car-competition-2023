@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <!-- yolo -->
+  <include file="$(find darknet_ros)/launch/darknet_ros_final.launch" />
+  
+  <!-- usb cam  -->
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  
+  <!-- 파이썬 파일 실행 -->
+  <node pkg="vision_distance" type="delivery_mission.py" name="delivery_mission"/>
+  <node pkg="delivery_mission" type="delivery_vision_test.py" name="delivery_vision_test" output="screen"/>
+
+  <!-- for serial control -->
+  <!-- <node pkg="race" type="serial_control_node" name="serial_control_node" /> -->
+
+</launch>

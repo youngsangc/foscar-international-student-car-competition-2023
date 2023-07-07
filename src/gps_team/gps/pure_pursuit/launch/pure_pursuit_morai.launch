@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="pure_pursuit" type="pure_pursuit_gps_morai.py" name="pure_pursuit_gps_morai" output="screen"/>
+</launch>

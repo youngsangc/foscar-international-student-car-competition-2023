@@ -1,0 +1,47 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/foscar/ISCC_2022/devel/include/**",
+        "/home/foscar/ISCC_2021/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/ar_track_alvar/ar_track_alvar/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/avoid_range/include/**",
+        "/home/foscar/ISCC_2022/src/vision_team/darknet_ros/darknet_ros/include/**",
+        "/home/foscar/ISCC_2022/src/vision_team/delivery_mission/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/gps_common/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/jinho/include/**",
+        "/home/foscar/ISCC_2021/src/laser_filters/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/lidar_team_erp42/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/lidar_team_morai/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/object_detector/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/obstacle_detector/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/gps/pure_pursuit/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/race/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/serial/include/**",
+        "/home/foscar/ISCC_2021/src/sick_scan/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/track_race/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/gps/ublox/ublox_gps/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/gps/ublox/ublox_msgs/include/**",
+        "/home/foscar/ISCC_2022/src/gps_team/gps/ublox/ublox_serialization/include/**",
+        "/home/foscar/ISCC_2022/src/vision_team/usb_cam/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/velodyne/velodyne_driver/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/velodyne/velodyne_laserscan/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/velodyne/velodyne_pcl/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/velodyne/velodyne_pointcloud/include/**",
+        "/home/foscar/ISCC_2022/src/lidar_team/waypoint_maker/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

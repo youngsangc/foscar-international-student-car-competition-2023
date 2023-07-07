@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <include file="$(find usb_cam)/launch/usb_cam-test.launch" />
+    <node pkg="lane_pkg" type="run.py" name="lane" output='screen/>
+</launch>

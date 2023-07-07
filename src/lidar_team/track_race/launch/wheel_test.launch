@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <node pkg="track_race" type="real_velocity.py" name="real_velocity" output="screen" />
+
+    <node pkg="race" type="serial_control_node" name="serial_control_node" />
+
+</launch>

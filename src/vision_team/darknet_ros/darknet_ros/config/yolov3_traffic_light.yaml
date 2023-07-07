@@ -1,0 +1,26 @@
+yolo_model:
+
+  config_file:
+    name: yolov3_final.cfg
+  weight_file:
+    name: yolov3_final_best1.weights #yolov3_final.weights
+  threshold:
+    value: 0.6
+  detection_classes:
+    names:
+      - 3 red 
+      - 3 yellow
+      - 3 green
+      - 3 left
+      - 4 red
+      - 4 green
+      - 4 yellow
+      - 4 redleft
+      - 4 greenleft
+      - 4 redyellow
+      - _
+      - _
+      - _
+      - _
+      - _
+      - _

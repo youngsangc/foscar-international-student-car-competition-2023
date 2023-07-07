@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+
+    <!-- PATH MAKER -->
+    <include file="$(find pure_pursuit)/launch/path_maker_one_lap.launch"/>
+
+    <!-- LiDAR -->
+    <node pkg="lidar_team_erp42" type="track_waypoint" name="track_waypoint"/>
+    <node pkg="lidar_team_erp42" type="drawing_path.py" name="drawing_path" />
+
+    <node pkg="lidar_team_erp42" type="pure_pursuit_track_lidar.py" name="pure_pursuit_track_lidar" output="screen"/>
+
+    <!-- With Camera -->
+    <!-- <node pkg="lidar_team_erp42" type="pure_pursuit_camera.py" name="pure_pursuit_camera" output="screen"/> -->
+
+    <!-- GPS -->
+    <node pkg="pure_pursuit" type="pure_pursuit_track_gps.py" name="pure_pursuit_track_gps" output="screen"/>
+    
+    <!-- VISUALIZAITON -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_team_erp42)/rviz/track_waypoint.rviz" />
+
+    <!-- for serial control -->
+    <node pkg="race" type="serial_control_node" name="serial_control_node" />
+    
+</launch>

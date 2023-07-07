@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+
+    <!-- PATH MAKER -->
+    <include file="$(find erp_ros)/launch/path_maker_one_lap_morai.launch"/>
+
+    <!-- LiDAR -->
+    <node pkg="object_detector" type="object_detector" name="object_detector"/>
+    <node pkg="waypoint_maker" type="waypoint_maker" name="waypoint_maker"  />
+    <node pkg="waypoint_maker" type="drawing_path.py" name="drawing_path" />
+    <node pkg="track_race" type="pure_pursuit_lidar_morai.py" name="pure_pursuit_lidar_morai" output="screen"/>
+    <node pkg="track_race" type="dynamic_velocity.py" name="dynamic_velocity" />
+    <node pkg="track_race" type="controller.py" name="controller" args="0" />
+
+    <!-- With Camera -->
+    <!-- <node pkg="lidar_team_erp42" type="pure_pursuit_camera.py" name="pure_pursuit_camera" output="screen"/> -->
+
+    <!-- GPS -->
+    <node pkg="pure_pursuit" type="pure_pursuit_gps_morai.py" name="pure_pursuit_gps" output="screen"/>
+    <node pkg="pure_pursuit" type="gps_speed.py" name="gps_speed" />
+    
+    <!-- VISUALIZAITON -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_team_erp42)/rviz/track_waypoint.rviz" />
+
+</launch>

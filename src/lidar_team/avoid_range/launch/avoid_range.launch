@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="avoid_range" type="avoid_angle.py" name="avoid_range_node" output="screen"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find avoid_range)/rviz/config.rviz"/>
+</launch>

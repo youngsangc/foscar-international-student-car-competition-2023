@@ -1,0 +1,12 @@
+<launch>
+        <!-- args = "(추종할 경로 이름) (신호등 greenlight setting (True,False))" -->
+        <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+        <node pkg="lidar_team_morai" type="static_obstacle_morai" name="static_obstacle" output="screen" />
+        <!-- <node pkg="lidar_team_morai" type="dynamic_obstacle" name="dynamic_obstacle" output="screen" /> -->
+        <node pkg="lidar_team_morai" type="path_switching_morai.py" name="path_switching_morai" args="supyeong left" output="screen" />
+    <!-- <node pkg="erp_ros" type="erp42_planner.py" name="erp42_planner" args="left right" output="screen" / -->
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_team_morai)/rviz/planner_morai.rviz" />
+
+        <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find erp_ros)/rviz/planner.rviz" /> -->
+
+</launch>

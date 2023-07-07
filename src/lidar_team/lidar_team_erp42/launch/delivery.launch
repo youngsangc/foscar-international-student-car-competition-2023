@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+    <node pkg="lidar_team_erp42" type="delivery" name="delivery"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_team_erp42)/rviz/delivery.rviz" />
+
+    <!-- for serial control -->
+    <node pkg="race" type="serial_control_node" name="serial_control_node" />
+
+</launch>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+    <node pkg="lidar_team_morai" type="dynamic_obstacle_morai" name="dynamic_obstacle_morai" />
+    <node pkg="lidar_team_morai" type="dynamic_obs_drive_morai.py" name="dynamic_obs_drive_morai" output="screen"/>
+    <!-- <node pkg="lidar_team_morai" type="track_waypoint_morai" name="track_waypoint_morai"/> -->
+    <!-- <node pkg="lidar_team_morai" type="drawing_path_morai.py" name="drawing_path_morai" /> -->
+    <!-- <node pkg="lidar_team_morai" type="pure_pursuit_morai.py" name="pure_pursuit_morai" output="screen" /> -->
+    <!-- <node pkg="lidar_team_morai" type="gwanho.py" name="gwanho" output="screen" /> -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_team_morai)/rviz/dynamic_obstacle_morai.rviz" />
+
+</launch>

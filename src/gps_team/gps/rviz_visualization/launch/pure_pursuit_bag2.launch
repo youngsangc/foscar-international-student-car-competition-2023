@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="path" />
+  <arg name="ld" default="4"/>
+  <arg name="vel" default="6"/>
+  <arg name="final_constant" default="1.2"/>
+
+  <node pkg="pure_pursuit" type="pure_pursuit2" name="pure_pursuit2" output="screen" args="$(arg path) $(arg ld) $(arg vel) $(arg vel) $(arg final_constant)" />
+  <node pkg="pure_pursuit" type="coordinate2pos" name="coordinate2pos" />
+  <node pkg="utmk_coordinate" type="wgs84_to_utmk.py" name="wgs84_to_utmk" />
+
+  <!-- yolo -->  
+  <!--
+  <include file="$(find darknet_ros)/launch/darknet_ros.launch" />
+  -->
+
+</launch>
