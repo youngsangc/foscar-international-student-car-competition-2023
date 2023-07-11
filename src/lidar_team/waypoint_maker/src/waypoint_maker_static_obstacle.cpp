@@ -183,16 +183,47 @@ double y_2= this->FarRubberCone.centerY;
 double z_2= this->FarRubberCone.centerZ;
 
 
+
+// 첫번째 장애물을 넘지 않은 경우
+
+if(mission_flag==0){
+
 for(int i = 0;i<100;i++){
 
-waypointInfoMsg.x_arr[i]=x_2;
+waypointInfoMsg.x_arr[i]=x_2-1;
 waypointInfoMsg.y_arr[i]=y_2;
 
 
+}
+
+if(DistanceLidarToFarRubberCone<1){
+
+    mission_flag=1;
+
+}
 
 
+}
+
+// 첫번째 장애물을 넘어선 이후의 로직
+
+else if(mission_flag==1){
+
+    if()
+
+//두번째 라바콘의 왼쪽 경로를 입력해줘야 한다.
+//단지, 이때 가까이있는 라바콘이 보이지 않을 경우 멀리 있던 라바콘의 인덱스가 0에 오게 되므로
+//이에 대한 대응이 필요하다. 
 
 
+for(int i = 0;i<100;i++){
+
+
+waypointInfoMsg.x_arr[i]=x_2-1;
+waypointInfoMsg.y_arr[i]=y_2;
+
+
+}
 
 }
 
