@@ -131,6 +131,7 @@ void Static_Waypoint_Maker::object_info_callback(const object_detector::ObjectIn
 std::cout<<"메인 콜백 작동"<<endl;
 
 
+
 std::cout<<this->mission_flag<<std::endl;
 
 
