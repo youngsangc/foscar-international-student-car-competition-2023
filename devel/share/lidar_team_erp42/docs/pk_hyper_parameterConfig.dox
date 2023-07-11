@@ -1,0 +1,21 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~pk_minPoints" : \b [int] pk_minPoints min: 1, default: 10, max: 100
+- \b "~pk_epsilon" : \b [double] pk_epsilon min: 0.0, default: 0.15, max: 20.0
+- \b "~pk_minClusterSize" : \b [int] pk_minClusterSize min: 1, default: 30, max: 100
+- \b "~pk_maxClusterSize" : \b [double] pk_maxClusterSize min: 1.0, default: 300.0, max: 100000.0
+- \b "~pk_xMinROI" : \b [double] pk_xMinROI min: -200.0, default: 1.5, max: 10.0
+- \b "~pk_xMaxROI" : \b [double] pk_xMaxROI min: -10.0, default: 4.0, max: 200.0
+- \b "~pk_yMinROI" : \b [double] pk_yMinROI min: -200.0, default: -3.0, max: 10.0
+- \b "~pk_yMaxROI" : \b [double] pk_yMaxROI min: -10.0, default: 0.0, max: 200.0
+- \b "~pk_zMinROI" : \b [double] pk_zMinROI min: -2.0, default: -0.65, max: 0.0
+- \b "~pk_zMaxROI" : \b [double] pk_zMaxROI min: -2.0, default: 3.0, max: 100.0
+- \b "~pk_xMinBoundingBox" : \b [double] pk_xMinBoundingBox min: 0.0, default: 0.05, max: 10.0
+- \b "~pk_xMaxBoundingBox" : \b [double] pk_xMaxBoundingBox min: 0.0, default: 0.55, max: 10.0
+- \b "~pk_yMinBoundingBox" : \b [double] pk_yMinBoundingBox min: 0.0, default: 0.05, max: 10.0
+- \b "~pk_yMaxBoundingBox" : \b [double] pk_yMaxBoundingBox min: 0.0, default: 0.55, max: 10.0
+- \b "~pk_zMinBoundingBox" : \b [double] pk_zMinBoundingBox min: 0.0, default: 0.05, max: 0.1
+- \b "~pk_zMaxBoundingBox" : \b [double] pk_zMaxBoundingBox min: 0.0, default: 0.85, max: 10.0
+

@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/devel
+
+Name: avoid_range
+Description: Description of avoid_range
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

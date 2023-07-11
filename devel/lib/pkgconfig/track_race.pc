@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/devel
+
+Name: track_race
+Description: Description of track_race
+Version: 0.0.0
+Cflags: -I/home/youngsangcho/ISCC_2023/devel/include -I/home/youngsangcho/ISCC_2023/src/lidar_team/track_race/include
+Libs: -L${prefix}/lib -ltrack_race
+Requires: roscpp rospy std_msgs

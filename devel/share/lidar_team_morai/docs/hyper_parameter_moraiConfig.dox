@@ -1,0 +1,21 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~minPoints" : \b [int] minPoints min: 1, default: 10, max: 100
+- \b "~epsilon" : \b [double] epsilon min: 0.0, default: 0.3, max: 20.0
+- \b "~minClusterSize" : \b [int] minClusterSize min: 1, default: 10, max: 100
+- \b "~maxClusterSize" : \b [double] maxClusterSize min: 1.0, default: 1000.0, max: 10000.0
+- \b "~xMinROI" : \b [double] xMinROI min: -200.0, default: 0.5, max: 10.0
+- \b "~xMaxROI" : \b [double] xMaxROI min: -10.0, default: 10.0, max: 200.0
+- \b "~yMinROI" : \b [double] yMinROI min: -200.0, default: -5.0, max: 10.0
+- \b "~yMaxROI" : \b [double] yMaxROI min: -10.0, default: 5.0, max: 200.0
+- \b "~zMinROI" : \b [double] zMinROI min: -2.0, default: -0.6, max: 0.0
+- \b "~zMaxROI" : \b [double] zMaxROI min: -2.0, default: 0.0, max: 100.0
+- \b "~xMinBoundingBox" : \b [double] xMinBoundingBox min: 0.0, default: 0.1, max: 10.0
+- \b "~xMaxBoundingBox" : \b [double] xMaxBoundingBox min: 0.0, default: 2.0, max: 10.0
+- \b "~yMinBoundingBox" : \b [double] yMinBoundingBox min: 0.0, default: 0.1, max: 10.0
+- \b "~yMaxBoundingBox" : \b [double] yMaxBoundingBox min: 0.0, default: 2.0, max: 10.0
+- \b "~zMinBoundingBox" : \b [double] zMinBoundingBox min: 0.0, default: 0.05, max: 0.1
+- \b "~zMaxBoundingBox" : \b [double] zMaxBoundingBox min: 0.0, default: 2.0, max: 10.0
+

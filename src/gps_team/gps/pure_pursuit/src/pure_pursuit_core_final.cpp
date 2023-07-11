@@ -352,12 +352,12 @@ void PurePursuitNode::run(char** argv) {
     if (pp_.mode == 2) {
       if (pp_.mission_flag == 0 || pp_.mission_flag == 2) {
         const_lookahead_distance_ = 6;
-        const_velocity_ = 10;
+        const_velocity_ = 5;
       }
 
       if (pp_.mission_flag == 0 && pp_.is_static_obstacle_detected_long) {
         publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.9);
-
+        std::cout<<"long---------------------"<<std::endl;
         if (!isPresentYaw) {
           present_yaw = pp_.gps_yaw;
           isPresentYaw = true;

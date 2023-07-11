@@ -1,0 +1,22 @@
+\subsubsection usage Usage
+\verbatim
+<node name="static_obstacle_morai" pkg="lidar_team_morai" type="static_obstacle_morai">
+  <param name="st_minPoints" type="int" value="30" />
+  <param name="st_epsilon" type="double" value="0.4" />
+  <param name="st_minClusterSize" type="int" value="10" />
+  <param name="st_maxClusterSize" type="double" value="10000.0" />
+  <param name="st_xMinROI" type="double" value="0.5" />
+  <param name="st_xMaxROI" type="double" value="15.0" />
+  <param name="st_yMinROI" type="double" value="-1.3" />
+  <param name="st_yMaxROI" type="double" value="1.3" />
+  <param name="st_zMinROI" type="double" value="-0.44" />
+  <param name="st_zMaxROI" type="double" value="3.0" />
+  <param name="st_xMinBoundingBox" type="double" value="0.2" />
+  <param name="st_xMaxBoundingBox" type="double" value="3.0" />
+  <param name="st_yMinBoundingBox" type="double" value="0.2" />
+  <param name="st_yMaxBoundingBox" type="double" value="3.0" />
+  <param name="st_zMinBoundingBox" type="double" value="0.1" />
+  <param name="st_zMaxBoundingBox" type="double" value="3.0" />
+</node>
+\endverbatim
+

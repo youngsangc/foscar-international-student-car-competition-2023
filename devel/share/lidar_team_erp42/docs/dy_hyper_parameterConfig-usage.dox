@@ -1,0 +1,22 @@
+\subsubsection usage Usage
+\verbatim
+<node name="dynamic_obstacle" pkg="lidar_team_erp42" type="dynamic_obstacle">
+  <param name="dy_minPoints" type="int" value="30" />
+  <param name="dy_epsilon" type="double" value="0.3" />
+  <param name="dy_minClusterSize" type="int" value="100" />
+  <param name="dy_maxClusterSize" type="double" value="10000.0" />
+  <param name="dy_xMinROI" type="double" value="0.0" />
+  <param name="dy_xMaxROI" type="double" value="8.0" />
+  <param name="dy_yMinROI" type="double" value="-1.5" />
+  <param name="dy_yMaxROI" type="double" value="1.5" />
+  <param name="dy_zMinROI" type="double" value="-0.54" />
+  <param name="dy_zMaxROI" type="double" value="2.0" />
+  <param name="dy_xMinBoundingBox" type="double" value="0.1" />
+  <param name="dy_xMaxBoundingBox" type="double" value="1.5" />
+  <param name="dy_yMinBoundingBox" type="double" value="0.1" />
+  <param name="dy_yMaxBoundingBox" type="double" value="1.5" />
+  <param name="dy_zMinBoundingBox" type="double" value="0.3" />
+  <param name="dy_zMaxBoundingBox" type="double" value="3.0" />
+</node>
+\endverbatim
+

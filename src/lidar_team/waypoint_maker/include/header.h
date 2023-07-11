@@ -178,5 +178,9 @@ double getDistanceObjectToObject(const Object &obj1, const Object &obj2) {
     return sqrt( pow(obj1.centerX - obj2.centerX, 2) + pow(obj1.centerY - obj2.centerY, 2) );
 }
 
+double getDistanceLidarToObject(const Object &obj1){
+return sqrt(pow(obj1.centerX,2)+pow(obj1.centerY,2));
+
+}
 
 #endif // HEADER_H

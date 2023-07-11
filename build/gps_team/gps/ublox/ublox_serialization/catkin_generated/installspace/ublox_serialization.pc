@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/install
+
+Name: ublox_serialization
+Description: Description of ublox_serialization
+Version: 1.5.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp roscpp_serialization

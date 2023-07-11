@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/devel
+
+Name: avoid_obstacle
+Description: Description of avoid_obstacle
+Version: 0.0.0
+Cflags: -I/home/youngsangcho/ISCC_2023/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

@@ -19,7 +19,27 @@ waypoint_maker::Waypoint waypointInfoMsg; //waypoint msg (Waypoint를 발행하�
 
 
 
-  public:
+ros::NodeHandle nh; // 해당 노드를 담당하는 핸들러
+
+ros::Subscriber sub_object_info;
+
+ros::Publisher LocalwaypointInfoPub;
+
+    
+
+    double DistanceLidarToNearRubberCone;
+    double DistanceLidarToFarRubberCone;
+    //waypoint_maker::Waypoint waypointInfoMsg; // waypoint msg ( Waypoint를 발행하기 위한 메시지타입 객체 )
+
+   
+
+
+
+    ros::Publisher visualizeWaypointInfoMsgPub; // 이름 그대로를 수행하는 Publisher
+    
+
+
+public:
 
     double xMinRubberCone;
     double xMaxRubberCone;
@@ -28,10 +48,7 @@ waypoint_maker::Waypoint waypointInfoMsg; //waypoint msg (Waypoint를 발행하�
     double zMinRubberCone;
     double zMaxRubberCone;
 
-
-ros::NodeHandle nh; // 해당 노드를 담당하는 핸들러
-
-ros::Subscriber sub_object_info;
+    int mission_flag;
 
 
 
@@ -48,14 +65,23 @@ NearRubberCone.centerX=0;
 NearRubberCone.centerY=0;
 NearRubberCone.centerZ=0;
 
+
 FarRubberCone.centerX=0;
 FarRubberCone.centerY=0;
 FarRubberCone.centerZ=0;
+
+mission_flag=0;
+
+
 
 
 
 
 sub_object_info = nh.subscribe("/object_info",1, &Static_Waypoint_Maker::object_info_callback ,this);
+LocalwaypointInfoPub = nh.advertise<waypoint_maker::Waypoint>("/waypoint_info", 0.001);
+
+visualizeWaypointInfoMsgPub = nh.advertise<visualization_msgs::MarkerArray>("/waypoint_marker", 0.001);
+
 
 
 }
@@ -63,18 +89,143 @@ sub_object_info = nh.subscribe("/object_info",1, &Static_Waypoint_Maker::object_
 void object_info_callback(const object_detector::ObjectInfo& msg);
 void setObjectInfo(const object_detector::ObjectInfo& msg);
 void set_Near_Far_info();
-
-
+void publish_Local_Path();
+void visualizeWaypointInfoMsg();
 };
 
+
+void Static_Waypoint_Maker::visualizeWaypointInfoMsg() {
+    visualization_msgs::Marker waypoint;
+    visualization_msgs::MarkerArray waypointArray;
+
+    for (int i = 0; i < waypointInfoMsg.cnt; i++) {
+        waypoint.header.frame_id = "velodyne";
+        waypoint.header.stamp = ros::Time();
+    
+        waypoint.id = 200 + i;
+        waypoint.type = visualization_msgs::Marker::SPHERE; 
+        waypoint.action = visualization_msgs::Marker::ADD;
+
+        waypoint.pose.position.x = waypointInfoMsg.x_arr[i];
+        waypoint.pose.position.y = waypointInfoMsg.y_arr[i];
+        waypoint.pose.position.z = 0.2;
+
+        waypoint.scale.x = 0.5;
+        waypoint.scale.y = 0.5;
+        waypoint.scale.z = 0.5;
+
+        waypoint.color.a = 1.0; 
+        waypoint.color.r = 1.0; 
+        waypoint.color.g = 0.0;
+        waypoint.color.b = 0.0;
+
+        waypoint.lifetime = ros::Duration(0.1);
+        waypointArray.markers.emplace_back(waypoint);
+    }
+    visualizeWaypointInfoMsgPub.publish(waypointArray);
+}
 
 
 void Static_Waypoint_Maker::object_info_callback(const object_detector::ObjectInfo& msg){
 
 std::cout<<"메인 콜백 작동"<<endl;
 
+
+std::cout<<this->mission_flag<<std::endl;
+
+
 setObjectInfo(msg);
 set_Near_Far_info();
+
+
+
+DistanceLidarToNearRubberCone=getDistanceLidarToObject(NearRubberCone);
+DistanceLidarToFarRubberCone=getDistanceLidarToObject(FarRubberCone);
+
+ 
+if(DistanceLidarToNearRubberCone>1){
+
+    publish_Local_Path();
+
+}
+// if(DistanceLidarToNearRubberCone<1){
+
+// mission_flag =1;
+
+
+// }
+// if(mission_flag=1){
+
+//     publish_Local_Path();
+    
+// }
+
+
+}
+
+void Static_Waypoint_Maker::publish_Local_Path(){
+
+waypointInfoMsg.cnt=20;
+
+int cnt=0;
+
+double R = 0.3;
+
+
+double x_1= this-> NearRubberCone.centerX;
+double y_1= this->NearRubberCone.centerY;
+double z_1= this->NearRubberCone.centerZ;
+
+
+double x_2= this->FarRubberCone.centerX;
+double y_2= this->FarRubberCone.centerY;
+double z_2= this->FarRubberCone.centerZ;
+
+
+for(int i = 0;i<100;i++){
+
+waypointInfoMsg.x_arr[i]=x_2;
+waypointInfoMsg.y_arr[i]=y_2;
+
+
+
+
+
+
+
+}
+
+LocalwaypointInfoPub.publish(waypointInfoMsg);
+
+
+// if(mission_flag=0){
+// for(int i = 0;i<100;i++){
+
+// waypointInfoMsg.x_arr[i]=x_2;
+// waypointInfoMsg.y_arr[i]=y_2;
+
+
+// }
+
+
+
+// LocalwaypointInfoPub.publish(waypointInfoMsg);
+// }
+
+
+
+// else if(mission_flag=1){
+
+// for(int i = 0;i<100;i++){
+
+// waypointInfoMsg.x_arr[i]=(x_1)+1;
+// waypointInfoMsg.y_arr[i]=(y_1)+1;
+
+
+// }
+
+// LocalwaypointInfoPub.publish(waypointInfoMsg);
+// }
 
 
 }
@@ -116,6 +267,12 @@ void Static_Waypoint_Maker::set_Near_Far_info(){
     this->FarRubberCone.centerX= this->objects.objectArray[1].centerX;
     this->FarRubberCone.centerY=this->objects.objectArray[1].centerY;
     this->FarRubberCone.centerZ=this->objects.objectArray[1].centerZ;
+
+
+    
+    std::cout<<"Near_Rubber_Cone_coordinate 11: "<<this->NearRubberCone.centerX<<","<<this->objects.objectArray[0].centerY<<endl;
+
+    std::cout<<endl<<endl;
 
     std::cout<<"Near_Rubber_Cone_coordinate : "<<this->objects.objectArray[0].centerX<<","<<this->objects.objectArray[0].centerY<<endl;
 

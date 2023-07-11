@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/install
+
+Name: handsfree_ros_imu
+Description: Description of handsfree_ros_imu
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

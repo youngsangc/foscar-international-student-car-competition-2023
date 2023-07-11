@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/install
+
+Name: stanley
+Description: Description of stanley
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

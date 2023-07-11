@@ -6,7 +6,7 @@ import math
 import rospy
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Float64
-from ar_track_alvar_msgs.msg import AlvarMarkers
+#from ar_track_alvar_msgs.msg import AlvarMarkers
 from tf.transformations import euler_from_quaternion
 
 present_x = 0

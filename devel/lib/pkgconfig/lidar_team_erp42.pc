@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/devel
+
+Name: lidar_team_erp42
+Description: Description of lidar_team_erp42
+Version: 0.1.0
+Cflags: -I/home/youngsangcho/ISCC_2023/devel/include -I/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_erp42/include
+Libs: -L${prefix}/lib -llidar_team_erp42
+Requires: pcl_conversions pcl_ros roscpp sensor_msgs std_msgs geometry_msgs nav_msgs message_runtime dynamic_reconfigure

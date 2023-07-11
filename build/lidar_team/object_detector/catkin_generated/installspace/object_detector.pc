@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/install
+
+Name: object_detector
+Description: Description of object_detector
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lobject_detector
+Requires: dynamic_reconfigure message_runtime pcl_ros roscpp sensor_msgs

@@ -1,0 +1,11 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~xMinRubberCone" : \b [double] xMinRubberCone min: 0.0, default: 0.05, max: 10.0
+- \b "~xMaxRubberCone" : \b [double] xMaxRubberCone min: 0.0, default: 0.55, max: 10.0
+- \b "~yMinRubberCone" : \b [double] yMinRubberCone min: 0.0, default: 0.05, max: 10.0
+- \b "~yMaxRubberCone" : \b [double] yMaxRubberCone min: 0.0, default: 0.55, max: 10.0
+- \b "~zMinRubberCone" : \b [double] zMinRubberCone min: 0.0, default: 0.05, max: 10.0
+- \b "~zMaxRubberCone" : \b [double] zMaxRubberCone min: 0.0, default: 0.85, max: 10.0
+

@@ -1,0 +1,2 @@
+set(lidar_team_morai_MESSAGE_FILES "/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_morai/msg/Waypoint.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_morai/msg/Boundingbox.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_morai/msg/DynamicVelocity.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_morai/msg/ObjectInfo.msg")
+set(lidar_team_morai_SERVICE_FILES "")

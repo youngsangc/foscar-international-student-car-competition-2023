@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/install
+
+Name: delivery_mission
+Description: Description of delivery_mission
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

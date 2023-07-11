@@ -1,0 +1,2 @@
+set(vision_distance_MESSAGE_FILES "/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance/msg/Colorcone.msg;/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance/msg/ColorconeArray.msg;/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance/msg/Colorcone_lidar.msg;/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance/msg/ColorconeArray_lidar.msg;/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance/msg/Delivery.msg;/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance/msg/DeliveryArray.msg")
+set(vision_distance_SERVICE_FILES "")

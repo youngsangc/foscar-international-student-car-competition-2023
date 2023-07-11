@@ -1,0 +1,2 @@
+set(lidar_team_erp42_MESSAGE_FILES "/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_erp42/msg/Waypoint.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_erp42/msg/Boundingbox.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_erp42/msg/DriveValues.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_erp42/msg/Delivery.msg;/home/youngsangcho/ISCC_2023/src/lidar_team/lidar_team_erp42/msg/DynamicVelocity.msg")
+set(lidar_team_erp42_SERVICE_FILES "")

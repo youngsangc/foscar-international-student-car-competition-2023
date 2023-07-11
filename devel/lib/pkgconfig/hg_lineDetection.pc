@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/devel
+
+Name: hg_lineDetection
+Description: Description of hg_lineDetection
+Version: 0.0.0
+Cflags: -I/home/youngsangcho/ISCC_2023/src/vision_team/line_detect/hg_laneDetection_trad-master/include
+Libs: -L${prefix}/lib -lhg_lineDetection -lopencv
+Requires: cv_bridge image_transport roscpp rospy sensor_msgs std_msgs

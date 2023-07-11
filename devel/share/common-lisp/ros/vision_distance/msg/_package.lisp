@@ -1,0 +1,17 @@
+(cl:defpackage vision_distance-msg
+  (:use )
+  (:export
+   "<COLORCONE>"
+   "COLORCONE"
+   "<COLORCONEARRAY>"
+   "COLORCONEARRAY"
+   "<COLORCONEARRAY_LIDAR>"
+   "COLORCONEARRAY_LIDAR"
+   "<COLORCONE_LIDAR>"
+   "COLORCONE_LIDAR"
+   "<DELIVERY>"
+   "DELIVERY"
+   "<DELIVERYARRAY>"
+   "DELIVERYARRAY"
+  ))
+

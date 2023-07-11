@@ -1,0 +1,22 @@
+\subsubsection usage Usage
+\verbatim
+<node name="large_static_obstacle" pkg="lidar_team_erp42" type="large_static_obstacle">
+  <param name="large_st_minPoints" type="int" value="30" />
+  <param name="large_st_epsilon" type="double" value="0.5" />
+  <param name="large_st_minClusterSize" type="int" value="1000" />
+  <param name="large_st_maxClusterSize" type="double" value="10000.0" />
+  <param name="large_st_xMinROI" type="double" value="0.5" />
+  <param name="large_st_xMaxROI" type="double" value="9.0" />
+  <param name="large_st_yMinROI" type="double" value="-1.0" />
+  <param name="large_st_yMaxROI" type="double" value="1.0" />
+  <param name="large_st_zMinROI" type="double" value="-0.6" />
+  <param name="large_st_zMaxROI" type="double" value="3.0" />
+  <param name="large_st_xMinBoundingBox" type="double" value="0.2" />
+  <param name="large_st_xMaxBoundingBox" type="double" value="4.0" />
+  <param name="large_st_yMinBoundingBox" type="double" value="0.2" />
+  <param name="large_st_yMaxBoundingBox" type="double" value="2.5" />
+  <param name="large_st_zMinBoundingBox" type="double" value="0.1" />
+  <param name="large_st_zMaxBoundingBox" type="double" value="2.5" />
+</node>
+\endverbatim
+

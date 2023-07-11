@@ -1,0 +1,8 @@
+prefix=/home/youngsangcho/ISCC_2023/devel
+
+Name: serial
+Description: Description of serial
+Version: 0.0.0
+Cflags: -I/home/youngsangcho/ISCC_2023/src/gps_team/serial/include
+Libs: -L${prefix}/lib -lserial -lrt -lpthread
+Requires: 

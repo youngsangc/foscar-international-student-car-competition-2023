@@ -1,0 +1,21 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~large_st_minPoints" : \b [int] large_st_minPoints min: 1, default: 30, max: 100
+- \b "~large_st_epsilon" : \b [double] large_st_epsilon min: 0.0, default: 0.5, max: 20.0
+- \b "~large_st_minClusterSize" : \b [int] large_st_minClusterSize min: 1, default: 1000, max: 100
+- \b "~large_st_maxClusterSize" : \b [double] large_st_maxClusterSize min: 1.0, default: 10000.0, max: 100000.0
+- \b "~large_st_xMinROI" : \b [double] large_st_xMinROI min: -200.0, default: 0.5, max: 10.0
+- \b "~large_st_xMaxROI" : \b [double] large_st_xMaxROI min: -10.0, default: 9.0, max: 200.0
+- \b "~large_st_yMinROI" : \b [double] large_st_yMinROI min: -200.0, default: -1.0, max: 10.0
+- \b "~large_st_yMaxROI" : \b [double] large_st_yMaxROI min: -10.0, default: 1.0, max: 200.0
+- \b "~large_st_zMinROI" : \b [double] large_st_zMinROI min: -2.0, default: -0.6, max: 0.0
+- \b "~large_st_zMaxROI" : \b [double] large_st_zMaxROI min: -2.0, default: 3.0, max: 100.0
+- \b "~large_st_xMinBoundingBox" : \b [double] large_st_xMinBoundingBox min: 0.0, default: 0.2, max: 10.0
+- \b "~large_st_xMaxBoundingBox" : \b [double] large_st_xMaxBoundingBox min: 0.0, default: 4.0, max: 10.0
+- \b "~large_st_yMinBoundingBox" : \b [double] large_st_yMinBoundingBox min: 0.0, default: 0.2, max: 10.0
+- \b "~large_st_yMaxBoundingBox" : \b [double] large_st_yMaxBoundingBox min: 0.0, default: 2.5, max: 10.0
+- \b "~large_st_zMinBoundingBox" : \b [double] large_st_zMinBoundingBox min: 0.0, default: 0.1, max: 0.1
+- \b "~large_st_zMaxBoundingBox" : \b [double] large_st_zMaxBoundingBox min: 0.0, default: 2.5, max: 10.0
+

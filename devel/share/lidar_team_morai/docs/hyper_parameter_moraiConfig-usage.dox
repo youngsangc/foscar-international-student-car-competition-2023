@@ -1,0 +1,22 @@
+\subsubsection usage Usage
+\verbatim
+<node name="track_waypoint_morai" pkg="lidar_team_morai" type="track_waypoint_morai">
+  <param name="minPoints" type="int" value="10" />
+  <param name="epsilon" type="double" value="0.3" />
+  <param name="minClusterSize" type="int" value="10" />
+  <param name="maxClusterSize" type="double" value="1000.0" />
+  <param name="xMinROI" type="double" value="0.5" />
+  <param name="xMaxROI" type="double" value="10.0" />
+  <param name="yMinROI" type="double" value="-5.0" />
+  <param name="yMaxROI" type="double" value="5.0" />
+  <param name="zMinROI" type="double" value="-0.6" />
+  <param name="zMaxROI" type="double" value="0.0" />
+  <param name="xMinBoundingBox" type="double" value="0.1" />
+  <param name="xMaxBoundingBox" type="double" value="2.0" />
+  <param name="yMinBoundingBox" type="double" value="0.1" />
+  <param name="yMaxBoundingBox" type="double" value="2.0" />
+  <param name="zMinBoundingBox" type="double" value="0.05" />
+  <param name="zMaxBoundingBox" type="double" value="2.0" />
+</node>
+\endverbatim
+

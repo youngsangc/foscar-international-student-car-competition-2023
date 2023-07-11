@@ -1,0 +1,21 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~dy_minPoints" : \b [int] dy_minPoints min: 1, default: 30, max: 100
+- \b "~dy_epsilon" : \b [double] dy_epsilon min: 0.0, default: 0.3, max: 20.0
+- \b "~dy_minClusterSize" : \b [int] dy_minClusterSize min: 1, default: 100, max: 1000
+- \b "~dy_maxClusterSize" : \b [double] dy_maxClusterSize min: 1.0, default: 10000.0, max: 10000.0
+- \b "~dy_xMinROI" : \b [double] dy_xMinROI min: -200.0, default: 0.0, max: 10.0
+- \b "~dy_xMaxROI" : \b [double] dy_xMaxROI min: -10.0, default: 8.0, max: 200.0
+- \b "~dy_yMinROI" : \b [double] dy_yMinROI min: -200.0, default: -1.5, max: 10.0
+- \b "~dy_yMaxROI" : \b [double] dy_yMaxROI min: -10.0, default: 1.5, max: 200.0
+- \b "~dy_zMinROI" : \b [double] dy_zMinROI min: -2.0, default: -0.54, max: 0.0
+- \b "~dy_zMaxROI" : \b [double] dy_zMaxROI min: -2.0, default: 2.0, max: 100.0
+- \b "~dy_xMinBoundingBox" : \b [double] dy_xMinBoundingBox min: 0.0, default: 0.1, max: 10.0
+- \b "~dy_xMaxBoundingBox" : \b [double] dy_xMaxBoundingBox min: 0.0, default: 1.5, max: 10.0
+- \b "~dy_yMinBoundingBox" : \b [double] dy_yMinBoundingBox min: 0.0, default: 0.1, max: 10.0
+- \b "~dy_yMaxBoundingBox" : \b [double] dy_yMaxBoundingBox min: 0.0, default: 1.5, max: 10.0
+- \b "~dy_zMinBoundingBox" : \b [double] dy_zMinBoundingBox min: 0.0, default: 0.3, max: 10.0
+- \b "~dy_zMaxBoundingBox" : \b [double] dy_zMaxBoundingBox min: 0.0, default: 3.0, max: 10.0
+
