@@ -326,32 +326,32 @@ src/pure_pursuit_core.cpp.s:
 	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/src/pure_pursuit_core.cpp.s
 .PHONY : src/pure_pursuit_core.cpp.s
 
-src/pure_pursuit_core_final.o: src/pure_pursuit_core_final.cpp.o
+src/pure_pursuit_core_semi_final.o: src/pure_pursuit_core_semi_final.cpp.o
 
-.PHONY : src/pure_pursuit_core_final.o
+.PHONY : src/pure_pursuit_core_semi_final.o
 
 # target to build an object file
-src/pure_pursuit_core_final.cpp.o:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o
-.PHONY : src/pure_pursuit_core_final.cpp.o
+src/pure_pursuit_core_semi_final.cpp.o:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o
+.PHONY : src/pure_pursuit_core_semi_final.cpp.o
 
-src/pure_pursuit_core_final.i: src/pure_pursuit_core_final.cpp.i
+src/pure_pursuit_core_semi_final.i: src/pure_pursuit_core_semi_final.cpp.i
 
-.PHONY : src/pure_pursuit_core_final.i
+.PHONY : src/pure_pursuit_core_semi_final.i
 
 # target to preprocess a source file
-src/pure_pursuit_core_final.cpp.i:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.i
-.PHONY : src/pure_pursuit_core_final.cpp.i
+src/pure_pursuit_core_semi_final.cpp.i:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.i
+.PHONY : src/pure_pursuit_core_semi_final.cpp.i
 
-src/pure_pursuit_core_final.s: src/pure_pursuit_core_final.cpp.s
+src/pure_pursuit_core_semi_final.s: src/pure_pursuit_core_semi_final.cpp.s
 
-.PHONY : src/pure_pursuit_core_final.s
+.PHONY : src/pure_pursuit_core_semi_final.s
 
 # target to generate assembly for a file
-src/pure_pursuit_core_final.cpp.s:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.s
-.PHONY : src/pure_pursuit_core_final.cpp.s
+src/pure_pursuit_core_semi_final.cpp.s:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.s
+.PHONY : src/pure_pursuit_core_semi_final.cpp.s
 
 src/pure_pursuit_node.o: src/pure_pursuit_node.cpp.o
 
@@ -410,9 +410,9 @@ help:
 	@echo "... src/pure_pursuit_core.o"
 	@echo "... src/pure_pursuit_core.i"
 	@echo "... src/pure_pursuit_core.s"
-	@echo "... src/pure_pursuit_core_final.o"
-	@echo "... src/pure_pursuit_core_final.i"
-	@echo "... src/pure_pursuit_core_final.s"
+	@echo "... src/pure_pursuit_core_semi_final.o"
+	@echo "... src/pure_pursuit_core_semi_final.i"
+	@echo "... src/pure_pursuit_core_semi_final.s"
 	@echo "... src/pure_pursuit_node.o"
 	@echo "... src/pure_pursuit_node.i"
 	@echo "... src/pure_pursuit_node.s"

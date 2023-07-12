@@ -88,7 +88,7 @@ gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit.cpp.o
  /opt/ros/noetic/include/tf/transform_datatypes.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/noetic/include/xmlrpcpp/XmlRpcValue.h
-gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o
  /home/youngsangcho/ISCC_2023/devel/include/avoid_obstacle/DetectedObstacles.h
  /home/youngsangcho/ISCC_2023/devel/include/avoid_obstacle/PointObstacles.h
  /home/youngsangcho/ISCC_2023/devel/include/avoid_obstacle/TrueObstacles.h
@@ -101,7 +101,7 @@ gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_fin
  /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include/obstacles.h
  /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include/pure_pursuit.h
  /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include/pure_pursuit_core.h
- /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_final.cpp
+ /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_semi_final.cpp
  /opt/ros/noetic/include/geometry_msgs/Point.h
  /opt/ros/noetic/include/geometry_msgs/PointStamped.h
  /opt/ros/noetic/include/geometry_msgs/Pose.h

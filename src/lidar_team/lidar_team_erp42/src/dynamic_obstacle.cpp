@@ -197,13 +197,41 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
       
       sort(obstacle_vec.begin(), obstacle_vec.end());
       // if (3.5 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8) {
-      if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0) {
-        DynamicObsLongDetected.data = true;
+      // if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0) {
+      //   DynamicObsLongDetected.data = true;
+      // }
+      // // else if (obstacle_vec[0][0] < 3) {
+      // else if (obstacle_vec[0][0] < 5.0) {
+      //   DynamicObsShortDetected.data = true;
+      // }
+
+    if (obstacle_vec.size() >= 10)
+      {
+        if (abs(obstacle_vec[0][1] - obstacle_vec[1][1] >= 0.5))
+        {
+          if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0)
+          {
+            DynamicObsLongDetected.data = true;
+          }
+          else if (obstacle_vec[0][0] < 5.0)
+          {
+            DynamicObsShortDetected.data = true;
+          }
+        }
       }
-      // else if (obstacle_vec[0][0] < 3) {
-      else if (obstacle_vec[0][0] < 5.0) {
-        DynamicObsShortDetected.data = true;
+      else
+      { // obstacle_vec == 1
+        if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0)
+        {
+          DynamicObsLongDetected.data = true;
+        }
+        else if (obstacle_vec[0][0] < 5.0)
+        {
+          DynamicObsShortDetected.data = true;
+        }
       }
+
+
     }
 
     vector< vector<float> >().swap(obstacle_vec);   

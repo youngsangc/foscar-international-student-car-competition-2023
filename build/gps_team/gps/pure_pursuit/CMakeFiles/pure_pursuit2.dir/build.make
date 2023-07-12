@@ -83,31 +83,31 @@ gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit.cpp.s: c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pure_pursuit2.dir/src/pure_pursuit.cpp.s"
 	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit.cpp -o CMakeFiles/pure_pursuit2.dir/src/pure_pursuit.cpp.s
 
-gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/flags.make
-gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o: /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_final.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o"
-	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o -c /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_final.cpp
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/flags.make
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o: /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_semi_final.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o"
+	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o -c /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_semi_final.cpp
 
-gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.i"
-	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_final.cpp > CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.i
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.i"
+	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_semi_final.cpp > CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.i
 
-gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.s"
-	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_final.cpp -o CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.s
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.s"
+	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps/pure_pursuit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/src/pure_pursuit_core_semi_final.cpp -o CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.s
 
 # Object files for target pure_pursuit2
 pure_pursuit2_OBJECTS = \
 "CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_node.cpp.o" \
 "CMakeFiles/pure_pursuit2.dir/src/pure_pursuit.cpp.o" \
-"CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o"
+"CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o"
 
 # External object files for target pure_pursuit2
 pure_pursuit2_EXTERNAL_OBJECTS =
 
 /home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_node.cpp.o
 /home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit.cpp.o
-/home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_final.cpp.o
+/home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/src/pure_pursuit_core_semi_final.cpp.o
 /home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/build.make
 /home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: /opt/ros/noetic/lib/libroslib.so
 /home/youngsangcho/ISCC_2023/devel/lib/pure_pursuit/pure_pursuit2: /opt/ros/noetic/lib/librospack.so

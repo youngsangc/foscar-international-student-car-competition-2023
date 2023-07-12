@@ -178,9 +178,9 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ObjectStatusListExtended.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ObjectStatusListExtended.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ObjectStatusExtended.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating Javascript code from morai_msgs/ObjectStatusListExtended.msg"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ObjectStatusListExtended.msg -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg
@@ -282,10 +282,10 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ReplayInfo.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ObjectStatus.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/ReplayInfo.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Generating Javascript code from morai_msgs/ReplayInfo.msg"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ReplayInfo.msg -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg
 
@@ -315,9 +315,9 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/NpcGhostCmd.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/NpcGhostInfo.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/NpcGhostCmd.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Generating Javascript code from morai_msgs/NpcGhostCmd.msg"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/NpcGhostCmd.msg -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg
 
@@ -329,10 +329,10 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleCollisionData.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleCollision.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ObjectStatus.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg/VehicleCollisionData.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleCollision.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Generating Javascript code from morai_msgs/VehicleCollisionData.msg"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleCollisionData.msg -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/msg
 
@@ -458,8 +458,8 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiScenarioLoadSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiScenarioLoadSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiScenarioLoadSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiScenarioLoadSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/MoraiSrvResponse.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiScenarioLoadSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/ScenarioLoad.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiScenarioLoadSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/MoraiSrvResponse.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Generating Javascript code from morai_msgs/MoraiScenarioLoadSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiScenarioLoadSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
@@ -472,41 +472,41 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiTLInfoSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiTLInfoSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiTLInfoSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiTLInfoSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/MoraiTLInfo.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiTLInfoSrv.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiTLInfoSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/MoraiTLInfo.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiTLInfoSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/MoraiTLIndex.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Generating Javascript code from morai_msgs/MoraiTLInfoSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiTLInfoSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiEventCmdSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiEventCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiEventCmdSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiEventCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/EventInfo.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiEventCmdSrv.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiEventCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/EventInfo.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiEventCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/Lamps.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Generating Javascript code from morai_msgs/MoraiEventCmdSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiEventCmdSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiVehicleSpecSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiVehicleSpecSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiVehicleSpecSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiVehicleSpecSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleSpecIndex.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiVehicleSpecSrv.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiVehicleSpecSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleSpec.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiVehicleSpecSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/VehicleSpecIndex.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Generating Javascript code from morai_msgs/MoraiVehicleSpecSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiVehicleSpecSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeCmdSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeCmdSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeCmdResponse.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeCmd.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeCmdSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeCmdResponse.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Generating Javascript code from morai_msgs/MoraiSyncModeCmdSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeCmdSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiWaitForTickSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/WaitForTickResponse.msg
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/EgoVehicleStatus.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/EgoVehicleStatus.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiWaitForTickSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/WaitForTick.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Generating Javascript code from morai_msgs/MoraiWaitForTickSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiWaitForTickSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
@@ -536,8 +536,8 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeSLSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeSLSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeSLSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeSLSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeResultResponse.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeSLSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeScenarioLoad.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeSLSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeResultResponse.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Generating Javascript code from morai_msgs/MoraiSyncModeSLSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeSLSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
@@ -549,16 +549,16 @@ MORAI-ROS_morai_msgs/CMakeFiles/morai_msgs_generate_messages_nodejs: /home/young
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeAddObjectSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeAddObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeAddObjectSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeAddObjectSrv.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeAddObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeResultResponse.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeAddObjectSrv.js: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeAddObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeAddObject.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Generating Javascript code from morai_msgs/MoraiSyncModeAddObjectSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeAddObjectSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.srv
-/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeRemoveObject.msg
 /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeResultResponse.msg
+/home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.js: /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg/SyncModeRemoveObject.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/youngsangcho/ISCC_2023/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Generating Javascript code from morai_msgs/MoraiSyncModeRemoveObjectSrv.srv"
 	cd /home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/srv/MoraiSyncModeRemoveObjectSrv.srv -Imorai_msgs:/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p morai_msgs -o /home/youngsangcho/ISCC_2023/devel/share/gennodejs/ros/morai_msgs/srv
 

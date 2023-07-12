@@ -1,6 +1,7 @@
 #include <vector>
 #include <cmath>
 #include <pure_pursuit_core.h>
+#include <nav_msgs/Path.h>
 #include <fstream>
 #include <cstdlib>
 #include <unistd.h>
@@ -66,6 +67,7 @@ double velocity = 0.0;
 double move_distance = 0.0;
 
 bool static_turning = false;
+nav_msgs::Path rviz_path;
 
 /* traffic Index manager */
 int tf_idx_1 = 1000;
@@ -109,7 +111,7 @@ const float slow_down_tf_coord7[2] = {935595.685842, 1915975.14741};
 int ut_idx = 1000;
 
 // K-city 
-const float ut_coord[2] = {935609.1519933953, 1916238.3830293042};
+const float ut_coord[2] = {955552.9208851408, 1957004.4521670002};
 
 // SNU
 // const float ut_coord[2] = {931182.173187, 1929625.08779};
@@ -234,6 +236,7 @@ void PurePursuitNode::initForROS() {
   // for visualization
   target_point_pub = nh_.advertise<geometry_msgs::PointStamped>("target_point", 1);
   current_point_pub = nh_.advertise<geometry_msgs::PointStamped>("current_point", 1);
+  rviz_path_pub= nh_.advertise<nav_msgs::Path>("rviz_path", 1);
 }
 
 void PurePursuitNode::run(char** argv) {
@@ -254,6 +257,7 @@ void PurePursuitNode::run(char** argv) {
     }
 
     pp_.setLookaheadDistance(computeLookaheadDistance());
+    rviz_path_pub.publish(rviz_path);
 
     double kappa = 0;
     bool can_get_curvature = pp_.canGetCurvature(&kappa);
@@ -311,7 +315,7 @@ void PurePursuitNode::run(char** argv) {
     if (pp_.mode == 0) {
       pp_.mission_flag = 0;
       const_lookahead_distance_ = 6;
-      const_velocity_ = 12;
+      const_velocity_ = 5;
       final_constant = 1.0;
     }
 
@@ -824,6 +828,42 @@ void PurePursuitNode::run(char** argv) {
       }
     }
 
+    // MODE 10 : 동적장애물 
+    if (pp_.mode == 10) {
+      const_velocity_ = 10;
+      const_lookahead_distance_ = 6;
+      final_constant = 1.0;
+      
+      if (pp_.mission_flag == 0) {  
+        for (int i = 0; i < 3; i++) {
+          publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.03);
+          usleep(100000);
+        }
+        pp_.mission_flag = 1;
+      }
+
+      else if (pp_.mission_flag == 1) {
+        //동적장애물 멀리서 장애물 감지 -> 감속
+        while(pp_.is_dynamic_obstacle_detected_long) {
+          if (const_velocity_ > 5) {
+            const_velocity_ -= 0.1;
+            publishPurePursuitDriveMsg(can_get_curvature, kappa);
+            ros::spinOnce();
+            loop_rate.sleep();
+          }
+        }
+ 
+        // 동적장애물 멈춰야하는 거리
+        while(pp_.is_dynamic_obstacle_detected_short) {
+          publishPurePursuitDriveMsg(can_get_curvature, kappa, 1.0);
+          ROS_INFO_STREAM("OBSTACLE DETECT");
+          ros::spinOnce();
+          loop_rate.sleep();
+        }
+      }
+    }
+
+
     // 마지막 waypoint 에 다다랐으면 점차 속도를 줄이기
     if (pp_.is_finish && pp_.mode == 8) {
       while(const_velocity_ > 0) {
@@ -882,13 +922,22 @@ void PurePursuitNode::setPath(char** argv) {
   // path.txt
   // <x, y, mode>
   geometry_msgs::Point p;
+  geometry_msgs::PoseStamped p_pose;
+  rviz_path.header.frame_id="base_link";
   double x, y;
   int mode;
 
   while(global_path_file >> x >> y >> mode) {
     p.x = x;
     p.y = y;
-
+    p_pose.pose.position.x=(x-935532);
+    p_pose.pose.position.y=(y-1957000);
+    p_pose.pose.position.z=0;
+    p_pose.pose.orientation.x=0;
+    p_pose.pose.orientation.y=0;
+    p_pose.pose.orientation.z=0;
+    p_pose.pose.orientation.w=1;
+    rviz_path.poses.push_back(p_pose);
     global_path.push_back(std::make_pair(p, mode));
   }
 
@@ -938,6 +987,8 @@ void PurePursuitNode::publishTargetPointVisualizationMsg() {
   target_point_msg.header.frame_id = "/base_link";
   target_point_msg.header.stamp = ros::Time::now();
   target_point_msg.point = pp_.getPoseOfNextTarget();
+  target_point_msg.point.x=(target_point_msg.point.x-935532);
+  target_point_msg.point.y=(target_point_msg.point.y-1957000);
   target_point_pub.publish(target_point_msg);
 }
 
@@ -946,6 +997,8 @@ void PurePursuitNode::publishCurrentPointVisualizationMsg() {
   current_point_msg.header.frame_id = "/base_link";
   current_point_msg.header.stamp = ros::Time::now();
   current_point_msg.point = pp_.getCurrentPose();
+  current_point_msg.point.x=(current_point_msg.point.x-935532);
+  current_point_msg.point.y=(current_point_msg.point.y-1957000);
   current_point_pub.publish(current_point_msg);
 }
 

@@ -69,5 +69,6 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "bit": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/youngsangcho/ISCC_2023/src/gps_team/gps/stanley"
 }

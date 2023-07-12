@@ -49,7 +49,7 @@ class pm:
         distance = sqrt(pow(x - self.prev_x , 2)+pow(y - self.prev_y , 2)) 
         
         if distance > 0.2:  
-            self.f.write(str(x) + ' ' + str(y) + ' ' + '9' + '\n')
+            self.f.write(str(x) + ' ' + str(y) + ' ' + '5' + '\n')
             self.prev_x = x
             self.prev_y = y
             self.idx += 1

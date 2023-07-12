@@ -45,8 +45,8 @@ add_executable(
   pure_pursuit2
   src/pure_pursuit_node.cpp
   src/pure_pursuit.cpp
-  src/pure_pursuit_core_final.cpp
-  #src/pure_pursuit_core_semi_final.cpp
+  #src/pure_pursuit_core_final.cpp
+  src/pure_pursuit_core_semi_final.cpp
 )
 
 # add_executable(
