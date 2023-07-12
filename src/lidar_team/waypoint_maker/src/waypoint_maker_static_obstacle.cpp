@@ -198,7 +198,7 @@ waypointInfoMsg.y_arr[i]=y_2-1;
 
 }
 
-if(avoid_Left_Right==false && avoid_Right_Left==true){
+else if(avoid_Left_Right==false && avoid_Right_Left==true){
 
 for(int i = 0;i<100;i++){
 
