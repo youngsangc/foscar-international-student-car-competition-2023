@@ -8,55 +8,58 @@ using namespace std;
 
 class Static_Waypoint_Maker{
 
-ObjectArray objects; // object detector로부터 받은 토픽 메세지를 저장하는 객체
-
-Object NearRubberCone; // 가까운 라바콘의 정보를 담는 객체
-
-Object FarRubberCone; // 멀리 있는 라바콘의 정보를 담는 객체
-
-waypoint_maker::Waypoint waypointInfoMsg; //waypoint msg (Waypoint를 발행하기 위한 메세지 타입)
+    private:
 
 
+        ObjectArray objects; // object detector로부터 받은 토픽 메세지를 저장하는 객체
 
+        Object NearRubberCone; // 가까운 라바콘의 정보를 담는 객체
 
-ros::NodeHandle nh; // 해당 노드를 담당하는 핸들러
+        Object FarRubberCone; // 멀리 있는 라바콘의 정보를 담는 객체
 
-ros::Subscriber sub_object_info;
-
-ros::Publisher LocalwaypointInfoPub;
-
-    
-
-    double DistanceLidarToNearRubberCone;
-    double DistanceLidarToFarRubberCone;
-    //waypoint_maker::Waypoint waypointInfoMsg; // waypoint msg ( Waypoint를 발행하기 위한 메시지타입 객체 )
-
-   
+        waypoint_maker::Waypoint waypointInfoMsg; //waypoint msg (Waypoint를 발행하기 위한 메세지 타입)
 
 
 
-    ros::Publisher visualizeWaypointInfoMsgPub; // 이름 그대로를 수행하는 Publisher
-    
+
+        ros::NodeHandle nh; // 해당 노드를 담당하는 핸들러
+
+        ros::Subscriber sub_object_info;
+
+        ros::Publisher LocalwaypointInfoPub;
 
 
-public:
 
-    double xMinRubberCone;
-    double xMaxRubberCone;
-    double yMinRubberCone;
-    double yMaxRubberCone;
-    double zMinRubberCone;
-    double zMaxRubberCone;
+        double DistanceLidarToNearRubberCone;
+        double DistanceLidarToFarRubberCone;
+        //waypoint_maker::Waypoint waypointInfoMsg; // waypoint msg ( Waypoint를 발행하기 위한 메시지타입 객체 )
 
-    int avoid_flag;
-
-    double Width_Each_Cone;
-
-    bool avoid_Left_Right;//장애물이 왼쪽 먼저 등장
-    bool avoid_Right_Left;// 장애물이 오른쪽 먼저 등장
+        
 
 
-    int count__;
+
+        ros::Publisher visualizeWaypointInfoMsgPub; // 이름 그대로를 수행하는 Publisher
+            
+
+
+    public:
+
+        double xMinRubberCone;
+        double xMaxRubberCone;
+        double yMinRubberCone;
+        double yMaxRubberCone;
+        double zMinRubberCone;
+        double zMaxRubberCone;
+
+        int avoid_flag;
+
+        double Width_Each_Cone;
+
+        bool avoid_Left_Right;//장애물이 왼쪽 먼저 등장
+        bool avoid_Right_Left;// 장애물이 오른쪽 먼저 등장
+
+
+        int count__;
 
 
 
@@ -83,10 +86,6 @@ avoid_flag=0;// 첫번째 장애물을 회피 했는지에 대한 flag
 Width_Each_Cone=3;
 
 int count__=0;
-
-
-
-
 
 
 sub_object_info = nh.subscribe("/object_info",1, &Static_Waypoint_Maker::object_info_callback ,this);
@@ -161,6 +160,7 @@ publish_Local_Path();
 
 }
 
+
 void Static_Waypoint_Maker::publish_Local_Path(){
 
 waypointInfoMsg.cnt=20;
@@ -179,6 +179,11 @@ double x_2= this->FarRubberCone.centerX;
 double y_2= this->FarRubberCone.centerY;
 double z_2= this->FarRubberCone.centerZ;
 
+if(abs(y_1)>1 && x_1 < 0.1){
+    avoid_flag=1;
+    x_1 = x_2;
+    y_1 = y_2;
+}
 
 
 // 첫번째 장애물을 넘지 않은 경우
@@ -186,46 +191,36 @@ double z_2= this->FarRubberCone.centerZ;
 if(avoid_flag==0){
 
 
-if(avoid_Left_Right==true && avoid_Right_Left==false){
+        if(avoid_Left_Right==true && avoid_Right_Left==false){
 
-for(int i = 0;i<100;i++){
+            for(int i = 0;i<100;i++){
 
-waypointInfoMsg.x_arr[i]=x_2-1;
-waypointInfoMsg.y_arr[i]=y_2-1;
-
-
-}
-
-}
-
-else if(avoid_Left_Right==false && avoid_Right_Left==true){
-
-for(int i = 0;i<100;i++){
-
-waypointInfoMsg.x_arr[i]=x_2-1;
-waypointInfoMsg.y_arr[i]=y_2+1;
+            waypointInfoMsg.x_arr[i]=x_2-1;
+            waypointInfoMsg.y_arr[i]=y_2-1;
 
 
-}
+            }
 
-}
+        }
+
+        else if(avoid_Left_Right==false && avoid_Right_Left==true){
+
+            for(int i = 0;i<100;i++){
+
+            waypointInfoMsg.x_arr[i]=x_2-1;
+            waypointInfoMsg.y_arr[i]=y_2+1;
 
 
+            }
+
+        }
 
 
 
-// 첫번째 장애물을 넘지 않은 경우 
-LocalwaypointInfoPub.publish(waypointInfoMsg);//첫 번째 Target_point를 추종하고있는다. 
+        // 첫번째 장애물을 넘지 않은 경우 
+        LocalwaypointInfoPub.publish(waypointInfoMsg);//첫 번째 Target_point를 추종하고있는다. 
 
-if(abs(y_1)>1 && x_1<0.1){//만약 첫번째 장애물을 회피하였을 때
-
-    avoid_flag=1;
-
-    x_1=x_2;//멀리있는 라바콘의 좌표를 Near 좌표로 업데이트
-    y_1=y_2;//멀리있는 라바콘의 좌표를 Near 좌표로 업데이트
-
-
-}
+        
 
 }
 
@@ -233,33 +228,33 @@ if(abs(y_1)>1 && x_1<0.1){//만약 첫번째 장애물을 회피하였을 때
 
 else if(avoid_flag==1){
 
-// 장애물의 갯수가 짝수개인 경우
+    // 장애물의 갯수가 짝수개인 경우
 
-//만약 처음 회피시 오른쪽으로 회피하였을때 두번째에서는 왼쪽으로 회피하여야 한다.
+    //만약 처음 회피시 오른쪽으로 회피하였을때 두번째에서는 왼쪽으로 회피하여야 한다.
 
-if(avoid_Left_Right==true && avoid_Right_Left==false){
+    if(avoid_Left_Right==true && avoid_Right_Left==false){
 
- for(int i = 0;i<100;i++){
+        for(int i = 0;i<100;i++){
 
-    waypointInfoMsg.x_arr[i]=x_1;
-    waypointInfoMsg.y_arr[i]=y_1+2;
-
-
-}
+            waypointInfoMsg.x_arr[i]=x_1;
+            waypointInfoMsg.y_arr[i]=y_1+2;
 
 
-}
+        }
+
+
+    }
 
 //만약 처음 회피시 왼쪽으로 회피하였을 경우에는 두번째에서는 오른쪽으로 회피해야 한다. 
 else if(avoid_Left_Right==false && avoid_Right_Left==true){
 
- for(int i = 0;i<100;i++){
+    for(int i = 0;i<100;i++){
 
-    waypointInfoMsg.x_arr[i]=x_1;
-    waypointInfoMsg.y_arr[i]=y_1-2;
+        waypointInfoMsg.x_arr[i]=x_1;
+        waypointInfoMsg.y_arr[i]=y_1-2;
 
 
-}
+    }
 
 
 }
@@ -315,8 +310,7 @@ void Static_Waypoint_Maker::set_Near_Far_info(){
     //초기에 어느방향으로 회피를 시작하는 지 구분해야한다.
 
 
-if(count__==0){
-
+if(count__==0){// 한번에 판단하는건 너무 위험하기 때문에 벡터에다가 한 10번 정도 받아서 10번중에 많은 경우로 따라가는 방식으로 코드 수정해야함.
 
  if(this->NearRubberCone.centerY>this->FarRubberCone.centerY){ //만약 가까이 있는 라바콘이 왼쪽에 놓인 경우(오른쪽으로 먼저 회피)
 
