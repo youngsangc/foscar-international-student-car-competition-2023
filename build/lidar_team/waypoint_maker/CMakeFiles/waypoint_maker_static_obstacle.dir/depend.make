@@ -4,6 +4,7 @@
 lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/lidar_team_morai/Boundingbox.h
 lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/lidar_team_morai/DynamicVelocity.h
 lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/lidar_team_morai/Waypoint.h
+lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/morai_msgs/CtrlCmd.h
 lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/object_detector/ObjectInfo.h
 lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/waypoint_maker/Waypoint.h
 lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/waypoint_maker_static_obstacle.cpp.o: /home/youngsangcho/ISCC_2023/devel/include/waypoint_maker/waypointMakerConfig.h

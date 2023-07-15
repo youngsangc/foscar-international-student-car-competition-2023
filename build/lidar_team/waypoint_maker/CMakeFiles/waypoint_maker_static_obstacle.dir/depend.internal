@@ -5,6 +5,7 @@ lidar_team/waypoint_maker/CMakeFiles/waypoint_maker_static_obstacle.dir/src/wayp
  /home/youngsangcho/ISCC_2023/devel/include/lidar_team_morai/Boundingbox.h
  /home/youngsangcho/ISCC_2023/devel/include/lidar_team_morai/DynamicVelocity.h
  /home/youngsangcho/ISCC_2023/devel/include/lidar_team_morai/Waypoint.h
+ /home/youngsangcho/ISCC_2023/devel/include/morai_msgs/CtrlCmd.h
  /home/youngsangcho/ISCC_2023/devel/include/object_detector/ObjectInfo.h
  /home/youngsangcho/ISCC_2023/devel/include/waypoint_maker/Waypoint.h
  /home/youngsangcho/ISCC_2023/devel/include/waypoint_maker/waypointMakerConfig.h

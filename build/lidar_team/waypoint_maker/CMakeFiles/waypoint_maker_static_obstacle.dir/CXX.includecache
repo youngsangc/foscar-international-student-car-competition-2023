@@ -54,6 +54,22 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
+/home/youngsangcho/ISCC_2023/devel/include/morai_msgs/CtrlCmd.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/youngsangcho/ISCC_2023/devel/include/object_detector/ObjectInfo.h
 string
 -
@@ -199,6 +215,8 @@ waypoint_maker/waypointMakerConfig.h
 /home/youngsangcho/ISCC_2023/src/lidar_team/waypoint_maker/src/waypoint_maker_static_obstacle.cpp
 ../include/header.h
 /home/youngsangcho/ISCC_2023/src/lidar_team/waypoint_maker/include/header.h
+morai_msgs/CtrlCmd.h
+-
 
 /opt/ros/noetic/include/dynamic_reconfigure/BoolParameter.h
 string
