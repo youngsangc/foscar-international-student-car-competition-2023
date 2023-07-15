@@ -230,9 +230,12 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     // 첫 번째 장애물과 두번째 장애물 사이의 거리
     if(get_distance_flag==0){
 
-        if(x_1<3 && x_1>1){
 
-            Distance_Near_Far_RubberCone = Distance_Near_Far_RubberCone*0.7 + (sqrt(pow(abs(x_1-x_2),2) + pow(abs(y_1-y_2),2)))*0.3;
+    //아래 조건문들은 차량이 flag가 1로 바뀌었음에도 라바콘을 정말로 넘었는지 안넘었는지 구별하고, 이에 따라 가까운 라바콘의 정보를 업데이트해주는 로직이다. 
+
+        if(x_1<3 && x_1>1){
+            //고주파 통과필터를 사용하여 보다 노이즈를 최대한 제거한 정보만 저장한다. 
+            Distance_Near_Far_RubberCone = Distance_Near_Far_RubberCone*0.7 + (sqrt(pow(abs(x_1-x_2),2) + pow(abs(y_1-y_2),2)))*0.3; 
             get_distance_cnt++;
             if(get_distance_cnt>=5){
                 get_distance_flag=1;
@@ -412,7 +415,7 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
 
 void Static_Waypoint_Maker::setObjectInfo(const object_detector::ObjectInfo& msg) {
     /**
-     * @brief
+     *
      * object_detector가 발행하는 /object_info 토픽 메시지를 받아
      * 값을 objects에 저장하고 X값 기준 오름차순으로 정렬합니다.
      */
@@ -448,53 +451,6 @@ void Static_Waypoint_Maker::set_Near_Far_info() {
     this->FarRubberCone.centerY = this->objects.objectArray[1].centerY;
     this->FarRubberCone.centerZ = this->objects.objectArray[1].centerZ;
 
-
-
-    //초기에 어느방향으로 회피를 시작하는 지 구분해야한다.
-
-
-    if (count__ == 0) {// 한번에 판단하는건 너무 위험하기 때문에 벡터에다가 한 10번 정도 받아서 10번중에 많은 경우로 따라가는 방식으로 코드 수정해야함.
-
-        if (this->NearRubberCone.centerY > this->FarRubberCone.centerY) { //만약 가까이 있는 라바콘이 왼쪽에 놓인 경우(오른쪽으로 먼저 회피)
-
-            avoid_Left_Right = true;
-            avoid_Right_Left = false;
-
-        }
-
-        else if (this->NearRubberCone.centerY < this->FarRubberCone.centerY) {// 만약 가까이 있는 라바콘이 오른쪽에 놓인 경우(왼쪽으로 먼저 회피)
-
-            avoid_Left_Right = false;
-            avoid_Right_Left = true;
-
-        }
-
-        count__ = 1;
-
-
-    }
-
-    if (count__ == 1) {
-
-
-    }
-
-
-
-
-
- 
-    // std::cout << "Near_Rubber_Cone_coordinate : " << this->objects.objectArray[0].centerX << "," << this->objects.objectArray[0].centerY << endl;
-
-    // std::cout << endl << endl;
-
-    // std::cout << "Far_Rubber_Cone_coordinate : " << this->objects.objectArray[1].centerX << "," << this->objects.objectArray[1].centerY << endl;
-
-    // std::cout << endl << endl;
-
-
-
-    //std::cout<<"--------------------------------"<<endl;
 }
 
 
