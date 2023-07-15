@@ -348,8 +348,16 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
             pass_obstacle++;
             if(pass_obstacle >= 2){
                 avoid_flag = 2;
-                way_y = -1.5;
-                way_x = 3;
+
+                if(left_cnt > right_cnt){
+                    way_y = -1.5;
+                    way_x = 3;
+                }
+                else if(right_cnt > left_cnt){
+                    way_y = 1.5;
+                    way_x = 3;
+                }
+
             }
         }
         // 왼 -> 오
