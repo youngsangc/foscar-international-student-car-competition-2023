@@ -262,8 +262,8 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     if(avoid_flag==0){// 첫번째 장애물 통과 전
 
         // [1] 첫 번째 장애물 넘었는지 판단    
-        if (abs(y_1) > 0.8 && x_1 < 0.1) { //만약 첫번째 장애물의 y좌표의 절댓값이 차량의 폭의 절반(라이다의 위치로부터 차량 (횡방향)한쪽 끝까지의 거리)보다 크고
-            cout << "flag cout" << '\n'; //라이다와 첫번째 장애물의 종방향 거리가 0.1보다 작다면, 
+        if (abs(y_1) > 0.8 && x_1 < 0.5) { //만약 첫번째 장애물의 y좌표의 절댓값이 차량의 폭의 절반(라이다의 위치로부터 차량 (횡방향)한쪽 끝까지의 거리)보다 크고
+            cout << "flag cout" << '\n'; //라이다와 첫번째 장애물의 종방향 거리가 0.5보다 작다면,(처음에 기준값을 0.1로 했으나 인지하지 못함) 
             pass_obstacle++; //장애물을 넘었다고 판단하고 이에대한 판단 횟수를 증가시킨다.
             if(pass_obstacle >= 1){ // 1회(판단 횟수는 조절가능) 정도 판단하였을 때 첫번째 장애물을 지나쳤다고 결론이 날 때,
                 avoid_flag = 1; // flag를 바꾸어주어서 첫번째 장애물을 지났음을 확정한다.
@@ -387,6 +387,8 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
 
     cout << "steering: " <<   motor_info.steering  << '\n';
     cout << "flag: " << avoid_flag << '\n';
+
+    cout<< "left_cnt : "<< left_cnt << "right_cnt : "<<left_cnt<<endl;
     // LocalwaypointInfoPub.publish(waypointInfoMsg);
 
 
@@ -465,10 +467,7 @@ void Static_Waypoint_Maker::set_Near_Far_info() {
 
 
 
-    std::cout << "Near_Rubber_Cone_coordinate 11: " << this->NearRubberCone.centerX << "," << this->objects.objectArray[0].centerY << endl;
-
-    std::cout << endl << endl;
-
+ 
     std::cout << "Near_Rubber_Cone_coordinate : " << this->objects.objectArray[0].centerX << "," << this->objects.objectArray[0].centerY << endl;
 
     std::cout << endl << endl;
