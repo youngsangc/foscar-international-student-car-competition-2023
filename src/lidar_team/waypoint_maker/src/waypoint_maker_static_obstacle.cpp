@@ -335,18 +335,20 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     }
     if (avoid_flag == 1){
         cout << "avoid_pass" << '\n';
-        if (abs(y_1) > 0.8 && x_1 < 0) {
+        if (abs(y_1) > 0.8 && x_1 < 0.5) {
             cout << "flag cout" << '\n';
             pass_obstacle++;
             if(pass_obstacle >= 2){
                 avoid_flag = 2;
+                way_y = -1.5;
+                way_x = 3;
             }
         }
         // 왼 -> 오
         if(left_cnt > right_cnt){
             cout << "왼 -> 오" << '\n';
             if(y_1>-1.5){
-                way_y = -1.5;//그리드의 왼쪽 끝을 추종한다. 
+                way_y = 1.5;//그리드의 왼쪽 끝을 추종한다. 
                 way_x = 3; 
             }
             else if(y_1<-1.5){// /rosout
@@ -358,7 +360,7 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
         else if(right_cnt > left_cnt){
             cout << "오 -> 왼" << '\n';
             if(y_1<1.5){
-                way_y = 1.5;
+                way_y = -1.5;
                 way_x = 3;
             }
             else{
@@ -385,6 +387,15 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     motorPub.publish(motor_info);
 
 
+    std::cout << "Near_Rubber_Cone_coordinate : " << x_1 << "," << y_1 << endl;
+
+    std::cout << endl << endl;
+
+    std::cout << "Far_Rubber_Cone_coordinate : " << x_2 << "," << y_2 << endl;
+
+    std::cout << endl << endl;
+
+    
     cout << "steering: " <<   motor_info.steering  << '\n';
     cout << "flag: " << avoid_flag << '\n';
 
@@ -468,13 +479,13 @@ void Static_Waypoint_Maker::set_Near_Far_info() {
 
 
  
-    std::cout << "Near_Rubber_Cone_coordinate : " << this->objects.objectArray[0].centerX << "," << this->objects.objectArray[0].centerY << endl;
+    // std::cout << "Near_Rubber_Cone_coordinate : " << this->objects.objectArray[0].centerX << "," << this->objects.objectArray[0].centerY << endl;
 
-    std::cout << endl << endl;
+    // std::cout << endl << endl;
 
-    std::cout << "Far_Rubber_Cone_coordinate : " << this->objects.objectArray[1].centerX << "," << this->objects.objectArray[1].centerY << endl;
+    // std::cout << "Far_Rubber_Cone_coordinate : " << this->objects.objectArray[1].centerX << "," << this->objects.objectArray[1].centerY << endl;
 
-    std::cout << endl << endl;
+    // std::cout << endl << endl;
 
 
 
