@@ -69,6 +69,8 @@ public:
     int get_distance_flag =0;
 
 
+    int sleep_cnt=0;
+
     morai_msgs::CtrlCmd motor_info;
     // motorPub = nh.advertise<morai_msgs::CtrlCmd>("/ctrl_cmd", 0.001);
 
@@ -334,8 +336,11 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     
     }
     if (avoid_flag == 1){
+        sleep_cnt++;
+
+
         cout << "avoid_pass" << '\n';
-        if (abs(y_1) > 0.8 && x_1 < 0.5) {
+        if (abs(y_1) > 0.8 && x_1 < 0.5 && sleep_cnt>=50) {
             cout << "flag cout" << '\n';
             pass_obstacle++;
             if(pass_obstacle >= 2){
