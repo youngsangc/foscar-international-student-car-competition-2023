@@ -1,5 +1,7 @@
 #include "../include/header.h"
 #include <morai_msgs/CtrlCmd.h>
+#include <race/drive_values.h>
+
 using namespace std;
 
 
@@ -25,6 +27,8 @@ private:
     ros::Publisher LocalwaypointInfoPub;
 
     ros::Publisher motorPub;
+
+    ros::Publisher drive_msg_pub;
 
 
 
@@ -74,6 +78,8 @@ public:
     morai_msgs::CtrlCmd motor_info;
     // motorPub = nh.advertise<morai_msgs::CtrlCmd>("/ctrl_cmd", 0.001);
 
+    race::drive_values drive_info;
+
 
 
     //생성자
@@ -107,6 +113,8 @@ public:
 
         visualizeWaypointInfoMsgPub = nh.advertise<visualization_msgs::MarkerArray>("/waypoint_marker", 0.001);
         motorPub = nh.advertise<morai_msgs::CtrlCmd>("/ctrl_cmd", 0.001);
+
+        drive_msg_pub = nh.advertise<race::drive_values>("control_value", 1);
         
 
 
@@ -396,11 +404,26 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
 
 
 
-
+    //MORAI 가상환경에서 제어 메세지 전달
     motor_info.steering = atan2(way_y,way_x)*0.3;
     motor_info.velocity = 1;
     motor_info.longlCmdType = 2;
     motorPub.publish(motor_info);
+
+    //오른쪽 스티어링이 음의값(-), 왼쪽이 양의값 (+)을 가짐.
+
+    //실제 자동차 ERP42 환경에서 제어메세지 전달 
+    drive_info.steering =atan2(way_y,way_x)*(-1)*(180/3.14)*0.7;
+
+    if( drive_info.steering<0){//우리 차량이 오른쪽으로 꺽을때 더 큰값을 줘야함
+
+        drive_info.steering =atan2(way_y,way_x)*(-1)*(180/3.14);
+
+
+    }
+    drive_info.throttle = 5;
+    drive_msg_pub.publish(drive_info);
+    
 
 
     std::cout << "Near_Rubber_Cone_coordinate : " << x_1 << "," << y_1 << endl;
@@ -411,8 +434,10 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
 
     std::cout << endl << endl;
 
-    
-    cout << "steering: " <<   motor_info.steering  << '\n';
+    cout << "steering: " <<   drive_info.steering  << '\n';
+
+    //모라이 스티어링 값 확인
+    // cout << "steering: " <<   motor_info.steering  << '\n';
     cout << "flag: " << avoid_flag << '\n';
 
     cout<< "left_cnt : "<< left_cnt << "right_cnt : "<<right_cnt<<endl;
