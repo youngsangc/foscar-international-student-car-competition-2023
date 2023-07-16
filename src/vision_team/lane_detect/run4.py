@@ -14,8 +14,6 @@ from race.msg import drive_values
 
 
 drive_values_pub= rospy.Publisher('control_value', drive_values, queue_size = 1)
-drive_values_pub= rospy.Publisher('--', drive_values, queue_size = 1)
-
 
 # img_msg_name = "/vds_node_localhost_2211/image_raw"
 img_msg_name = "/usb_cam/image_raw"
@@ -287,6 +285,7 @@ def getCenter(l_bias, r_bias):
 #차량의 조향 각도 계산
 def getSteeringAngle(left_line, right_line, frame_width, frame_height):
     motor_info = drive_values()
+   
     # 차선의 중앙을 계산
     lane_center = (left_line[2] + right_line[2]) / 2.0
 
@@ -301,6 +300,9 @@ def getSteeringAngle(left_line, right_line, frame_width, frame_height):
 
     # 조향 각도를 계산 (예를 들어, 미터당 (0.4)도로 설정) - 0.4 변경 해야할 수도
     motor_info.steering = center_offset_meters * 0.4
+    motor_info.throttle = 3
+
+    drive_values_pub.publish(motor_info)
     return motor_info.steering
 
 

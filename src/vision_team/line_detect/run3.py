@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#include
 import os
 import cv2
 import numpy as np
@@ -7,9 +8,12 @@ import rospy
 from sensor_msgs.msg import Image
 from std_msgs.msg import String
 from cv_bridge import CvBridge
-from ransac_1d import *
+from ransac_1d import RANSAC
 from std_msgs.msg import Float64
+from race.msg import drive_values
 
+
+drive_values_pub= rospy.Publisher('control_value', drive_values, queue_size = 1)
 
 # img_msg_name = "/vds_node_localhost_2211/image_raw"
 img_msg_name = "/usb_cam/image_raw"
@@ -278,6 +282,30 @@ def getCenter(l_bias, r_bias):
     
     return center
 
+#차량의 조향 각도 계산
+def getSteeringAngle(left_line, right_line, frame_width, frame_height):
+    motor_info = drive_values()
+   
+    # 차선의 중앙을 계산
+    lane_center = (left_line[2] + right_line[2]) / 2.0
+
+    # 차량의 중앙을 설정
+    vehicle_center = frame_width / 2
+
+    # 차량 중앙과 차선 중앙 사이의 거리를 계산
+    center_offset_pixels = lane_center - vehicle_center
+
+    # 픽셀 단위의 거리를 미터로 변환 (이 값을 실제 차량과 환경에 맞게 조정해야 함) - 실험하면서 값 변경
+    center_offset_meters = center_offset_pixels / 250.0
+
+    # 조향 각도를 계산 (예를 들어, 미터당 (0.4)도로 설정) - 0.4 변경 해야할 수도
+    motor_info.steering = center_offset_meters * 0.4
+    motor_info.throttle = 3
+
+    drive_values_pub.publish(motor_info)
+    return motor_info.steering
+
+
 def imageCallback(msg):
     global BEV_H,BEV_W, BEV_TOP_PADDING, M, revM
 
@@ -418,6 +446,16 @@ def imageCallback(msg):
     result_img=img.copy()
     result_img.setflags(write=1)
     result_img[BEV_TOP_PADDING:(BEV_TOP_PADDING+BEV_H), 0:BEV_W] = lane_img
+
+    #조향각
+    left_line = [l_model_a, 0, l_model_c]
+    right_line = [r_model_a, 0, r_model_c]
+
+    # 조향 각도를 계산
+    steering_angle = getSteeringAngle(left_line, right_line, BEV_W, BEV_H)
+
+    # 조향 각도를 출력
+    print("Steering Angle: ", steering_angle)
     
 
     # # ---------------------- PRINT ------------------------------
@@ -466,4 +504,6 @@ def main():
     
 if __name__=='__main__':
     main()
+    #if()
+    #motor_info.steering
 
