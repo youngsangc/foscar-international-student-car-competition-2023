@@ -415,7 +415,7 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     cout << "steering: " <<   motor_info.steering  << '\n';
     cout << "flag: " << avoid_flag << '\n';
 
-    cout<< "left_cnt : "<< left_cnt << "right_cnt : "<<left_cnt<<endl;
+    cout<< "left_cnt : "<< left_cnt << "right_cnt : "<<right_cnt<<endl;
     // LocalwaypointInfoPub.publish(waypointInfoMsg);
 
 
