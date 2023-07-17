@@ -2,11 +2,11 @@
 \verbatim
 <node name="waypoint_maker_static_obstacle" pkg="waypoint_maker" type="waypoint_maker_static_obstacle">
   <param name="xMinRubberCone" type="double" value="0.05" />
-  <param name="xMaxRubberCone" type="double" value="0.55" />
+  <param name="xMaxRubberCone" type="double" value="1.0" />
   <param name="yMinRubberCone" type="double" value="0.05" />
-  <param name="yMaxRubberCone" type="double" value="0.55" />
+  <param name="yMaxRubberCone" type="double" value="2.0" />
   <param name="zMinRubberCone" type="double" value="0.05" />
-  <param name="zMaxRubberCone" type="double" value="0.85" />
+  <param name="zMaxRubberCone" type="double" value="0.9" />
 </node>
 \endverbatim
 

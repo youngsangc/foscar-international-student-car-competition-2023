@@ -309,9 +309,9 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
         // 그리드 안에 있을 경우
         else if((-1.5<=y_1 && y_1 <=1.5) && (0<x_1 && x_1<=6 )){
             cout << "in the grid" << '\n';
-            if(y_1>0.75){
+            if(y_1>0.75){//그리드의 경계 부근에 있으므로 스티어링을 조금만 변화시키자.
                 way_x = x_1;
-                way_y = y_1 - 0.75*3;
+                way_y = y_1 - 0.75*3;//3칸 변화에서 2칸 변화로 수정
                 left_cnt++;
             }
             else if(y_1>0){
@@ -326,7 +326,7 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
             }
             else{
                 way_x = x_1;
-                way_y = y_1 + 0.75*3;
+                way_y = y_1 + 0.75*3;//그리드의 경계 부근에 있으므로 스티어링을 조금만 변화시키자.
                 right_cnt++;
             }
         }

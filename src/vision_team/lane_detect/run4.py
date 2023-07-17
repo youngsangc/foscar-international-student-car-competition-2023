@@ -22,7 +22,7 @@ img_msg_name = "/usb_cam/image_raw"
 
 # -------------------PARAMETER-------------------------
 BEV_H = 250
-BEV_W = 640
+BEV_W = 640 
 BEV_TOP_PADDING = 230
 
 IMAGE_W = 640

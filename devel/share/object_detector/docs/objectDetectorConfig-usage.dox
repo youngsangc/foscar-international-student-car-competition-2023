@@ -6,11 +6,11 @@
   <param name="yMin" type="double" value="-4.0" />
   <param name="yMax" type="double" value="4.0" />
   <param name="zMin" type="double" value="-0.65" />
-  <param name="zMax" type="double" value="4.0" />
+  <param name="zMax" type="double" value="1.0" />
   <param name="minPoints" type="int" value="10" />
   <param name="epsilon" type="double" value="0.4" />
   <param name="minClusterSize" type="double" value="10.0" />
-  <param name="maxClusterSize" type="double" value="300.0" />
+  <param name="maxClusterSize" type="double" value="2200.0" />
   <param name="leafSize" type="double" value="0.03" />
 </node>
 \endverbatim

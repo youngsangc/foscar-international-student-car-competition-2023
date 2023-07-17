@@ -428,7 +428,7 @@ waypointMakerConfig::GroupDescription<waypointMakerConfig::DEFAULT, waypointMake
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.xMaxRubberCone = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.xMaxRubberCone = 0.55;
+      __default__.xMaxRubberCone = 1.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(waypointMakerConfig::AbstractParamDescriptionConstPtr(new waypointMakerConfig::ParamDescription<double>("xMaxRubberCone", "double", 0, "xMaxRubberCone", "", &waypointMakerConfig::xMaxRubberCone)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -448,7 +448,7 @@ waypointMakerConfig::GroupDescription<waypointMakerConfig::DEFAULT, waypointMake
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.yMaxRubberCone = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.yMaxRubberCone = 0.55;
+      __default__.yMaxRubberCone = 2.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(waypointMakerConfig::AbstractParamDescriptionConstPtr(new waypointMakerConfig::ParamDescription<double>("yMaxRubberCone", "double", 0, "yMaxRubberCone", "", &waypointMakerConfig::yMaxRubberCone)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -468,7 +468,7 @@ waypointMakerConfig::GroupDescription<waypointMakerConfig::DEFAULT, waypointMake
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.zMaxRubberCone = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.zMaxRubberCone = 0.85;
+      __default__.zMaxRubberCone = 0.9;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(waypointMakerConfig::AbstractParamDescriptionConstPtr(new waypointMakerConfig::ParamDescription<double>("zMaxRubberCone", "double", 0, "zMaxRubberCone", "", &waypointMakerConfig::zMaxRubberCone)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

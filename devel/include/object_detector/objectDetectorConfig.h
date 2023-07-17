@@ -488,7 +488,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.zMax = 100.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.zMax = 4.0;
+      __default__.zMax = 1.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("zMax", "double", 0, "zMaxValue", "", &objectDetectorConfig::zMax)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -528,7 +528,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.maxClusterSize = 10000.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.maxClusterSize = 300.0;
+      __default__.maxClusterSize = 2200.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("maxClusterSize", "double", 0, "maxClusterSizeValue", "", &objectDetectorConfig::maxClusterSize)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

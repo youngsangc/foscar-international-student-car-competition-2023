@@ -5,6 +5,7 @@ import numpy as np
 import torch
 import cv2
 import time
+import math
 import os
 import matplotlib.pylab as plt
 import sys
@@ -16,6 +17,10 @@ from utils.evaluation import gray_to_rgb_emb, process_instance_embedding
 import rospy
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
+from race.msg import drive_values
+
+drive_values_pub= rospy.Publisher('control_value', drive_values, queue_size = 1)
+
 
 bridge = CvBridge()
 img = np.empty(shape=[0])
@@ -60,7 +65,52 @@ def inference(gt_img_org):
     frame = np.rint(frame * 255)
     frame = frame.astype(np.uint8)
 
+    motor_info = drive_values()
+
+    y, x = get_lane_center(binary_img)
+    
+    motor_info.steering = math.atan2(y,x)*(180/3.14)-90
+    motor_info.throttle = 3
+    drive_values_pub.publish(motor_info)
+
+    print("motor_info.steering: ",motor_info.steering)
+    print("")
+
+
     return frame
+
+def get_lane_center(binary_img):
+    """Calculate center coordinates of the lane.
+    This function assumes the input image's vanishing point is in the middle of the image.
+    """
+    # We're only interested in the bottom half of the image
+    binary_img = binary_img[binary_img.shape[0]//2:]
+
+    # Calculate the histogram of the bottom half
+    histogram = np.sum(binary_img, axis=0)
+
+    # Find peaks of left and right halves
+    midpoint = np.int(histogram.shape[0]//2)
+    leftx_base = np.argmax(histogram[:midpoint])
+    rightx_base = np.argmax(histogram[midpoint:]) + midpoint
+
+    # Calculate lane center
+    lanex_center = (leftx_base + rightx_base) / 2
+
+    # Assuming the car is placed in the center of the image
+    car_center = binary_img.shape[1] // 2
+
+    # Calculate longitudinal and lateral distances
+    longitudinal_distance = binary_img.shape[0]
+    lateral_distance = lanex_center - car_center
+    
+    #print(f"Longitudinal distance: {longitudinal_distance}, Lateral distance: {lateral_distance}")
+    return longitudinal_distance, lateral_distance
+
+
+# 이 코드는 각 차선의 히스토그램을 계산한 후, 이 히스토그램의 최대값(즉, 차선의 중심)을 찾아 차선의 중간 좌표를 계산합니다.
+
+
 
 
 if __name__ == "__main__":
