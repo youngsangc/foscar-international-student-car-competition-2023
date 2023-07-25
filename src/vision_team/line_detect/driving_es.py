@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
@@ -7,6 +7,7 @@
 import numpy as np
 import cv2, math
 import rospy, rospkg, time
+
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 from race.msg import drive_values
@@ -20,21 +21,25 @@ import random
 
 drive_values_pub= rospy.Publisher('control_value', drive_values, queue_size = 1)
 
-
+previous_angle = 0
+show_img = np.empty(shape=[0])
 
 # 추후에 color filtering을 통해 흰색의 차선만을 추출하기 위한 픽셀 범위값을 미리 선언하였습니다
 global lower_white
-lower_white = np.array([20,150,20])
+lower_white = np.array([240,95,160])
 global upper_white
-upper_white = np.array([255,255,255])
+upper_white = np.array([255,140,200])
 global yellow_lower
-lower_yellow = np.array([0, 85, 81])
+lower_yellow = np.array([240,95,160])
 global yellow_upper
-upper_yellow = np.array([190, 255, 255])
+upper_yellow = np.array([255,140,200])
 
 
 
 
+def init_show_img(img) :
+    global show_img
+    show_img = img
 
 
 def signal_handler(sig, frame):
@@ -47,7 +52,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 image = np.empty(shape=[0]) 
 bridge = CvBridge() 
-motor = None 
+motor = 0
 
 
 CAM_FPS = 30    
@@ -65,13 +70,13 @@ global motor_info
 def drive(angle, speed):
     motor_info = drive_values()
     motor_info.steering = angle
-    motor_info.speed = speed
+    motor_info.throttle = speed
     drive_values_pub.publish(motor_info)
 
 
 
 
-#흰색의 픽셀만을 추출해내기 위한 color_filter 함수입니다. 앞서 선언한 lower_white 와 upper_white 값을 이용하여 cv2.inRange함수를 통해 해당 범위 내의 픽셀만을 추출해내었습니다.
+# 흰색의 픽셀만을 추출해내기 위한 color_filter 함수입니다. 앞서 선언한 lower_white 와 upper_white 값을 이용하여 cv2.inRange함수를 통해 해당 범위 내의 픽셀만을 추출해내었습니다.
 def color_filter(img):
     mask_yellow = cv2.inRange(img, lower_yellow, upper_yellow)
     mask_white = cv2.inRange(img,lower_white,upper_white)
@@ -81,7 +86,7 @@ def color_filter(img):
     return masked
 
 
-#카메라의 원근왜곡을 제거하여 차선을 평행하게 만들어주기 위한 Bird-eye-view 변환 함수입니다.
+# 카메라의 원근왜곡을 제거하여 차선을 평행하게 만들어주기 위한 Bird-eye-view 변환 함수입니다.
 # bird-eye-view 변환에는 넓은시야각을 얻기 위해 역투영변환법을 적용하였습니다
 def bird_eye_view(img,width,height):
     src = np.float32([[0,0],
@@ -92,7 +97,7 @@ def bird_eye_view(img,width,height):
     dst = np.float32([[0,0],
                   [width,0],
                   [230,height],
-                  [415,height]])    #src, dst는 모두 순서대로 왼쪽위, 오른쪽위, 왼쪽아래, 오른쪽 아래 점입니다.
+                  [415,height]])   #src, dst는 모두 순서대로 왼쪽위, 오른쪽위, 왼쪽아래, 오른쪽 아래 점입니다.230, 415
                                     #원본의 점인 src를 상단보다 하단이 좁은 사다리꼴 형태의 dst점으로 변환시킴으로서 bird-eye-view가 완성됩니다.
          
     M = cv2.getPerspectiveTransform(src,dst)
@@ -105,7 +110,7 @@ def bird_eye_view(img,width,height):
 def region_of_interest(img):
     #height = 480
 
-    height = 640
+    height = 480
     width = 640
     mask = np.zeros((height,width),dtype="uint8")
     pts = np.array([[100,0],[500,0],[500,480],[100,480]])  # 차례대로 왼쪽위, 오른쪽위, 오른쪽아래,왼쪽아래 점이며 저희는 하나의 차선만 인식되어도 안정적으로 주행할 수 있도록 구현하였기에 roi를 보수적으로 설정하여 노이즈를 가능한 줄여주었습니다.
@@ -204,10 +209,10 @@ def sliding_window(img_masked,x_temp,y_temp,left_prob,right_prob):
         win_yl = img_masked.shape[0] - (window + 1) * window_height 
         win_yh = img_masked.shape[0] - window * window_height #win_yl, win_yh변수를 선언하여 각 window 직사각형의 아랫y좌표와 위 y좌표를 할당하였습니다. 
 
-        win_xll = leftx_current - margin #좌측 차선 window 직사각형의 왼쪽 꼭짓점의 x 좌표입니다.
-        win_xlh = leftx_current + margin #좌측 촤선 window 직사각형의 오른쪽  꼭짓점의 x좌표입니다
-        win_xrl = rightx_current - margin #우측 차선 window 직사각형의 왼쪽 꼭짓점의 x좌표입니다.
-        win_xrh = rightx_current + margin #우측 차선 window 직사각형의 오른쪽 꼭짓점의 x좌표입니다.
+        win_xll = leftx_current - margin # 좌측 차선 window 직사각형의 왼쪽 꼭짓점의 x 좌표입니다.
+        win_xlh = leftx_current + margin # 좌측 촤선 window 직사각형의 오른쪽  꼭짓점의 x좌표입니다
+        win_xrl = rightx_current - margin # 우측 차선 window 직사각형의 왼쪽 꼭짓점의 x좌표입니다.
+        win_xrh = rightx_current + margin # 우측 차선 window 직사각형의 오른쪽 꼭짓점의 x좌표입니다.
 
 
 
@@ -244,11 +249,12 @@ def sliding_window(img_masked,x_temp,y_temp,left_prob,right_prob):
 
     
 
-    return out_img ,lx,ly,rx,ry,good_left_inds,good_right_inds 
+    return out_img ,lx,ly,rx,ry,good_left_inds,good_right_inds
 
 def start():
     
-    
+    global previous_angle
+
     lx,ly,rx,ry = [200,] , [] , [428,] , []  #sliding_Window 함수 내에서 x_temp , y_temp 매개변수에 lx[0]과 rx[0]을 할당해주어야 하기에 초기화 합니다. 
     
     left_lane_inds , right_lane_inds = [], [] #left_lane_inds 와 right_lane_inds 리스트 또한 left_prob와 right_prob를 계산하는데에 사용해야하기에 초기화해줍니다.
@@ -336,9 +342,9 @@ def start():
 
         if(right_prob<100 and left_prob<100):
             speed = 10
-            angle = tmp_angle   #좌,우측 차선의 신뢰도가 모두 낮을 경우 감속하고 이전 조향각을 그대로 유지하도록 하였습니다. 
+            angle = previous_angle   #좌,우측 차선의 신뢰도가 모두 낮을 경우 감속하고 이전 조향각을 그대로 유지하도록 하였습니다. 
 	    
-        tmp_angle = angle
+        previous_angle = angle
         
         drive(angle, speed)
 	
