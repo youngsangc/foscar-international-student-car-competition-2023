@@ -26,13 +26,13 @@ show_img = np.empty(shape=[0])
 
 # 추후에 color filtering을 통해 흰색의 차선만을 추출하기 위한 픽셀 범위값을 미리 선언하였습니다
 global lower_white
-lower_white = np.array([240,95,160])
+lower_white = np.array([200,60,150])
 global upper_white
-upper_white = np.array([255,140,200])
+upper_white = np.array([255,255,255])
 global yellow_lower
-lower_yellow = np.array([240,95,160])
+lower_yellow = np.array([200,60,150])
 global yellow_upper
-upper_yellow = np.array([255,140,200])
+upper_yellow = np.array([255,255,255])
 
 
 
@@ -96,8 +96,8 @@ def bird_eye_view(img,width,height):
 
     dst = np.float32([[0,0],
                   [width,0],
-                  [230,height],
-                  [415,height]])   #src, dst는 모두 순서대로 왼쪽위, 오른쪽위, 왼쪽아래, 오른쪽 아래 점입니다.230, 415
+                  [185,height],
+                  [460,height]])   #src, dst는 모두 순서대로 왼쪽위, 오른쪽위, 왼쪽아래, 오른쪽 아래 점입니다.230, 415
                                     #원본의 점인 src를 상단보다 하단이 좁은 사다리꼴 형태의 dst점으로 변환시킴으로서 bird-eye-view가 완성됩니다.
          
     M = cv2.getPerspectiveTransform(src,dst)
@@ -133,7 +133,7 @@ def Radius(rx, ry):
     R=0
     h=0
     w=0  #변수들을 초기화하는 과정입니다.
-    if (rx[-1] - rx[3] != 0): 
+    if (rx[-1] - rx[1] != 0): 
         a = (ry[-1] - ry[3]) / (rx[-1] - rx[3])
         b = -1
         c = ry[3] - rx[3] * (ry[-1] - ry[3]) / (rx[-1] - rx[3])
@@ -156,23 +156,24 @@ def steering_Angle(R):
         return 0
     if R != 0:
         angle = np.arctan(1.04/R) 
-        if angle*180/np.pi < 0.07:  #Angle값이 매우 작은 경우 직진상태로 판단하여 0을 return 하도록 하였습니다.
-            return 0
-        else:		
-            return angle*180/np.pi # arctan로 계산한 값이 radian값이기 때문에 degree로 변환하여 return하였습니다.
+        return angle 
+        # if angle*180/np.pi < 0.07:  #Angle값이 매우 작은 경우 직진상태로 판단하여 0을 return 하도록 하였습니다.
+        #     return 0
+        # else:		
+        #     return angle # arctan로 계산한 값이 radian값이기 때문에 degree로 변환하여 return하였습니다.
 
 		    
 #sliding_window 기법을 구현한 함수입니다.
 def sliding_window(img_masked,x_temp,y_temp,left_prob,right_prob):
     
-    nwindows = 14  #조사창의 갯수입니다.
+    nwindows = 13  #조사창의 갯수입니다.
 
     window_height = 20 #조사창의 높이입니다.
 
     
     if(left_prob<150 and right_prob<150): #차선의 검출신뢰도를 계산하여 left_prob, right_prob 변수에 할당하였습니다.
               #차선의 검출 신뢰도는 각 차선의 모든 조사창 내의 0이 아닌 픽셀수의 평균을 계산하여 산출하였습니다. window에 차선이 아예 인식되지 않을경우 0이 됩니다    
-        margin=60
+        margin=80
     else:
  
         margin = 20         #margin은 window의 너비를 지칭하는 변수입니다. 기본 너비는 20으로 하되 좌,우 차선이 모두 인식률이 낮을때만 차선을 탐색하기 위하여 너비를 60으로 만들어주었습니다.
@@ -295,7 +296,7 @@ def start():
 
         R= Radius(lx,ly)
 	
-        angle = steering_Angle(R) *13  # 앞서 구현한 곡률반경 함수와 steering Angle값 계산함수를 이용하여 R과 angle변수를 초기화합니다. default로 좌측차선을 인식하여 주행합니다. 
+        angle = steering_Angle(R) *16  # 앞서 구현한 곡률반경 함수와 steering Angle값 계산함수를 이용하여 R과 angle변수를 초기화합니다. default로 좌측차선을 인식하여 주행합니다. 
 	
 	
         left_prob = np.mean(np.count_nonzero(left_lane_inds))
@@ -304,7 +305,7 @@ def start():
 	
         if(right_prob>left_prob or rx[-1] - rx[3] <0 ):	#좌회전을 실시하는 경우 우측차선만 검출될 확률이 높기에 우측차선의 신뢰도가 좌측차선보다 높거나 우측차선의 맨 끝 window의 x좌표가 4번째 window의 x좌표보다 작을 경우 좌회전을 하도록 하였습니다.
             R = Radius(rx,ry)
-            angle = steering_Angle(R)*-7  
+            angle = steering_Angle(R)*-9
             if(rx[3 ]>435):
                 angle*=0.7
 			
@@ -315,7 +316,7 @@ def start():
 	
         if (abs(angle)<=5 and lx[3]<170): #차량이 너무 우측차선에 쏠려있는 경우 차량의 중앙으로 정렬할 수 있게끔 방어코드를 작성하였습니다.
 		
-            angle=steering_Angle(R)*-7
+            angle=steering_Angle(R)*-9
 			
 	
 		
@@ -336,12 +337,12 @@ def start():
 	
         speed = 400/speed_ctrl
         if speed>35:
-            speed=10
+            speed=5
         elif speed<25:
-            speed = 10 # 속도를 선형제어 하기 위하여 angle값을 speed_ctrl 변수에 받아온 후 비율을 정하여 speed값을 산출해내었고, 최대, 최소 speed값을 지정하였습니다.
+            speed = 5 # 속도를 선형제어 하기 위하여 angle값을 speed_ctrl 변수에 받아온 후 비율을 정하여 speed값을 산출해내었고, 최대, 최소 speed값을 지정하였습니다.
 
         if(right_prob<100 and left_prob<100):
-            speed = 10
+            speed = 5
             angle = previous_angle   #좌,우측 차선의 신뢰도가 모두 낮을 경우 감속하고 이전 조향각을 그대로 유지하도록 하였습니다. 
 	    
         previous_angle = angle
