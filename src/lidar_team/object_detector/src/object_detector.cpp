@@ -88,20 +88,36 @@ pcl::PointCloud<PointT>::Ptr ROI (const sensor_msgs::PointCloud2ConstPtr& input)
     filter.filter(*cloud_filtered);             //필터 적용 
 
     // X축 ROI
-    // pcl::PassThrough<PointT> filter;
-    filter.setInputCloud(cloud_filtered);                //입력 
-    filter.setFilterFieldName("x");             //적용할 좌표 축 (eg. X축)
-    filter.setFilterLimits(xMin, xMax);          //적용할 값 (최소, 최대 값)
-    //filter.setFilterLimitsNegative (true);     //적용할 값 외 
-    filter.filter(*cloud_filtered);             //필터 적용 
+    filter.setInputCloud(cloud_filtered);
+    filter.setFilterFieldName("x");
+    filter.setFilterLimits(-2, 8); // x > -2 && x < 8
+    filter.filter(*cloud_filtered);
 
-    // Y축 ROI
-    // pcl::PassThrough<PointT> filter;
-    filter.setInputCloud(cloud_filtered);                //입력 
-    filter.setFilterFieldName("y");             //적용할 좌표 축 (eg. Y축)
-    filter.setFilterLimits(yMin, yMax);          //적용할 값 (최소, 최대 값)
-    //filter.setFilterLimitsNegative (true);     //적용할 값 외 
-    filter.filter(*cloud_filtered);             //필터 적용 
+    // Y축 ROI (Advanced filtering)
+    pcl::PointCloud<PointT>::Ptr cloud_y_filtered(new pcl::PointCloud<PointT>);
+    for (size_t i = 0; i < cloud_filtered->points.size(); i++) {
+        PointT point = cloud_filtered->points[i];
+        if (std::abs(point.y) > 1.5) {
+            cloud_y_filtered->points.push_back(point);
+        }
+    }
+
+
+    // // X축 ROI
+    // // pcl::PassThrough<PointT> filter;
+    // filter.setInputCloud(cloud_filtered);                //입력 
+    // filter.setFilterFieldName("x");             //적용할 좌표 축 (eg. X축)
+    // filter.setFilterLimits(xMin, xMax);          //적용할 값 (최소, 최대 값)
+    // //filter.setFilterLimitsNegative (true);     //적용할 값 외 
+    // filter.filter(*cloud_filtered);             //필터 적용 
+
+    // // Y축 ROI
+    // // pcl::PassThrough<PointT> filter;
+    // filter.setInputCloud(cloud_filtered);                //입력 
+    // filter.setFilterFieldName("y");             //적용할 좌표 축 (eg. Y축)
+    // filter.setFilterLimits(yMin, yMax);          //적용할 값 (최소, 최대 값)
+    // //filter.setFilterLimitsNegative (true);     //적용할 값 외 
+    // filter.filter(*cloud_filtered);             //필터 적용 
 
     // 포인트수 출력
     std::cout << "ROI Filtered :" << cloud_filtered->width * cloud_filtered->height  << '\n'; 
