@@ -458,7 +458,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_minPoints = 100;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_minPoints = 30;
+      __default__.small_st_minPoints = 5;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<int>("small_st_minPoints", "int", 0, "small_st_minPoints", "", &small_st_hyper_parameterConfig::small_st_minPoints)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -468,7 +468,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_epsilon = 20.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_epsilon = 0.4;
+      __default__.small_st_epsilon = 0.6;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_epsilon", "double", 0, "small_st_epsilon", "", &small_st_hyper_parameterConfig::small_st_epsilon)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -478,7 +478,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_minClusterSize = 100;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_minClusterSize = 10;
+      __default__.small_st_minClusterSize = 5;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<int>("small_st_minClusterSize", "int", 0, "small_st_minClusterSize", "", &small_st_hyper_parameterConfig::small_st_minClusterSize)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -498,7 +498,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_xMinROI = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_xMinROI = 0.5;
+      __default__.small_st_xMinROI = 0.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_xMinROI", "double", 0, "small_st_xMinROI", "", &small_st_hyper_parameterConfig::small_st_xMinROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -518,7 +518,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_yMinROI = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_yMinROI = -1.0;
+      __default__.small_st_yMinROI = -0.6;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_yMinROI", "double", 0, "small_st_yMinROI", "", &small_st_hyper_parameterConfig::small_st_yMinROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -528,17 +528,17 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_yMaxROI = 200.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_yMaxROI = 1.0;
+      __default__.small_st_yMaxROI = 0.6;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_yMaxROI", "double", 0, "small_st_yMaxROI", "", &small_st_hyper_parameterConfig::small_st_yMaxROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_yMaxROI", "double", 0, "small_st_yMaxROI", "", &small_st_hyper_parameterConfig::small_st_yMaxROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __min__.small_st_zMinROI = -2.0;
+      __min__.small_st_zMinROI = -10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_zMinROI = 0.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_zMinROI = -0.4;
+      __default__.small_st_zMinROI = -1.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_zMinROI", "double", 0, "small_st_zMinROI", "", &small_st_hyper_parameterConfig::small_st_zMinROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -548,7 +548,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_zMaxROI = 100.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_zMaxROI = 3.0;
+      __default__.small_st_zMaxROI = 1.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_zMaxROI", "double", 0, "small_st_zMaxROI", "", &small_st_hyper_parameterConfig::small_st_zMaxROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -558,7 +558,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_xMinBoundingBox = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_xMinBoundingBox = 0.2;
+      __default__.small_st_xMinBoundingBox = 0.1;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_xMinBoundingBox", "double", 0, "small_st_xMinBoundingBox", "", &small_st_hyper_parameterConfig::small_st_xMinBoundingBox)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -578,7 +578,7 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.small_st_yMinBoundingBox = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_yMinBoundingBox = 0.2;
+      __default__.small_st_yMinBoundingBox = 0.1;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_yMinBoundingBox", "double", 0, "small_st_yMinBoundingBox", "", &small_st_hyper_parameterConfig::small_st_yMinBoundingBox)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -596,9 +596,9 @@ small_st_hyper_parameterConfig::GroupDescription<small_st_hyper_parameterConfig:
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.small_st_zMinBoundingBox = 0.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __max__.small_st_zMinBoundingBox = 0.1;
+      __max__.small_st_zMinBoundingBox = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.small_st_zMinBoundingBox = 0.1;
+      __default__.small_st_zMinBoundingBox = 0.05;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(small_st_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new small_st_hyper_parameterConfig::ParamDescription<double>("small_st_zMinBoundingBox", "double", 0, "small_st_zMinBoundingBox", "", &small_st_hyper_parameterConfig::small_st_zMinBoundingBox)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

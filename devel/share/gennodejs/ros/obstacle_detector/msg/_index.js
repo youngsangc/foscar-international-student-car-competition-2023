@@ -1,12 +1,12 @@
 
 "use strict";
 
-let Obstacles = require('./Obstacles.js');
 let SegmentObstacle = require('./SegmentObstacle.js');
 let CircleObstacle = require('./CircleObstacle.js');
+let Obstacles = require('./Obstacles.js');
 
 module.exports = {
-  Obstacles: Obstacles,
   SegmentObstacle: SegmentObstacle,
   CircleObstacle: CircleObstacle,
+  Obstacles: Obstacles,
 };

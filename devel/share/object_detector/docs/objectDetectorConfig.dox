@@ -2,12 +2,12 @@
 
 Reads and maintains the following parameters on the ROS server
 
-- \b "~xMin" : \b [double] xMinValue min: -200.0, default: 0.0, max: 10.0
-- \b "~xMax" : \b [double] xMaxValue min: -10.0, default: 8.0, max: 200.0
-- \b "~yMin" : \b [double] yMinValue min: -200.0, default: -4.0, max: 10.0
-- \b "~yMax" : \b [double] yMaxValue min: -10.0, default: 4.0, max: 200.0
-- \b "~zMin" : \b [double] zMinValue min: -2.0, default: -0.65, max: 0.0
-- \b "~zMax" : \b [double] zMaxValue min: -2.0, default: 1.0, max: 100.0
+- \b "~xMin" : \b [double] xMinValue min: -200.0, default: -1.2, max: 10.0
+- \b "~xMax" : \b [double] xMaxValue min: -10.0, default: 6.0, max: 200.0
+- \b "~yMin" : \b [double] yMinValue min: -200.0, default: -1.6, max: 10.0
+- \b "~yMax" : \b [double] yMaxValue min: -10.0, default: 1.6, max: 200.0
+- \b "~zMin" : \b [double] zMinValue min: -2.0, default: -0.42, max: 0.0
+- \b "~zMax" : \b [double] zMaxValue min: -2.0, default: -0.2, max: 100.0
 - \b "~minPoints" : \b [int] minPointsValue min: 1, default: 10, max: 100
 - \b "~epsilon" : \b [double] epsilonValue min: 0.0, default: 0.4, max: 2.0
 - \b "~minClusterSize" : \b [double] minClusterSizeValue min: 0.0, default: 10.0, max: 100.0

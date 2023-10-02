@@ -1,18 +1,18 @@
 
 "use strict";
 
-let Boundingbox = require('./Boundingbox.js');
-let VescStateStamped = require('./VescStateStamped.js');
 let Waypoint = require('./Waypoint.js');
 let ObjectInfo = require('./ObjectInfo.js');
 let DynamicVelocity = require('./DynamicVelocity.js');
+let Boundingbox = require('./Boundingbox.js');
 let VescState = require('./VescState.js');
+let VescStateStamped = require('./VescStateStamped.js');
 
 module.exports = {
-  Boundingbox: Boundingbox,
-  VescStateStamped: VescStateStamped,
   Waypoint: Waypoint,
   ObjectInfo: ObjectInfo,
   DynamicVelocity: DynamicVelocity,
+  Boundingbox: Boundingbox,
   VescState: VescState,
+  VescStateStamped: VescStateStamped,
 };

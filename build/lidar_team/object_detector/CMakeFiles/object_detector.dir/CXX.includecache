@@ -83,6 +83,8 @@ vector
 -
 object_detector/ObjectInfo.h
 -
+pcl/filters/extract_indices.h
+-
 
 /opt/ros/noetic/include/dynamic_reconfigure/BoolParameter.h
 string
@@ -902,6 +904,8 @@ ros/datatypes.h
 vector
 -
 map
+-
+memory
 -
 boost/array.hpp
 -
@@ -2546,6 +2550,12 @@ boost/fusion/sequence/intrinsic/at_key.hpp
 boost/optional.hpp
 -
 
+/usr/include/pcl-1.10/pcl/filters/extract_indices.h
+pcl/filters/filter_indices.h
+-
+pcl/filters/impl/extract_indices.hpp
+-
+
 /usr/include/pcl-1.10/pcl/filters/filter.h
 pcl/pcl_base.h
 -
@@ -2566,6 +2576,12 @@ pcl/filters/impl/filter.hpp
 pcl/filters/filter.h
 -
 pcl/filters/impl/filter_indices.hpp
+-
+
+/usr/include/pcl-1.10/pcl/filters/impl/extract_indices.hpp
+pcl/filters/extract_indices.h
+-
+pcl/common/io.h
 -
 
 /usr/include/pcl-1.10/pcl/filters/impl/filter.hpp

@@ -56,6 +56,30 @@ CMAKE_BINARY_DIR = /home/youngsangcho/ISCC_2023/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -78,16 +102,16 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -100,40 +124,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,21 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule
-.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule
-
-# Convenience name for target.
-coordinate2pos: gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule
-
-.PHONY : coordinate2pos
-
-# fast build rule for target.
-coordinate2pos/fast:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/build
-.PHONY : coordinate2pos/fast
-
-# Convenience name for target.
 gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/rule:
 	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/rule
 .PHONY : gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit2.dir/rule
@@ -198,19 +183,34 @@ pure_pursuit2/fast:
 .PHONY : pure_pursuit2/fast
 
 # Convenience name for target.
-gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule
-.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule
+gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule
 
 # Convenience name for target.
-pure_pursuit: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule
+coordinate2pos: gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/rule
 
-.PHONY : pure_pursuit
+.PHONY : coordinate2pos
 
 # fast build rule for target.
-pure_pursuit/fast:
-	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/build
-.PHONY : pure_pursuit/fast
+coordinate2pos/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/build
+.PHONY : coordinate2pos/fast
+
+# Convenience name for target.
+gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/rule
+
+# Convenience name for target.
+pid_throttle_2: gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/rule
+
+.PHONY : pid_throttle_2
+
+# fast build rule for target.
+pid_throttle_2/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/build
+.PHONY : pid_throttle_2/fast
 
 # Convenience name for target.
 gps_team/gps/pure_pursuit/CMakeFiles/roslint_pure_pursuit.dir/rule:
@@ -242,6 +242,81 @@ roslint/fast:
 	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/roslint.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/roslint.dir/build
 .PHONY : roslint/fast
 
+# Convenience name for target.
+gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/rule
+
+# Convenience name for target.
+encoder_value: gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/rule
+
+.PHONY : encoder_value
+
+# fast build rule for target.
+encoder_value/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/build
+.PHONY : encoder_value/fast
+
+# Convenience name for target.
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule
+
+# Convenience name for target.
+pure_pursuit: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/rule
+
+.PHONY : pure_pursuit
+
+# fast build rule for target.
+pure_pursuit/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/build
+.PHONY : pure_pursuit/fast
+
+# Convenience name for target.
+gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/rule
+
+# Convenience name for target.
+get_imu: gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/rule
+
+.PHONY : get_imu
+
+# fast build rule for target.
+get_imu/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/build
+.PHONY : get_imu/fast
+
+# Convenience name for target.
+gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/rule
+
+# Convenience name for target.
+pid_throttle: gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/rule
+
+.PHONY : pid_throttle
+
+# fast build rule for target.
+pid_throttle/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/build
+.PHONY : pid_throttle/fast
+
+# Convenience name for target.
+gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit_gencfg.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit_gencfg.dir/rule
+.PHONY : gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit_gencfg.dir/rule
+
+# Convenience name for target.
+pure_pursuit_gencfg: gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit_gencfg.dir/rule
+
+.PHONY : pure_pursuit_gencfg
+
+# fast build rule for target.
+pure_pursuit_gencfg/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit_gencfg.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit_gencfg.dir/build
+.PHONY : pure_pursuit_gencfg/fast
+
 src/coordinate2pos.o: src/coordinate2pos.cpp.o
 
 .PHONY : src/coordinate2pos.o
@@ -268,6 +343,114 @@ src/coordinate2pos.s: src/coordinate2pos.cpp.s
 src/coordinate2pos.cpp.s:
 	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/coordinate2pos.dir/src/coordinate2pos.cpp.s
 .PHONY : src/coordinate2pos.cpp.s
+
+src/encoder_value.o: src/encoder_value.cpp.o
+
+.PHONY : src/encoder_value.o
+
+# target to build an object file
+src/encoder_value.cpp.o:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/src/encoder_value.cpp.o
+.PHONY : src/encoder_value.cpp.o
+
+src/encoder_value.i: src/encoder_value.cpp.i
+
+.PHONY : src/encoder_value.i
+
+# target to preprocess a source file
+src/encoder_value.cpp.i:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/src/encoder_value.cpp.i
+.PHONY : src/encoder_value.cpp.i
+
+src/encoder_value.s: src/encoder_value.cpp.s
+
+.PHONY : src/encoder_value.s
+
+# target to generate assembly for a file
+src/encoder_value.cpp.s:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/encoder_value.dir/src/encoder_value.cpp.s
+.PHONY : src/encoder_value.cpp.s
+
+src/get_imu.o: src/get_imu.cpp.o
+
+.PHONY : src/get_imu.o
+
+# target to build an object file
+src/get_imu.cpp.o:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/src/get_imu.cpp.o
+.PHONY : src/get_imu.cpp.o
+
+src/get_imu.i: src/get_imu.cpp.i
+
+.PHONY : src/get_imu.i
+
+# target to preprocess a source file
+src/get_imu.cpp.i:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/src/get_imu.cpp.i
+.PHONY : src/get_imu.cpp.i
+
+src/get_imu.s: src/get_imu.cpp.s
+
+.PHONY : src/get_imu.s
+
+# target to generate assembly for a file
+src/get_imu.cpp.s:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/get_imu.dir/src/get_imu.cpp.s
+.PHONY : src/get_imu.cpp.s
+
+src/pid_throttle.o: src/pid_throttle.cpp.o
+
+.PHONY : src/pid_throttle.o
+
+# target to build an object file
+src/pid_throttle.cpp.o:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/src/pid_throttle.cpp.o
+.PHONY : src/pid_throttle.cpp.o
+
+src/pid_throttle.i: src/pid_throttle.cpp.i
+
+.PHONY : src/pid_throttle.i
+
+# target to preprocess a source file
+src/pid_throttle.cpp.i:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/src/pid_throttle.cpp.i
+.PHONY : src/pid_throttle.cpp.i
+
+src/pid_throttle.s: src/pid_throttle.cpp.s
+
+.PHONY : src/pid_throttle.s
+
+# target to generate assembly for a file
+src/pid_throttle.cpp.s:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle.dir/src/pid_throttle.cpp.s
+.PHONY : src/pid_throttle.cpp.s
+
+src/pid_throttle_2.o: src/pid_throttle_2.cpp.o
+
+.PHONY : src/pid_throttle_2.o
+
+# target to build an object file
+src/pid_throttle_2.cpp.o:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/src/pid_throttle_2.cpp.o
+.PHONY : src/pid_throttle_2.cpp.o
+
+src/pid_throttle_2.i: src/pid_throttle_2.cpp.i
+
+.PHONY : src/pid_throttle_2.i
+
+# target to preprocess a source file
+src/pid_throttle_2.cpp.i:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/src/pid_throttle_2.cpp.i
+.PHONY : src/pid_throttle_2.cpp.i
+
+src/pid_throttle_2.s: src/pid_throttle_2.cpp.s
+
+.PHONY : src/pid_throttle_2.s
+
+# target to generate assembly for a file
+src/pid_throttle_2.cpp.s:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/build.make gps_team/gps/pure_pursuit/CMakeFiles/pid_throttle_2.dir/src/pid_throttle_2.cpp.s
+.PHONY : src/pid_throttle_2.cpp.s
 
 src/pure_pursuit.o: src/pure_pursuit.cpp.o
 
@@ -389,21 +572,38 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... coordinate2pos"
-	@echo "... pure_pursuit2"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... pure_pursuit"
-	@echo "... install/local"
-	@echo "... roslint_pure_pursuit"
 	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... install"
+	@echo "... pure_pursuit2"
+	@echo "... coordinate2pos"
+	@echo "... pid_throttle_2"
+	@echo "... roslint_pure_pursuit"
 	@echo "... roslint"
+	@echo "... encoder_value"
+	@echo "... list_install_components"
+	@echo "... pure_pursuit"
+	@echo "... get_imu"
+	@echo "... test"
+	@echo "... pid_throttle"
+	@echo "... pure_pursuit_gencfg"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... src/coordinate2pos.o"
 	@echo "... src/coordinate2pos.i"
 	@echo "... src/coordinate2pos.s"
+	@echo "... src/encoder_value.o"
+	@echo "... src/encoder_value.i"
+	@echo "... src/encoder_value.s"
+	@echo "... src/get_imu.o"
+	@echo "... src/get_imu.i"
+	@echo "... src/get_imu.s"
+	@echo "... src/pid_throttle.o"
+	@echo "... src/pid_throttle.i"
+	@echo "... src/pid_throttle.s"
+	@echo "... src/pid_throttle_2.o"
+	@echo "... src/pid_throttle_2.i"
+	@echo "... src/pid_throttle_2.s"
 	@echo "... src/pure_pursuit.o"
 	@echo "... src/pure_pursuit.i"
 	@echo "... src/pure_pursuit.s"

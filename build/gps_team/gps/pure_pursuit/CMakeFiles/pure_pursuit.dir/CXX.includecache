@@ -201,6 +201,8 @@ std_msgs/Float64.h
 -
 std_msgs/Bool.h
 -
+std_msgs/Int32.h
+-
 ros/package.h
 -
 race/drive_values.h
@@ -210,6 +212,10 @@ avoid_obstacle/DetectedObstacles.h
 avoid_obstacle/TrueObstacles.h
 -
 lidar_team_erp42/Delivery.h
+-
+darknet_ros_msgs/BoundingBoxes.h
+-
+darknet_ros_msgs/BoundingBox.h
 -
 pure_pursuit.h
 -
@@ -917,6 +923,8 @@ vector
 -
 map
 -
+memory
+-
 boost/array.hpp
 -
 boost/call_traits.hpp
@@ -1219,6 +1227,22 @@ ros/message_operations.h
 -
 
 /opt/ros/noetic/include/std_msgs/Header.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/opt/ros/noetic/include/std_msgs/Int32.h
 string
 -
 vector

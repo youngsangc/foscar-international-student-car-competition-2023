@@ -10,6 +10,7 @@
 (ros::load-ros-package "bond")
 (ros::load-ros-package "dynamic_reconfigure")
 (ros::load-ros-package "geometry_msgs")
+(ros::load-ros-package "morai_msgs")
 (ros::load-ros-package "nav_msgs")
 (ros::load-ros-package "nodelet")
 (ros::load-ros-package "pcl_msgs")

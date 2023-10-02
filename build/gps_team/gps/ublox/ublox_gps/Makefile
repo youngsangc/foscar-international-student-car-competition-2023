@@ -318,6 +318,21 @@ rtcm_msgs_generate_messages_py/fast:
 .PHONY : rtcm_msgs_generate_messages_py/fast
 
 # Convenience name for target.
+gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/rule:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/rule
+.PHONY : gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/rule
+
+# Convenience name for target.
+get_gps_diagnostic: gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/rule
+
+.PHONY : get_gps_diagnostic
+
+# fast build rule for target.
+get_gps_diagnostic/fast:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/build.make gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/build
+.PHONY : get_gps_diagnostic/fast
+
+# Convenience name for target.
 gps_team/gps/ublox/ublox_gps/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f CMakeFiles/Makefile2 gps_team/gps/ublox/ublox_gps/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
 .PHONY : gps_team/gps/ublox/ublox_gps/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
@@ -436,6 +451,33 @@ nmea_msgs_generate_messages_lisp: gps_team/gps/ublox/ublox_gps/CMakeFiles/nmea_m
 nmea_msgs_generate_messages_lisp/fast:
 	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/ublox/ublox_gps/CMakeFiles/nmea_msgs_generate_messages_lisp.dir/build.make gps_team/gps/ublox/ublox_gps/CMakeFiles/nmea_msgs_generate_messages_lisp.dir/build
 .PHONY : nmea_msgs_generate_messages_lisp/fast
+
+src/get_gps_diagnostic.o: src/get_gps_diagnostic.cpp.o
+
+.PHONY : src/get_gps_diagnostic.o
+
+# target to build an object file
+src/get_gps_diagnostic.cpp.o:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/build.make gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/src/get_gps_diagnostic.cpp.o
+.PHONY : src/get_gps_diagnostic.cpp.o
+
+src/get_gps_diagnostic.i: src/get_gps_diagnostic.cpp.i
+
+.PHONY : src/get_gps_diagnostic.i
+
+# target to preprocess a source file
+src/get_gps_diagnostic.cpp.i:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/build.make gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/src/get_gps_diagnostic.cpp.i
+.PHONY : src/get_gps_diagnostic.cpp.i
+
+src/get_gps_diagnostic.s: src/get_gps_diagnostic.cpp.s
+
+.PHONY : src/get_gps_diagnostic.s
+
+# target to generate assembly for a file
+src/get_gps_diagnostic.cpp.s:
+	cd /home/youngsangcho/ISCC_2023/build && $(MAKE) -f gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/build.make gps_team/gps/ublox/ublox_gps/CMakeFiles/get_gps_diagnostic.dir/src/get_gps_diagnostic.cpp.s
+.PHONY : src/get_gps_diagnostic.cpp.s
 
 src/gps.o: src/gps.cpp.o
 
@@ -598,6 +640,7 @@ help:
 	@echo "... diagnostic_msgs_generate_messages_eus"
 	@echo "... nmea_msgs_generate_messages_cpp"
 	@echo "... rtcm_msgs_generate_messages_py"
+	@echo "... get_gps_diagnostic"
 	@echo "... diagnostic_msgs_generate_messages_nodejs"
 	@echo "... rtcm_msgs_generate_messages_cpp"
 	@echo "... diagnostic_msgs_generate_messages_lisp"
@@ -606,6 +649,9 @@ help:
 	@echo "... nmea_msgs_generate_messages_eus"
 	@echo "... rtcm_msgs_generate_messages_nodejs"
 	@echo "... nmea_msgs_generate_messages_lisp"
+	@echo "... src/get_gps_diagnostic.o"
+	@echo "... src/get_gps_diagnostic.i"
+	@echo "... src/get_gps_diagnostic.s"
 	@echo "... src/gps.o"
 	@echo "... src/gps.i"
 	@echo "... src/gps.s"

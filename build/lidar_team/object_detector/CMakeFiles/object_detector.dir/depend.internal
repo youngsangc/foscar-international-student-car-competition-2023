@@ -315,8 +315,10 @@ lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cp
  /usr/include/pcl-1.10/pcl/correspondence.h
  /usr/include/pcl-1.10/pcl/exceptions.h
  /usr/include/pcl-1.10/pcl/filters/boost.h
+ /usr/include/pcl-1.10/pcl/filters/extract_indices.h
  /usr/include/pcl-1.10/pcl/filters/filter.h
  /usr/include/pcl-1.10/pcl/filters/filter_indices.h
+ /usr/include/pcl-1.10/pcl/filters/impl/extract_indices.hpp
  /usr/include/pcl-1.10/pcl/filters/impl/filter.hpp
  /usr/include/pcl-1.10/pcl/filters/impl/filter_indices.hpp
  /usr/include/pcl-1.10/pcl/filters/impl/passthrough.hpp

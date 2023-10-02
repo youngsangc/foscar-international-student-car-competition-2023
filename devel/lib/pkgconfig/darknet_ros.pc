@@ -1,8 +1,0 @@
-prefix=/home/youngsangcho/ISCC_2023/devel
-
-Name: darknet_ros
-Description: Description of darknet_ros
-Version: 1.1.5
-Cflags: -I/home/youngsangcho/ISCC_2023/src/vision_team/darknet_ros/darknet_ros/include -I/usr/include
-Libs: -L${prefix}/lib -ldarknet_ros_lib /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
-Requires: cv_bridge roscpp actionlib rospy std_msgs darknet_ros_msgs image_transport nodelet

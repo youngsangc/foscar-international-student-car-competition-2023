@@ -1,8 +1,0 @@
-prefix=/home/youngsangcho/ISCC_2023/devel
-
-Name: vision_distance
-Description: Description of vision_distance
-Version: 0.0.0
-Cflags: -I/home/youngsangcho/ISCC_2023/devel/include
-Libs: -L${prefix}/lib 
-Requires: 

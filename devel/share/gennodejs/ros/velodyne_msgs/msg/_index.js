@@ -1,10 +1,10 @@
 
 "use strict";
 
-let VelodynePacket = require('./VelodynePacket.js');
 let VelodyneScan = require('./VelodyneScan.js');
+let VelodynePacket = require('./VelodynePacket.js');
 
 module.exports = {
-  VelodynePacket: VelodynePacket,
   VelodyneScan: VelodyneScan,
+  VelodynePacket: VelodynePacket,
 };

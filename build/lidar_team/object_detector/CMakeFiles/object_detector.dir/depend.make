@@ -314,8 +314,10 @@ lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cp
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/correspondence.h
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/exceptions.h
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/boost.h
+lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/extract_indices.h
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/filter.h
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/filter_indices.h
+lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/impl/extract_indices.hpp
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/impl/filter.hpp
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/impl/filter_indices.hpp
 lidar_team/object_detector/CMakeFiles/object_detector.dir/src/object_detector.cpp.o: /usr/include/pcl-1.10/pcl/filters/impl/passthrough.hpp

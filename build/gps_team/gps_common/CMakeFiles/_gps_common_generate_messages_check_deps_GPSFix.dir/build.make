@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/youngsangcho/ISCC_2023/build
 include gps_team/gps_common/CMakeFiles/_gps_common_generate_messages_check_deps_GPSFix.dir/progress.make
 
 gps_team/gps_common/CMakeFiles/_gps_common_generate_messages_check_deps_GPSFix:
-	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps_common && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py gps_common /home/youngsangcho/ISCC_2023/src/gps_team/gps_common/msg/GPSFix.msg gps_common/GPSStatus:std_msgs/Header
+	cd /home/youngsangcho/ISCC_2023/build/gps_team/gps_common && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py gps_common /home/youngsangcho/ISCC_2023/src/gps_team/gps_common/msg/GPSFix.msg std_msgs/Header:gps_common/GPSStatus
 
 _gps_common_generate_messages_check_deps_GPSFix: gps_team/gps_common/CMakeFiles/_gps_common_generate_messages_check_deps_GPSFix
 _gps_common_generate_messages_check_deps_GPSFix: gps_team/gps_common/CMakeFiles/_gps_common_generate_messages_check_deps_GPSFix.dir/build.make

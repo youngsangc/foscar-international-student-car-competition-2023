@@ -478,7 +478,7 @@ pk_hyper_parameterConfig::GroupDescription<pk_hyper_parameterConfig::DEFAULT, pk
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.pk_minClusterSize = 100;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.pk_minClusterSize = 30;
+      __default__.pk_minClusterSize = 15;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(pk_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new pk_hyper_parameterConfig::ParamDescription<int>("pk_minClusterSize", "int", 0, "pk_minClusterSize", "", &pk_hyper_parameterConfig::pk_minClusterSize)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -498,7 +498,7 @@ pk_hyper_parameterConfig::GroupDescription<pk_hyper_parameterConfig::DEFAULT, pk
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.pk_xMinROI = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.pk_xMinROI = 1.5;
+      __default__.pk_xMinROI = 1.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(pk_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new pk_hyper_parameterConfig::ParamDescription<double>("pk_xMinROI", "double", 0, "pk_xMinROI", "", &pk_hyper_parameterConfig::pk_xMinROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -548,7 +548,7 @@ pk_hyper_parameterConfig::GroupDescription<pk_hyper_parameterConfig::DEFAULT, pk
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.pk_zMaxROI = 100.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.pk_zMaxROI = 3.0;
+      __default__.pk_zMaxROI = 3.06;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(pk_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new pk_hyper_parameterConfig::ParamDescription<double>("pk_zMaxROI", "double", 0, "pk_zMaxROI", "", &pk_hyper_parameterConfig::pk_zMaxROI)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -608,7 +608,7 @@ pk_hyper_parameterConfig::GroupDescription<pk_hyper_parameterConfig::DEFAULT, pk
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.pk_zMaxBoundingBox = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.pk_zMaxBoundingBox = 0.85;
+      __default__.pk_zMaxBoundingBox = 0.7;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(pk_hyper_parameterConfig::AbstractParamDescriptionConstPtr(new pk_hyper_parameterConfig::ParamDescription<double>("pk_zMaxBoundingBox", "double", 0, "pk_zMaxBoundingBox", "", &pk_hyper_parameterConfig::pk_zMaxBoundingBox)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

@@ -438,7 +438,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.xMin = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.xMin = 0.0;
+      __default__.xMin = -1.2;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("xMin", "double", 0, "xMinValue", "", &objectDetectorConfig::xMin)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -448,7 +448,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.xMax = 200.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.xMax = 8.0;
+      __default__.xMax = 6.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("xMax", "double", 0, "xMaxValue", "", &objectDetectorConfig::xMax)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -458,7 +458,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.yMin = 10.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.yMin = -4.0;
+      __default__.yMin = -1.6;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("yMin", "double", 0, "yMinValue", "", &objectDetectorConfig::yMin)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -468,7 +468,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.yMax = 200.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.yMax = 4.0;
+      __default__.yMax = 1.6;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("yMax", "double", 0, "yMaxValue", "", &objectDetectorConfig::yMax)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -478,7 +478,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.zMin = 0.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.zMin = -0.65;
+      __default__.zMin = -0.42;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("zMin", "double", 0, "zMinValue", "", &objectDetectorConfig::zMin)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -488,7 +488,7 @@ objectDetectorConfig::GroupDescription<objectDetectorConfig::DEFAULT, objectDete
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.zMax = 100.0;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.zMax = 1.0;
+      __default__.zMax = -0.2;
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(objectDetectorConfig::AbstractParamDescriptionConstPtr(new objectDetectorConfig::ParamDescription<double>("zMax", "double", 0, "zMaxValue", "", &objectDetectorConfig::zMax)));
 //#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

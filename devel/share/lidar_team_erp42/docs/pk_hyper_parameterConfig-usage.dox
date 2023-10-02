@@ -3,20 +3,20 @@
 <node name="parallel_parking" pkg="lidar_team_erp42" type="parallel_parking">
   <param name="pk_minPoints" type="int" value="10" />
   <param name="pk_epsilon" type="double" value="0.15" />
-  <param name="pk_minClusterSize" type="int" value="30" />
+  <param name="pk_minClusterSize" type="int" value="15" />
   <param name="pk_maxClusterSize" type="double" value="300.0" />
-  <param name="pk_xMinROI" type="double" value="1.5" />
+  <param name="pk_xMinROI" type="double" value="1.0" />
   <param name="pk_xMaxROI" type="double" value="4.0" />
   <param name="pk_yMinROI" type="double" value="-3.0" />
   <param name="pk_yMaxROI" type="double" value="0.0" />
   <param name="pk_zMinROI" type="double" value="-0.65" />
-  <param name="pk_zMaxROI" type="double" value="3.0" />
+  <param name="pk_zMaxROI" type="double" value="3.06" />
   <param name="pk_xMinBoundingBox" type="double" value="0.05" />
   <param name="pk_xMaxBoundingBox" type="double" value="0.55" />
   <param name="pk_yMinBoundingBox" type="double" value="0.05" />
   <param name="pk_yMaxBoundingBox" type="double" value="0.55" />
   <param name="pk_zMinBoundingBox" type="double" value="0.05" />
-  <param name="pk_zMaxBoundingBox" type="double" value="0.85" />
+  <param name="pk_zMaxBoundingBox" type="double" value="0.7" />
 </node>
 \endverbatim
 

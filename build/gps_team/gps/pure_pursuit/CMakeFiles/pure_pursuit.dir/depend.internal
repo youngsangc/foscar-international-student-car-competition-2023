@@ -177,6 +177,7 @@ gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/src/pure_pursuit_core.cpp.
  /opt/ros/noetic/include/std_msgs/Float32.h
  /opt/ros/noetic/include/std_msgs/Float64.h
  /opt/ros/noetic/include/std_msgs/Header.h
+ /opt/ros/noetic/include/std_msgs/Int32.h
  /opt/ros/noetic/include/tf/LinearMath/Matrix3x3.h
  /opt/ros/noetic/include/tf/LinearMath/MinMax.h
  /opt/ros/noetic/include/tf/LinearMath/QuadWord.h
@@ -295,6 +296,7 @@ gps_team/gps/pure_pursuit/CMakeFiles/pure_pursuit.dir/src/pure_pursuit_node.cpp.
  /opt/ros/noetic/include/std_msgs/Float32.h
  /opt/ros/noetic/include/std_msgs/Float64.h
  /opt/ros/noetic/include/std_msgs/Header.h
+ /opt/ros/noetic/include/std_msgs/Int32.h
  /opt/ros/noetic/include/tf/LinearMath/Matrix3x3.h
  /opt/ros/noetic/include/tf/LinearMath/MinMax.h
  /opt/ros/noetic/include/tf/LinearMath/QuadWord.h

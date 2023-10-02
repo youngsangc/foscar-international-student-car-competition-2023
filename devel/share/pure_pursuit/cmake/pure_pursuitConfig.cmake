@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(pure_pursuit_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include " STREQUAL " ")
+if(NOT "/home/youngsangcho/ISCC_2023/devel/include;/home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include " STREQUAL " ")
   set(pure_pursuit_INCLUDE_DIRS "")
-  set(_include_dirs "/home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include")
+  set(_include_dirs "/home/youngsangcho/ISCC_2023/devel/include;/home/youngsangcho/ISCC_2023/src/gps_team/gps/pure_pursuit/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/youngsangcho/ISCC_2023/devel/lib;/home/youngsangcho/ISCC_2023/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/youngsangcho/ISCC_2023/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -177,7 +177,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(pure_pursuit_EXPORTED_TARGETS "")
+set(pure_pursuit_EXPORTED_TARGETS "pure_pursuit_gencfg")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${pure_pursuit_EXPORTED_TARGETS})
   if(NOT TARGET ${t})

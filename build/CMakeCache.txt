@@ -315,91 +315,6 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Compile device code in 64 bit mode
-CUDA_64_BIT_DEVICE_CODE:BOOL=ON
-
-//Attach the build rule to the CUDA source file.  Enable only when
-// the CUDA source file is added to at most one target.
-CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE:BOOL=ON
-
-//Generate and parse .cubin files in Device mode.
-CUDA_BUILD_CUBIN:BOOL=OFF
-
-//Build in Emulation mode
-CUDA_BUILD_EMULATION:BOOL=OFF
-
-//"cudart" library
-CUDA_CUDART_LIBRARY:FILEPATH=CUDA_CUDART_LIBRARY-NOTFOUND
-
-//"cuda" library (older versions only).
-CUDA_CUDA_LIBRARY:FILEPATH=CUDA_CUDA_LIBRARY-NOTFOUND
-
-//Directory to put all the output files.  If blank it will default
-// to the CMAKE_CURRENT_BINARY_DIR
-CUDA_GENERATED_OUTPUT_DIR:PATH=
-
-//Generated file extension
-CUDA_HOST_COMPILATION_CPP:BOOL=ON
-
-//Host side compiler used by NVCC
-CUDA_HOST_COMPILER:FILEPATH=/usr/bin/cc
-
-//Path to a program.
-CUDA_NVCC_EXECUTABLE:FILEPATH=CUDA_NVCC_EXECUTABLE-NOTFOUND
-
-//Semi-colon delimit multiple arguments. during all build types.
-CUDA_NVCC_FLAGS:STRING=
-
-//Semi-colon delimit multiple arguments. during DEBUG builds.
-CUDA_NVCC_FLAGS_DEBUG:STRING=
-
-//Semi-colon delimit multiple arguments. during MINSIZEREL builds.
-CUDA_NVCC_FLAGS_MINSIZEREL:STRING=
-
-//Semi-colon delimit multiple arguments. during RELEASE builds.
-CUDA_NVCC_FLAGS_RELEASE:STRING=
-
-//Semi-colon delimit multiple arguments. during RELWITHDEBINFO
-// builds.
-CUDA_NVCC_FLAGS_RELWITHDEBINFO:STRING=
-
-//Propagate C/CXX_FLAGS and friends to the host compiler via -Xcompile
-CUDA_PROPAGATE_HOST_FLAGS:BOOL=ON
-
-//Path to a file.
-CUDA_SDK_ROOT_DIR:PATH=CUDA_SDK_ROOT_DIR-NOTFOUND
-
-//Compile CUDA objects with separable compilation enabled.  Requires
-// CUDA 5.0+
-CUDA_SEPARABLE_COMPILATION:BOOL=OFF
-
-//Path to a file.
-CUDA_TOOLKIT_INCLUDE:PATH=CUDA_TOOLKIT_INCLUDE-NOTFOUND
-
-//Toolkit location.
-CUDA_TOOLKIT_ROOT_DIR:PATH=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-
-//Print out the commands run while compiling the CUDA source file.
-//  With the Makefile generator this defaults to VERBOSE variable
-// specified on the command line, but can be forced on with this
-// option.
-CUDA_VERBOSE_BUILD:BOOL=OFF
-
-//"cublas" library
-CUDA_cublas_LIBRARY:FILEPATH=CUDA_cublas_LIBRARY-NOTFOUND
-
-//"cublasemu" library
-CUDA_cublasemu_LIBRARY:FILEPATH=CUDA_cublasemu_LIBRARY-NOTFOUND
-
-//"cufft" library
-CUDA_cufft_LIBRARY:FILEPATH=CUDA_cufft_LIBRARY-NOTFOUND
-
-//"cufftemu" library
-CUDA_cufftemu_LIBRARY:FILEPATH=CUDA_cufftemu_LIBRARY-NOTFOUND
-
-//Path to a file.
-DARKNET_PATH:PATH=/home/youngsangcho/ISCC_2023/src/vision_team/darknet_ros/darknet
-
 //Path to a program.
 DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
 
@@ -411,24 +326,6 @@ EMPY_SCRIPT:STRING=/usr/lib/python3/dist-packages/em.py
 
 //The directory containing a CMake configuration file for Eigen3.
 Eigen3_DIR:PATH=/usr/lib/cmake/eigen3
-
-//Path to a file.
-FREETYPE_INCLUDE_DIR_freetype2:PATH=/usr/include/freetype2
-
-//Path to a file.
-FREETYPE_INCLUDE_DIR_ft2build:PATH=/usr/include/freetype2
-
-//Path to a library.
-FREETYPE_LIBRARY_DEBUG:FILEPATH=FREETYPE_LIBRARY_DEBUG-NOTFOUND
-
-//Path to a library.
-FREETYPE_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
-
-//Path to a file.
-Fontconfig_INCLUDE_DIR:PATH=/usr/include
-
-//Path to a library.
-Fontconfig_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libfontconfig.so
 
 //Path to a library.
 GMOCK_LIBRARY:FILEPATH=GMOCK_LIBRARY-NOTFOUND
@@ -525,193 +422,13 @@ UBUNTU:BOOL=TRUE
 UBUNTU_FOCAL:BOOL=TRUE
 
 //Path to a file.
-X11_ICE_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_ICE_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libICE.so
-
-//Path to a file.
-X11_SM_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_SM_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libSM.so
-
-//Path to a file.
-X11_X11_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_X11_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libX11.so
-
-//Path to a file.
-X11_XRes_INCLUDE_PATH:PATH=X11_XRes_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_XRes_LIB:FILEPATH=X11_XRes_LIB-NOTFOUND
-
-//Path to a file.
-X11_XShm_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_XSync_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xaccessrules_INCLUDE_PATH:PATH=X11_Xaccessrules_INCLUDE_PATH-NOTFOUND
-
-//Path to a file.
-X11_Xaccessstr_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xau_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xau_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXau.so
-
-//Path to a file.
-X11_Xcomposite_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xcomposite_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXcomposite.so
-
-//Path to a file.
-X11_Xcursor_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xcursor_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXcursor.so
-
-//Path to a file.
-X11_Xdamage_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xdamage_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXdamage.so
-
-//Path to a file.
-X11_Xdmcp_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xdmcp_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXdmcp.so
-
-//Path to a file.
-X11_Xext_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xext_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXext.so
-
-//Path to a file.
-X11_Xfixes_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xfixes_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXfixes.so
-
-//Path to a file.
-X11_Xft_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xft_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXft.so
-
-//Path to a file.
-X11_Xi_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xi_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXi.so
-
-//Path to a file.
-X11_Xinerama_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xinerama_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXinerama.so
-
-//Path to a file.
-X11_Xkb_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xkblib_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xlib_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xmu_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xmu_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXmu.so
-
-//Path to a file.
-X11_Xpm_INCLUDE_PATH:PATH=X11_Xpm_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_Xpm_LIB:FILEPATH=X11_Xpm_LIB-NOTFOUND
-
-//Path to a file.
-X11_Xrandr_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xrandr_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXrandr.so
-
-//Path to a file.
-X11_Xrender_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xrender_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXrender.so
-
-//Path to a file.
-X11_Xshape_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xss_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xss_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXss.so
-
-//Path to a file.
-X11_Xt_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a library.
-X11_Xt_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXt.so
-
-//Path to a file.
-X11_Xtst_INCLUDE_PATH:PATH=X11_Xtst_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_Xtst_LIB:FILEPATH=X11_Xtst_LIB-NOTFOUND
-
-//Path to a file.
-X11_Xutil_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_Xv_INCLUDE_PATH:PATH=X11_Xv_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_Xv_LIB:FILEPATH=X11_Xv_LIB-NOTFOUND
-
-//Path to a file.
-X11_Xxf86misc_INCLUDE_PATH:PATH=X11_Xxf86misc_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_Xxf86misc_LIB:FILEPATH=X11_Xxf86misc_LIB-NOTFOUND
-
-//Path to a file.
-X11_Xxf86vm_INCLUDE_PATH:PATH=X11_Xxf86vm_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_Xxf86vm_LIB:FILEPATH=X11_Xxf86vm_LIB-NOTFOUND
-
-//Path to a file.
-X11_dpms_INCLUDE_PATH:PATH=/usr/include
-
-//Path to a file.
-X11_xkbfile_INCLUDE_PATH:PATH=X11_xkbfile_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-X11_xkbfile_LIB:FILEPATH=X11_xkbfile_LIB-NOTFOUND
-
-//Path to a file.
 YAML_CPP_INCLUDE_DIR:PATH=YAML_CPP_INCLUDE_DIR-NOTFOUND
 
 //Path to a library.
 YAML_CPP_LIBRARY:FILEPATH=YAML_CPP_LIBRARY-NOTFOUND
 
 //Path to a file.
-_file_name:FILEPATH=/home/youngsangcho/ISCC_2023/src/vision_team/video_stream_opencv-master/test/test_rtsp_stream.test
+_file_name:FILEPATH=/home/youngsangcho/ISCC_2023/src/velodyne/velodyne_pointcloud/tests/two_nodelet_managers.test
 
 //Path to a file.
 _gmock_INCLUDES:FILEPATH=/usr/src/googletest/googlemock/include/gmock/gmock.h
@@ -788,44 +505,11 @@ catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 //The directory containing a CMake configuration file for class_loader.
 class_loader_DIR:PATH=/opt/ros/noetic/share/class_loader/cmake
 
-//The directory containing a CMake configuration file for cmake_clang_tools.
-cmake_clang_tools_DIR:PATH=cmake_clang_tools_DIR-NOTFOUND
-
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
-//The directory containing a CMake configuration file for cv_bridge.
-cv_bridge_DIR:PATH=/opt/ros/noetic/share/cv_bridge/cmake
-
-//Value Computed by CMake
-darknet_ros_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/darknet_ros/darknet_ros
-
-//Value Computed by CMake
-darknet_ros_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/darknet_ros/darknet_ros
-
-//Dependencies for the target
-darknet_ros_lib_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libSM.so;general;/usr/lib/x86_64-linux-gnu/libICE.so;general;/usr/lib/x86_64-linux-gnu/libX11.so;general;/usr/lib/x86_64-linux-gnu/libXext.so;general;m;general;pthread;general;stdc++;general;Boost::thread;general;opencv_calib3d;general;opencv_core;general;opencv_dnn;general;opencv_features2d;general;opencv_flann;general;opencv_highgui;general;opencv_imgcodecs;general;opencv_imgproc;general;opencv_ml;general;opencv_objdetect;general;opencv_photo;general;opencv_stitching;general;opencv_video;general;opencv_videoio;general;opencv_aruco;general;opencv_bgsegm;general;opencv_bioinspired;general;opencv_ccalib;general;opencv_datasets;general;opencv_dnn_objdetect;general;opencv_dnn_superres;general;opencv_dpm;general;opencv_face;general;opencv_freetype;general;opencv_fuzzy;general;opencv_hdf;general;opencv_hfs;general;opencv_img_hash;general;opencv_line_descriptor;general;opencv_optflow;general;opencv_phase_unwrapping;general;opencv_plot;general;opencv_quality;general;opencv_reg;general;opencv_rgbd;general;opencv_saliency;general;opencv_shape;general;opencv_stereo;general;opencv_structured_light;general;opencv_superres;general;opencv_surface_matching;general;opencv_text;general;opencv_tracking;general;opencv_videostab;general;opencv_viz;general;opencv_ximgproc;general;opencv_xobjdetect;general;opencv_xphoto;general;/opt/ros/noetic/lib/libcv_bridge.so;general;/usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_features2d.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_ml.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_stitching.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_video.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_aruco.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_bioinspired.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_ccalib.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dnn_superres.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dpm.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_face.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_freetype.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_hdf.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_hfs.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_img_hash.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_line_descriptor.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_quality.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_reg.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_rgbd.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_saliency.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_shape.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_stereo.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_superres.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_text.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_tracking.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.2.0;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libimage_transport.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libnodeletlib.so;general;/opt/ros/noetic/lib/libbondcpp.so;general;/usr/lib/x86_64-linux-gnu/libuuid.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;general;opencv_calib3d;general;opencv_core;general;opencv_dnn;general;opencv_features2d;general;opencv_flann;general;opencv_highgui;general;opencv_imgcodecs;general;opencv_imgproc;general;opencv_ml;general;opencv_objdetect;general;opencv_photo;general;opencv_stitching;general;opencv_video;general;opencv_videoio;general;opencv_aruco;general;opencv_bgsegm;general;opencv_bioinspired;general;opencv_ccalib;general;opencv_datasets;general;opencv_dnn_objdetect;general;opencv_dnn_superres;general;opencv_dpm;general;opencv_face;general;opencv_freetype;general;opencv_fuzzy;general;opencv_hdf;general;opencv_hfs;general;opencv_img_hash;general;opencv_line_descriptor;general;opencv_optflow;general;opencv_phase_unwrapping;general;opencv_plot;general;opencv_quality;general;opencv_reg;general;opencv_rgbd;general;opencv_saliency;general;opencv_shape;general;opencv_stereo;general;opencv_structured_light;general;opencv_superres;general;opencv_surface_matching;general;opencv_text;general;opencv_tracking;general;opencv_videostab;general;opencv_viz;general;opencv_ximgproc;general;opencv_xobjdetect;general;opencv_xphoto;
-
-//Value Computed by CMake
-darknet_ros_msgs_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/darknet_ros/darknet_ros_msgs
-
-//The directory containing a CMake configuration file for darknet_ros_msgs.
-darknet_ros_msgs_DIR:PATH=/home/youngsangcho/ISCC_2023/devel/share/darknet_ros_msgs/cmake
-
-//Value Computed by CMake
-darknet_ros_msgs_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/darknet_ros/darknet_ros_msgs
-
-//Dependencies for the target
-darknet_ros_nodelet_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libSM.so;general;/usr/lib/x86_64-linux-gnu/libICE.so;general;/usr/lib/x86_64-linux-gnu/libX11.so;general;/usr/lib/x86_64-linux-gnu/libXext.so;general;darknet_ros_lib;
-
 //Dependencies for the target
 data_containers_LIB_DEPENDS:STATIC=general;velodyne_rawdata;general;velodyne_input;general;/opt/ros/noetic/lib/libnodeletlib.so;general;/opt/ros/noetic/lib/libbondcpp.so;general;/usr/lib/x86_64-linux-gnu/libuuid.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libtf.so;general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/libdiagnostic_updater.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;general;yaml-cpp;
-
-//Value Computed by CMake
-delivery_mission_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/delivery_mission
-
-//Value Computed by CMake
-delivery_mission_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/delivery_mission
 
 //The directory containing a CMake configuration file for diagnostic_msgs.
 diagnostic_msgs_DIR:PATH=/opt/ros/noetic/share/diagnostic_msgs/cmake
@@ -919,16 +603,10 @@ gtest_hide_internal_symbols:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 //Value Computed by CMake
-handsfree_ros_imu_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/handsfree_ros_imu-master
+handsfree_ros_imu_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/handsfree_ros_imu
 
 //Value Computed by CMake
-handsfree_ros_imu_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/handsfree_ros_imu-master
-
-//Value Computed by CMake
-hg_lineDetection_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/line_detect/hg_laneDetection_trad-master
-
-//Value Computed by CMake
-hg_lineDetection_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/line_detect/hg_laneDetection_trad-master
+handsfree_ros_imu_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/handsfree_ros_imu
 
 //The directory containing a CMake configuration file for image_transport.
 image_transport_DIR:PATH=/opt/ros/noetic/share/image_transport/cmake
@@ -936,11 +614,17 @@ image_transport_DIR:PATH=/opt/ros/noetic/share/image_transport/cmake
 //The directory containing a CMake configuration file for interactive_markers.
 interactive_markers_DIR:PATH=/opt/ros/noetic/share/interactive_markers/cmake
 
+//Value Computed by CMake
+lane_pkg_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/lane_pkg
+
+//Value Computed by CMake
+lane_pkg_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/lane_pkg
+
 //The directory containing a CMake configuration file for laser_geometry.
 laser_geometry_DIR:PATH=/opt/ros/noetic/share/laser_geometry/cmake
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/noetic/lib/libtf2.so
+lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
 
 //Value Computed by CMake
 lidar_team_erp42_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/lidar_team/lidar_team_erp42
@@ -967,10 +651,13 @@ message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 
 //Value Computed by CMake
-morai_msgs_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/MORAI-ROS_morai_msgs
+morai_msgs_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/morai_msgs
+
+//The directory containing a CMake configuration file for morai_msgs.
+morai_msgs_DIR:PATH=/home/youngsangcho/ISCC_2023/devel/share/morai_msgs/cmake
 
 //Value Computed by CMake
-morai_msgs_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/MORAI-ROS_morai_msgs
+morai_msgs_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/morai_msgs
 
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/noetic/share/nav_msgs/cmake
@@ -1019,12 +706,6 @@ pcl_msgs_DIR:PATH=/opt/ros/noetic/share/pcl_msgs/cmake
 
 //The directory containing a CMake configuration file for pcl_ros.
 pcl_ros_DIR:PATH=/opt/ros/noetic/share/pcl_ros/cmake
-
-//Path to a library.
-pkgcfg_lib_PKG_FONTCONFIG_fontconfig:FILEPATH=/usr/lib/x86_64-linux-gnu/libfontconfig.so
-
-//Path to a library.
-pkgcfg_lib_PKG_FONTCONFIG_freetype:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
 
 //Path to a library.
 pkgcfg_lib_YAML_CPP_yaml-cpp:FILEPATH=/usr/lib/x86_64-linux-gnu/libyaml-cpp.so
@@ -1243,13 +924,13 @@ ublox_serialization_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/gps_team/
 urdf_DIR:PATH=/opt/ros/noetic/share/urdf/cmake
 
 //Value Computed by CMake
-usb_cam_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/usb_cam
+usb_cam_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/usb_cam
 
 //Dependencies for the target
 usb_cam_LIB_DEPENDS:STATIC=general;avcodec;general;swscale;general;/opt/ros/noetic/lib/libimage_transport.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libcamera_info_manager.so;general;/opt/ros/noetic/lib/libcamera_calibration_parsers.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
 
 //Value Computed by CMake
-usb_cam_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/usb_cam
+usb_cam_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/usb_cam
 
 //Value Computed by CMake
 utmk_coordinate_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/gps_team/gps/utmk_coordinate
@@ -1309,19 +990,13 @@ velodyne_pointcloud_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/velodyne/
 velodyne_rawdata_LIB_DEPENDS:STATIC=general;velodyne_input;general;/opt/ros/noetic/lib/libnodeletlib.so;general;/opt/ros/noetic/lib/libbondcpp.so;general;/usr/lib/x86_64-linux-gnu/libuuid.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libtf.so;general;/opt/ros/noetic/lib/libtf2_ros.so;general;/opt/ros/noetic/lib/libactionlib.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libtf2.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/libdiagnostic_updater.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;general;yaml-cpp;
 
 //Value Computed by CMake
-video_stream_opencv_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/video_stream_opencv-master
+vision_msgs_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_msgs
 
-//Dependencies for the target
-video_stream_opencv_LIB_DEPENDS:STATIC=general;/opt/ros/noetic/lib/libcv_bridge.so;general;/usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dnn.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_features2d.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_ml.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_stitching.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_video.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_videoio.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_aruco.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_bioinspired.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_ccalib.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dnn_objdetect.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dnn_superres.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_dpm.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_face.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_freetype.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_fuzzy.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_hdf.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_hfs.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_img_hash.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_line_descriptor.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_optflow.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_phase_unwrapping.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_quality.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_reg.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_rgbd.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_saliency.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_shape.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_stereo.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_structured_light.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_superres.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_surface_matching.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_text.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_tracking.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_ximgproc.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0;general;/usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.4.2.0;general;/opt/ros/noetic/lib/libimage_transport.so;general;/opt/ros/noetic/lib/libmessage_filters.so;general;/opt/ros/noetic/lib/libcamera_info_manager.so;general;/opt/ros/noetic/lib/libcamera_calibration_parsers.so;general;/opt/ros/noetic/lib/libnodeletlib.so;general;/opt/ros/noetic/lib/libbondcpp.so;general;/usr/lib/x86_64-linux-gnu/libuuid.so;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;general;opencv_calib3d;general;opencv_core;general;opencv_dnn;general;opencv_features2d;general;opencv_flann;general;opencv_highgui;general;opencv_imgcodecs;general;opencv_imgproc;general;opencv_ml;general;opencv_objdetect;general;opencv_photo;general;opencv_stitching;general;opencv_video;general;opencv_videoio;general;opencv_aruco;general;opencv_bgsegm;general;opencv_bioinspired;general;opencv_ccalib;general;opencv_datasets;general;opencv_dnn_objdetect;general;opencv_dnn_superres;general;opencv_dpm;general;opencv_face;general;opencv_freetype;general;opencv_fuzzy;general;opencv_hdf;general;opencv_hfs;general;opencv_img_hash;general;opencv_line_descriptor;general;opencv_optflow;general;opencv_phase_unwrapping;general;opencv_plot;general;opencv_quality;general;opencv_reg;general;opencv_rgbd;general;opencv_saliency;general;opencv_shape;general;opencv_stereo;general;opencv_structured_light;general;opencv_superres;general;opencv_surface_matching;general;opencv_text;general;opencv_tracking;general;opencv_videostab;general;opencv_viz;general;opencv_ximgproc;general;opencv_xobjdetect;general;opencv_xphoto;
-
-//Value Computed by CMake
-video_stream_opencv_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/video_stream_opencv-master
+//The directory containing a CMake configuration file for vision_msgs.
+vision_msgs_DIR:PATH=/home/youngsangcho/ISCC_2023/devel/share/vision_msgs/cmake
 
 //Value Computed by CMake
-vision_distance_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/vision_team/vision_distance
-
-//Value Computed by CMake
-vision_distance_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_team/vision_distance
+vision_msgs_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/vision_msgs
 
 //The directory containing a CMake configuration file for visualization_msgs.
 visualization_msgs_DIR:PATH=/opt/ros/noetic/share/visualization_msgs/cmake
@@ -1334,6 +1009,12 @@ waypoint_maker_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/lidar_team/way
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/noetic/share/xmlrpcpp/cmake
+
+//Value Computed by CMake
+yolov7_ros_BINARY_DIR:STATIC=/home/youngsangcho/ISCC_2023/build/yolov7-ros
+
+//Value Computed by CMake
+yolov7_ros_SOURCE_DIR:STATIC=/home/youngsangcho/ISCC_2023/src/yolov7-ros
 
 
 ########################
@@ -1427,10 +1108,6 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
-//Have function connect
-CMAKE_HAVE_CONNECT:INTERNAL=1
-//Have function gethostbyname
-CMAKE_HAVE_GETHOSTBYNAME:INTERNAL=1
 //Test CMAKE_HAVE_LIBC_PTHREAD
 CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
 //Have library pthreads
@@ -1439,10 +1116,6 @@ CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
 CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
 //Have include pthread.h
 CMAKE_HAVE_PTHREAD_H:INTERNAL=1
-//Have function remove
-CMAKE_HAVE_REMOVE:INTERNAL=1
-//Have function shmat
-CMAKE_HAVE_SHMAT:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/youngsangcho/ISCC_2023/src
@@ -1480,8 +1153,6 @@ CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
 CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
-//Have library ICE
-CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -1499,7 +1170,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=51
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=49
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1542,66 +1213,6 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_64_BIT_DEVICE_CODE
-CUDA_64_BIT_DEVICE_CODE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE
-CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_BUILD_CUBIN
-CUDA_BUILD_CUBIN-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_BUILD_EMULATION
-CUDA_BUILD_EMULATION-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_CUDART_LIBRARY
-CUDA_CUDART_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_CUDA_LIBRARY
-CUDA_CUDA_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_GENERATED_OUTPUT_DIR
-CUDA_GENERATED_OUTPUT_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_HOST_COMPILATION_CPP
-CUDA_HOST_COMPILATION_CPP-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_EXECUTABLE
-CUDA_NVCC_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS
-CUDA_NVCC_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_DEBUG
-CUDA_NVCC_FLAGS_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_MINSIZEREL
-CUDA_NVCC_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_RELEASE
-CUDA_NVCC_FLAGS_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_RELWITHDEBINFO
-CUDA_NVCC_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_PROPAGATE_HOST_FLAGS
-CUDA_PROPAGATE_HOST_FLAGS-ADVANCED:INTERNAL=1
-//This is the value of the last time CUDA_SDK_ROOT_DIR was set
-// successfully.
-CUDA_SDK_ROOT_DIR_INTERNAL:INTERNAL=CUDA_SDK_ROOT_DIR-NOTFOUND
-//ADVANCED property for variable: CUDA_SEPARABLE_COMPILATION
-CUDA_SEPARABLE_COMPILATION-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_TOOLKIT_INCLUDE
-CUDA_TOOLKIT_INCLUDE-ADVANCED:INTERNAL=1
-//This is the value of the last time CUDA_TOOLKIT_ROOT_DIR was
-// set successfully.
-CUDA_TOOLKIT_ROOT_DIR_INTERNAL:INTERNAL=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-//This is the value of the last time CUDA_TOOLKIT_TARGET_DIR was
-// set successfully.
-CUDA_TOOLKIT_TARGET_DIR_INTERNAL:INTERNAL=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-CUDA_USE_STATIC_CUDA_RUNTIME:INTERNAL=OFF
-//ADVANCED property for variable: CUDA_VERBOSE_BUILD
-CUDA_VERBOSE_BUILD-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cublas_LIBRARY
-CUDA_cublas_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cublasemu_LIBRARY
-CUDA_cublasemu_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cufft_LIBRARY
-CUDA_cufft_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cufftemu_LIBRARY
-CUDA_cufftemu_LIBRARY-ADVANCED:INTERNAL=1
-//Location of make2cmake.cmake
-CUDA_make2cmake:INTERNAL=/usr/share/cmake-3.16/Modules/FindCUDA/make2cmake.cmake
-//Location of parse_cubin.cmake
-CUDA_parse_cubin:INTERNAL=/usr/share/cmake-3.16/Modules/FindCUDA/parse_cubin.cmake
-//Location of run_nvcc.cmake
-CUDA_run_nvcc:INTERNAL=/usr/share/cmake-3.16/Modules/FindCUDA/run_nvcc.cmake
 //Details about finding Armadillo
 FIND_PACKAGE_MESSAGE_DETAILS_Armadillo:INTERNAL=[/usr/lib/libarmadillo.so][/usr/include][v9.800.4()]
 //Details about finding Boost
@@ -1616,20 +1227,6 @@ FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python3][v3.8.10()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//Details about finding X11
-FIND_PACKAGE_MESSAGE_DETAILS_X11:INTERNAL=[/usr/include][/usr/lib/x86_64-linux-gnu/libX11.so][c ][v()]
-//ADVANCED property for variable: FREETYPE_INCLUDE_DIR_freetype2
-FREETYPE_INCLUDE_DIR_freetype2-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FREETYPE_INCLUDE_DIR_ft2build
-FREETYPE_INCLUDE_DIR_ft2build-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FREETYPE_LIBRARY_DEBUG
-FREETYPE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FREETYPE_LIBRARY_RELEASE
-FREETYPE_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Fontconfig_INCLUDE_DIR
-Fontconfig_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Fontconfig_LIBRARY
-Fontconfig_LIBRARY-ADVANCED:INTERNAL=1
 GMOCK_FROM_SOURCE_FOUND:INTERNAL=TRUE
 GMOCK_FROM_SOURCE_INCLUDE_DIRS:INTERNAL=/usr/src/googletest/googlemock/include
 GMOCK_FROM_SOURCE_LIBRARIES:INTERNAL=gmock
@@ -1660,169 +1257,12 @@ GTEST_MAIN_LIBRARY-ADVANCED:INTERNAL=1
 GTEST_MAIN_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
-PKG_FONTCONFIG_CFLAGS:INTERNAL=-I/usr/include/uuid;-I/usr/include/freetype2;-I/usr/include/libpng16
-PKG_FONTCONFIG_CFLAGS_I:INTERNAL=
-PKG_FONTCONFIG_CFLAGS_OTHER:INTERNAL=
-PKG_FONTCONFIG_FOUND:INTERNAL=1
-PKG_FONTCONFIG_INCLUDEDIR:INTERNAL=/usr/include
-PKG_FONTCONFIG_INCLUDE_DIRS:INTERNAL=/usr/include/uuid;/usr/include/freetype2;/usr/include/libpng16
-PKG_FONTCONFIG_LDFLAGS:INTERNAL=-lfontconfig;-lfreetype
-PKG_FONTCONFIG_LDFLAGS_OTHER:INTERNAL=
-PKG_FONTCONFIG_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
-PKG_FONTCONFIG_LIBRARIES:INTERNAL=fontconfig;freetype
-PKG_FONTCONFIG_LIBRARY_DIRS:INTERNAL=
-PKG_FONTCONFIG_LIBS:INTERNAL=
-PKG_FONTCONFIG_LIBS_L:INTERNAL=
-PKG_FONTCONFIG_LIBS_OTHER:INTERNAL=
-PKG_FONTCONFIG_LIBS_PATHS:INTERNAL=
-PKG_FONTCONFIG_MODULE_NAME:INTERNAL=fontconfig
-PKG_FONTCONFIG_PREFIX:INTERNAL=/usr
-PKG_FONTCONFIG_STATIC_CFLAGS:INTERNAL=-I/usr/include/uuid;-I/usr/include/freetype2;-I/usr/include/libpng16
-PKG_FONTCONFIG_STATIC_CFLAGS_I:INTERNAL=
-PKG_FONTCONFIG_STATIC_CFLAGS_OTHER:INTERNAL=
-PKG_FONTCONFIG_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/uuid;/usr/include/freetype2;/usr/include/libpng16
-PKG_FONTCONFIG_STATIC_LDFLAGS:INTERNAL=-lfontconfig;-luuid;-lexpat;-lfreetype;-lpng16;-lm;-lz;-lm;-lz
-PKG_FONTCONFIG_STATIC_LDFLAGS_OTHER:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBDIR:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBRARIES:INTERNAL=fontconfig;uuid;expat;freetype;png16;m;z;m;z
-PKG_FONTCONFIG_STATIC_LIBRARY_DIRS:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBS:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBS_L:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBS_OTHER:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBS_PATHS:INTERNAL=
-PKG_FONTCONFIG_VERSION:INTERNAL=2.13.1
-PKG_FONTCONFIG_fontconfig_INCLUDEDIR:INTERNAL=
-PKG_FONTCONFIG_fontconfig_LIBDIR:INTERNAL=
-PKG_FONTCONFIG_fontconfig_PREFIX:INTERNAL=
-PKG_FONTCONFIG_fontconfig_VERSION:INTERNAL=
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 //This needs to be in PYTHONPATH when 'setup.py install' is called.
 //  And it needs to match.  But setuptools won't tell us where
 // it will install things.
 PYTHON_INSTALL_DIR:INTERNAL=lib/python3/dist-packages
-//ADVANCED property for variable: X11_ICE_INCLUDE_PATH
-X11_ICE_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_ICE_LIB
-X11_ICE_LIB-ADVANCED:INTERNAL=1
-//Have library /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so
-X11_LIB_X11_SOLO:INTERNAL=1
-//ADVANCED property for variable: X11_SM_INCLUDE_PATH
-X11_SM_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_SM_LIB
-X11_SM_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_X11_INCLUDE_PATH
-X11_X11_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_X11_LIB
-X11_X11_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_XRes_INCLUDE_PATH
-X11_XRes_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_XRes_LIB
-X11_XRes_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_XShm_INCLUDE_PATH
-X11_XShm_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_XSync_INCLUDE_PATH
-X11_XSync_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xaccessrules_INCLUDE_PATH
-X11_Xaccessrules_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xaccessstr_INCLUDE_PATH
-X11_Xaccessstr_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xau_INCLUDE_PATH
-X11_Xau_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xau_LIB
-X11_Xau_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xcomposite_INCLUDE_PATH
-X11_Xcomposite_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xcomposite_LIB
-X11_Xcomposite_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xcursor_INCLUDE_PATH
-X11_Xcursor_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xcursor_LIB
-X11_Xcursor_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xdamage_INCLUDE_PATH
-X11_Xdamage_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xdamage_LIB
-X11_Xdamage_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xdmcp_INCLUDE_PATH
-X11_Xdmcp_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xdmcp_LIB
-X11_Xdmcp_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xext_INCLUDE_PATH
-X11_Xext_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xext_LIB
-X11_Xext_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xfixes_INCLUDE_PATH
-X11_Xfixes_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xfixes_LIB
-X11_Xfixes_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xft_INCLUDE_PATH
-X11_Xft_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xft_LIB
-X11_Xft_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xi_INCLUDE_PATH
-X11_Xi_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xi_LIB
-X11_Xi_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xinerama_INCLUDE_PATH
-X11_Xinerama_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xinerama_LIB
-X11_Xinerama_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xkb_INCLUDE_PATH
-X11_Xkb_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xkblib_INCLUDE_PATH
-X11_Xkblib_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xlib_INCLUDE_PATH
-X11_Xlib_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xmu_INCLUDE_PATH
-X11_Xmu_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xmu_LIB
-X11_Xmu_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xpm_INCLUDE_PATH
-X11_Xpm_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xpm_LIB
-X11_Xpm_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xrandr_INCLUDE_PATH
-X11_Xrandr_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xrandr_LIB
-X11_Xrandr_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xrender_INCLUDE_PATH
-X11_Xrender_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xrender_LIB
-X11_Xrender_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xshape_INCLUDE_PATH
-X11_Xshape_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xss_INCLUDE_PATH
-X11_Xss_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xss_LIB
-X11_Xss_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xt_INCLUDE_PATH
-X11_Xt_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xt_LIB
-X11_Xt_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xtst_INCLUDE_PATH
-X11_Xtst_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xtst_LIB
-X11_Xtst_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xutil_INCLUDE_PATH
-X11_Xutil_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xv_INCLUDE_PATH
-X11_Xv_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xv_LIB
-X11_Xv_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xxf86misc_INCLUDE_PATH
-X11_Xxf86misc_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xxf86misc_LIB
-X11_Xxf86misc_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xxf86vm_INCLUDE_PATH
-X11_Xxf86vm_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_Xxf86vm_LIB
-X11_Xxf86vm_LIB-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_dpms_INCLUDE_PATH
-X11_dpms_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_xkbfile_INCLUDE_PATH
-X11_xkbfile_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: X11_xkbfile_LIB
-X11_xkbfile_LIB-ADVANCED:INTERNAL=1
 YAML_CPP_CFLAGS:INTERNAL=
 YAML_CPP_CFLAGS_I:INTERNAL=
 YAML_CPP_CFLAGS_OTHER:INTERNAL=
@@ -1860,11 +1300,9 @@ YAML_CPP_yaml-cpp_PREFIX:INTERNAL=
 YAML_CPP_yaml-cpp_VERSION:INTERNAL=
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/home/youngsangcho/ISCC_2023/install
-__pkg_config_arguments_PKG_FONTCONFIG:INTERNAL=QUIET;fontconfig
 __pkg_config_arguments_YAML_CPP:INTERNAL=REQUIRED;yaml-cpp
 __pkg_config_arguments_avcodec:INTERNAL=libavcodec;REQUIRED
 __pkg_config_arguments_swscale:INTERNAL=libswscale;REQUIRED
-__pkg_config_checked_PKG_FONTCONFIG:INTERNAL=1
 __pkg_config_checked_YAML_CPP:INTERNAL=1
 __pkg_config_checked_avcodec:INTERNAL=1
 __pkg_config_checked_swscale:INTERNAL=1
@@ -1925,10 +1363,6 @@ gtest_disable_pthreads-ADVANCED:INTERNAL=1
 gtest_force_shared_crt-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_hide_internal_symbols
 gtest_hide_internal_symbols-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_PKG_FONTCONFIG_fontconfig
-pkgcfg_lib_PKG_FONTCONFIG_fontconfig-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_PKG_FONTCONFIG_freetype
-pkgcfg_lib_PKG_FONTCONFIG_freetype-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_YAML_CPP_yaml-cpp
 pkgcfg_lib_YAML_CPP_yaml-cpp-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_avcodec_avcodec

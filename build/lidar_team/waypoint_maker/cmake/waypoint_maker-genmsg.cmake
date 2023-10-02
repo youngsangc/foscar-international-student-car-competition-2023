@@ -2,7 +2,7 @@
 
 message(STATUS "waypoint_maker: 4 messages, 0 services")
 
-set(MSG_I_FLAGS "-Iwaypoint_maker:/home/youngsangcho/ISCC_2023/src/lidar_team/waypoint_maker/msg;-Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg;-Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Iwaypoint_maker:/home/youngsangcho/ISCC_2023/src/lidar_team/waypoint_maker/msg;-Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg;-Imorai_msgs:/home/youngsangcho/ISCC_2023/src/morai_msgs/msg;-Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -347,6 +347,9 @@ endif()
 if(TARGET nav_msgs_generate_messages_cpp)
   add_dependencies(waypoint_maker_generate_messages_cpp nav_msgs_generate_messages_cpp)
 endif()
+if(TARGET morai_msgs_generate_messages_cpp)
+  add_dependencies(waypoint_maker_generate_messages_cpp morai_msgs_generate_messages_cpp)
+endif()
 
 if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/waypoint_maker)
   # install generated code
@@ -366,6 +369,9 @@ if(TARGET geometry_msgs_generate_messages_eus)
 endif()
 if(TARGET nav_msgs_generate_messages_eus)
   add_dependencies(waypoint_maker_generate_messages_eus nav_msgs_generate_messages_eus)
+endif()
+if(TARGET morai_msgs_generate_messages_eus)
+  add_dependencies(waypoint_maker_generate_messages_eus morai_msgs_generate_messages_eus)
 endif()
 
 if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/waypoint_maker)
@@ -387,6 +393,9 @@ endif()
 if(TARGET nav_msgs_generate_messages_lisp)
   add_dependencies(waypoint_maker_generate_messages_lisp nav_msgs_generate_messages_lisp)
 endif()
+if(TARGET morai_msgs_generate_messages_lisp)
+  add_dependencies(waypoint_maker_generate_messages_lisp morai_msgs_generate_messages_lisp)
+endif()
 
 if(gennodejs_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/waypoint_maker)
   # install generated code
@@ -406,6 +415,9 @@ if(TARGET geometry_msgs_generate_messages_nodejs)
 endif()
 if(TARGET nav_msgs_generate_messages_nodejs)
   add_dependencies(waypoint_maker_generate_messages_nodejs nav_msgs_generate_messages_nodejs)
+endif()
+if(TARGET morai_msgs_generate_messages_nodejs)
+  add_dependencies(waypoint_maker_generate_messages_nodejs morai_msgs_generate_messages_nodejs)
 endif()
 
 if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/waypoint_maker)
@@ -427,4 +439,7 @@ if(TARGET geometry_msgs_generate_messages_py)
 endif()
 if(TARGET nav_msgs_generate_messages_py)
   add_dependencies(waypoint_maker_generate_messages_py nav_msgs_generate_messages_py)
+endif()
+if(TARGET morai_msgs_generate_messages_py)
+  add_dependencies(waypoint_maker_generate_messages_py morai_msgs_generate_messages_py)
 endif()

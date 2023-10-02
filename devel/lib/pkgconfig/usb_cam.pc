@@ -3,6 +3,6 @@ prefix=/home/youngsangcho/ISCC_2023/devel
 Name: usb_cam
 Description: Description of usb_cam
 Version: 0.3.6
-Cflags: -I/home/youngsangcho/ISCC_2023/src/vision_team/usb_cam/include
+Cflags: -I/home/youngsangcho/ISCC_2023/src/usb_cam/include
 Libs: -L${prefix}/lib -lusb_cam
 Requires: 

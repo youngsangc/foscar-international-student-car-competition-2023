@@ -1,12 +1,12 @@
 \subsubsection usage Usage
 \verbatim
 <node name="object_detector_node" pkg="object_detector" type="object_detector_node">
-  <param name="xMin" type="double" value="0.0" />
-  <param name="xMax" type="double" value="8.0" />
-  <param name="yMin" type="double" value="-4.0" />
-  <param name="yMax" type="double" value="4.0" />
-  <param name="zMin" type="double" value="-0.65" />
-  <param name="zMax" type="double" value="1.0" />
+  <param name="xMin" type="double" value="-1.2" />
+  <param name="xMax" type="double" value="6.0" />
+  <param name="yMin" type="double" value="-1.6" />
+  <param name="yMax" type="double" value="1.6" />
+  <param name="zMin" type="double" value="-0.42" />
+  <param name="zMax" type="double" value="-0.2" />
   <param name="minPoints" type="int" value="10" />
   <param name="epsilon" type="double" value="0.4" />
   <param name="minClusterSize" type="double" value="10.0" />

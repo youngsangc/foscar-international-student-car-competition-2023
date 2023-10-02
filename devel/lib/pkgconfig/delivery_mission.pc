@@ -1,8 +1,0 @@
-prefix=/home/youngsangcho/ISCC_2023/devel
-
-Name: delivery_mission
-Description: Description of delivery_mission
-Version: 0.0.0
-Cflags: -I/home/youngsangcho/ISCC_2023/devel/include
-Libs: -L${prefix}/lib 
-Requires: 
