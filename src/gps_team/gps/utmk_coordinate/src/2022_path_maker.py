@@ -34,7 +34,7 @@ class pm:
 
         self.idx = 0
 
-        rate = rospy.Rate(30)
+        rate = rospy.Rate(10)
 
         while not rospy.is_shutdown():
             if self.is_status:
@@ -49,7 +49,7 @@ class pm:
         distance = sqrt(pow(x - self.prev_x , 2)+pow(y - self.prev_y , 2)) 
         
         if distance > 0.2:  
-            self.f.write(str(x) + ' ' + str(y) + ' ' + '5' + '\n')
+            self.f.write(str(x) + ' ' + str(y) + ' ' + '9' + '\n')
             self.prev_x = x
             self.prev_y = y
             self.idx += 1

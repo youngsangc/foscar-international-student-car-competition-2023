@@ -30,7 +30,7 @@ void serialCallback(const race::drive_values::ConstPtr& msg) {
 	unsigned int speed_total = 0;
 	speed_total = abs(msg->throttle)*10;
 	speed_total = (speed_total > 200) ? 200 : speed_total;
-	// printf("msg->throttle : %d\n", msg->throttle);
+	printf("msg->throttle : %d\n", msg->throttle);
 	// erp42 limitSpeed = 20kph | maxSpeed = 40kph
 	if (msg->brake > 0) {
 		gear = 0x00;
@@ -99,6 +99,7 @@ int main (int argc, char** argv) {
 	if(ser.isOpen()) ROS_INFO_STREAM("Serial Port initialized");
 	else return -1;
 
+	// ros::Rate loop_rate(15);
 	ros::Rate loop_rate(50);
 	size_t num_write = 14;
 	size_t num_read = 18;
@@ -131,11 +132,11 @@ int main (int argc, char** argv) {
                               ((int)encoder_values[2] << 8 ) |
                               ((int)encoder_values[3] << 0);
 
-		// cout << "encoder val : " << encoder_val << endl;
-		// cout << "encoder values[0] : " << (int)encoder_values[0] << endl;
-		// cout << "encoder values[1] : " << (int)encoder_values[1] << endl;
-		// cout << "encoder values[2] : " << (int)encoder_values[2] << endl;
-		// cout << "encoder values[3] : " << (int)encoder_values[3] << endl;
+		cout << "encoder val : " << encoder_val << endl;
+		cout << "encoder values[0] : " << (int)encoder_values[0] << endl;
+		cout << "encoder values[1] : " << (int)encoder_values[1] << endl;
+		cout << "encoder values[2] : " << (int)encoder_values[2] << endl;
+		cout << "encoder values[3] : " << (int)encoder_values[3] << endl;
 
 		std_msgs::Int32 encoder_msg;
 		encoder_msg.data = encoder_val;
@@ -145,8 +146,9 @@ int main (int argc, char** argv) {
 		if(alive != 0xff) alive++;
 		else alive = 0x00;
 
-		loop_rate.sleep();
 		ros::spinOnce();
+		loop_rate.sleep();
+		
 	}
 	ser.close();
 }

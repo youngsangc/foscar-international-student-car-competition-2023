@@ -193,7 +193,7 @@ if __name__ == '__main__':
         continue
 
     # Path Setting
-    f = open('/home/youngsangcho/ISCC_2023/src/erp_ros/path/gps_track_path.txt' , mode = 'r')
+    f = open('/home/foscar/ISCC_2023/src/erp_ros/path/gps_track_path.txt' , mode = 'r')
 
     line = f.readline()
     first_line = line.split()

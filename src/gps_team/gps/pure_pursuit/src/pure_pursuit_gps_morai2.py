@@ -194,7 +194,7 @@ if __name__ == '__main__':
 
 
     # Path Setting
-    f = open('/home/youngsangcho/ISCC_2023/src/erp_ros/path/morai_asp.txt' , mode = 'r')
+    f = open('/home/foscar/ISCC_2023/src/erp_ros/path/morai_asp.txt' , mode = 'r')
 
     line = f.readline()
     first_line = line.split()

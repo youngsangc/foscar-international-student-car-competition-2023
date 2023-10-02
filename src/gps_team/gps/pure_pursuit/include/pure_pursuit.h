@@ -62,7 +62,13 @@ public:
   geometry_msgs::Pose current_pose_;
   std::vector<std::pair<geometry_msgs::Point, int>> waypoints;
   int mode;
+  
+  //mission_flag
+
   int mission_flag;
+  int ut_mission_flag = 0;
+  int tunnel_mission_flag = 0;
+
   //bool current_idx_flag;
 
   // for main control
@@ -76,6 +82,10 @@ public:
   bool is_static_obstacle_detected_long;
   bool is_parking_rubbercone_detected;
 
+  bool is_small_static_obstacle_detected_short;
+  bool is_small_static_obstacle_detected_long;
+
+  bool U_obstacle_redcone_detected;
   int static_obstacle_flag;
   bool straight_go_flag;
   bool left_go_flag;
@@ -87,6 +97,10 @@ public:
   // for delivery
   int delivery_angle; //표지판과 라이다 사이의 각도
   int delivery_x;     //표지판과 라이다 사이의 x 거리
+  
+  // for parking
+  float target_distance;
+  
   
   
   bool a1_flag = false;

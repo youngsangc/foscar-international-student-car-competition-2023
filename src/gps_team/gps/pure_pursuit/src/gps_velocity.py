@@ -18,7 +18,7 @@ class GpsVelocity:
 
         # Publisher
         self.speedPublisher = rospy.Publisher("/gps_velocity", Float64, queue_size=1)
-
+        
     def mainCallback(self, msg):
         self.setMsgData(msg)
         self.calcSpeed()
@@ -31,7 +31,7 @@ class GpsVelocity:
 
     def calcSpeed(self):
         self.speed = sqrt(self.xVelocity * self.xVelocity + self.yVelocity * self.yVelocity) * 3.6
-
+        print("speed = ",self.speed)
     def speedPub(self):
         self.speedPublisher.publish(self.speed)
 

@@ -64,6 +64,10 @@ private:
   ros::Publisher target_point_pub;
   ros::Publisher current_point_pub;
 
+  // publisher for Tunnel_end_point_flag
+
+  ros::Publisher tunnel_end_point_pub;
+
   //poblisher for Tunnel
 
   // ros::Publisher lane_detector_switch_pub;
@@ -74,7 +78,7 @@ private:
   // subscriber
   ros::Subscriber pose_sub;
   ros::Subscriber obstacle_sub;
-
+  ros::Subscriber UTURN_sub;
   ros::Subscriber gps_velocity_sub;
   ros::Subscriber gps_velocity_raw_sub;
   ros::Subscriber gps_yaw_sub;
@@ -92,6 +96,27 @@ private:
   ros::Subscriber traffic_light_sub2;
   ros::Subscriber delivery_sub;
 
+
+  
+  ros::Subscriber is_left_obstacle_start_sub;
+  ros::Subscriber small_static_obstacle_short_sub;
+  ros::Subscriber small_static_obstacle_long_sub;
+
+  ros::Subscriber gps_drive_mode_switch_sub;
+
+  //for encoder speed sub
+
+  ros::Subscriber encoder_sub;
+
+  // for parking
+  ros::Publisher distance_count_pub;
+  ros::Subscriber parking_distance_sub;
+
+  ros::Publisher lane_switch_pub;
+
+
+
+
   
   // ros::Subscriber lane_sub;
 
@@ -107,6 +132,10 @@ private:
   int parking_num;
   int obs_is_left;
   int left_right;
+
+
+
+  
 
   std::vector<std::pair<geometry_msgs::Point, int>> global_path;
   std::vector<std::pair<geometry_msgs::Point, int>> parking_path;
@@ -136,6 +165,13 @@ private:
   void callbackFromStaticObstacleShort(const std_msgs::Bool& msg);
   void callbackFromStaticObstacleLong(const std_msgs::Bool& msg);
   void callbackFromParkingRubberCone(const std_msgs::Bool& msg);
+  void callbackFromParkingdistance(const geometry_msgs::Point& msg);
+  void callback_U_TURN(const std_msgs::Bool& msg); 
+  
+  void callbackfromSmallStatic(const std_msgs::Int32& msg);
+  void callbackFromSmallStaticObstacleShort(const std_msgs::Bool& msg);
+  void callbackFromSmallStaticObstacleLong(const std_msgs::Bool& msg);
+
 
   void callbackFromObstacle2(const avoid_obstacle::DetectedObstacles& msg);   // 왼오
   void callbackFromObstacle3(const avoid_obstacle::DetectedObstacles& msg);   // 오왼
@@ -145,9 +181,15 @@ private:
   void callbackFromObstacle_8M(const avoid_obstacle::TrueObstacles& msg);
   void callbackFromTrafficLight(const darknet_ros_msgs::BoundingBoxes& msg);
   void callbackFromTrafficLight2(const std_msgs::Int32& msg);  
-  void callbackFromDelivery(const vision_distance::DeliveryArray& msg);
+  void callbackFromDelivery(const std_msgs::Int32& msg);
 
   // void callbackFromLane(const {msg_type}& msg);
+
+  void callbackFromDriveModeChanger(const std_msgs::Int32& msg);
+
+  //for encoder speed
+
+  void callbackFromEncoder(const std_msgs::Float64& msg);
 
 
   // initializer

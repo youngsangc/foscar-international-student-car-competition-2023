@@ -7,7 +7,6 @@
 #include <chrono>
 #include <algorithm>
 
-
 #include <tf/transform_broadcaster.h>
 
 namespace waypoint_follower

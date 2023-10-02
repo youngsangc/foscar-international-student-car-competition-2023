@@ -25,7 +25,7 @@ def colorcone_callback(msg):
 	global yellow_cone, blue_cone,sorted_colorcone
 
 	colorcone = msg.colorcone
-    yellow_cone=[]
+    	yellow_cone=[]
 	blue_cone=[]
 
 	sorted_colorcone = sorted(colorcone, key=lambda x:(x.dist_y,x.dist_x,x.flag))

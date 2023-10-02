@@ -193,7 +193,7 @@ if __name__ == '__main__':
     rate = rospy.Rate(60)
 
     # Path Setting
-    f = open('/home/foscar/ISCC_2022/src/erp_ros/path/supyeong.txt' , mode = 'r')
+    f = open('/home/foscar/ISCC_2023/src/erp_ros/path/supyeong.txt' , mode = 'r')
 
     line = f.readline()
     first_line = line.split()

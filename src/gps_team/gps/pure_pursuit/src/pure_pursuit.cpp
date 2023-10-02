@@ -179,9 +179,12 @@ bool PurePursuit::canGetCurvature(double* output_kappa)
 
   // std::cout << std::fixed;
   // std::cout.precision(5);
-  // std::cout << "target_index :" <<next_waypoint_number_ << std::endl;
-  // std::cout << "target_coordinate : " << next_target_position_.x << " " << next_target_position_.y << std::endl;
 
+  
+  //std::cout << "target_index :" <<next_waypoint_number_ << std::endl;
+ // std::cout << "target_coordinate : " << next_target_position_.x << " " << next_target_position_.y << std::endl;
+  //std::cout << "current_coordinate : " << current_position.x << " " << current_position.y << std::endl;
+  //std::cout<<"current_pose: "<< current_pose_.position.x <<" "<<current_pose_.position.y<<std::endl;
   *output_kappa = calcCurvature(next_target_position_);
   return true;
 }
@@ -229,4 +232,3 @@ tf::Vector3 point2vector(geometry_msgs::Point point)
 }
 
 }  // namespace waypoint_follower
-

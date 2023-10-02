@@ -3,6 +3,13 @@ project(pure_pursuit)
 
 find_package(
   catkin REQUIRED COMPONENTS
+    pcl_conversions  
+    pcl_ros
+    sensor_msgs
+    nav_msgs
+    message_generation
+    dynamic_reconfigure
+    morai_msgs
     geometry_msgs
     roscpp
     roslint
@@ -13,7 +20,13 @@ find_package(
     tf
     tf2
     race
+
 )
+
+generate_dynamic_reconfigure_options(
+  cfg/config.cfg
+)
+
 
 catkin_package(
   INCLUDE_DIRS include
@@ -22,6 +35,12 @@ catkin_package(
 SET(CMAKE_CXX_FLAGS "-O2 -g -Wall ${CMAKE_CXX_FLAGS}")
 
 set(ROSLINT_CPP_OPTS "--filter=-build/c++11")
+
+#터널 정적장애물 추가
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 roslint_cpp()
 
 add_compile_options(-std=c++11)
@@ -48,6 +67,13 @@ add_executable(
   #src/pure_pursuit_core_final.cpp
   src/pure_pursuit_core_semi_final.cpp
 )
+
+add_executable(
+  encoder_value
+  src/encoder_value.cpp
+)
+
+
 
 # add_executable(
 #   pure_pursuit3
@@ -76,9 +102,34 @@ add_dependencies(pure_pursuit2 ${catkin_EXPORTED_TARGETS})
 # target_link_libraries(pure_pursuit_2_delivery ${catkin_LIBRARIES})
 # add_dependencies(pure_pursuit_2_delivery ${catkin_EXPORTED_TARGETS})
 
+
+target_link_libraries(encoder_value ${catkin_LIBRARIES})
+add_dependencies(encoder_value ${catkin_EXPORTED_TARGETS})
+
+
+
 add_executable(coordinate2pos src/coordinate2pos.cpp)
 target_link_libraries(coordinate2pos ${catkin_LIBRARIES})
 add_dependencies(coordinate2pos ${catkin_EXPORTED_TARGETS})
+
+add_executable(get_imu src/get_imu.cpp)
+target_link_libraries(get_imu ${catkin_LIBRARIES})
+add_dependencies(get_imu ${catkin_EXPORTED_TARGETS})
+
+add_executable(pid_throttle src/pid_throttle.cpp)
+target_link_libraries(pid_throttle ${catkin_LIBRARIES})
+add_dependencies(pid_throttle ${catkin_EXPORTED_TARGETS})
+
+
+add_executable(pid_throttle_2 src/pid_throttle_2.cpp)
+target_link_libraries(pid_throttle_2 ${catkin_LIBRARIES})
+add_dependencies(pid_throttle_2 ${catkin_EXPORTED_TARGETS})
+
+# add_executable(get_gps_diagnostic src/get_gps_diagnostic.cpp)
+# target_link_libraries(get_gps_diagnostic ${catkin_LIBRARIES})
+# add_dependencies(get_gps_diagnostic ${catkin_EXPORTED_TARGETS})
+
+
 
 install(
   TARGETS pure_pursuit

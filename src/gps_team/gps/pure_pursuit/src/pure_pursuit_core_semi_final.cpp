@@ -68,6 +68,11 @@ const float tf_coord1[2] = {935572.7866943456, 1915921.7229049096};
 
 const float slow_down_tf_coord1[2] = {935565.651362, 1915908.8576};
 
+/* Tunnel Index manager */
+int tunnel_end_idx = 1000;
+
+const float tunnel_end_coord[2] = {0,0};
+
 bool index_flag = false;
 bool is_parked = false;
 bool is_dynamic = false;
@@ -78,6 +83,22 @@ int end_parking_idx = 0;
 int end_parking_backward_idx = 0;
 int end_parking_full_steer_backward_idx = 0;
 
+//for dynamic Lookahead Distance
+
+double gps_velocity = 0;
+double k = 0.15;
+// double default_lookahead_distance = 1.75;
+double default_lookahead_distance = 3.0;
+double dynamic_lookahead_distance = 0.0;
+
+//for Drive_Mode_switching_by_GPS_diagnostic
+
+int drive_mode = 2; // 1이면 lane detection Mode && 2이면 GPS Drive Mode
+
+//for encoder speed
+
+double encoder_speed = 0.0;
+
 // For kcity (kcity 주차 좌표)
 const float pk_coord1[2] = {935534.247324, 1915849.29071};
 const float pk_coord2[2] = {935536.127777, 1915852.74891};
@@ -85,6 +106,10 @@ const float pk_coord3[2] = {935537.027791, 1915854.43949};
 const float pk_coord4[2] = {935539.530479, 1915859.22427};
 const float pk_coord5[2] = {935540.465801, 1915860.89238};
 const float pk_coord6[2] = {935541.86021, 1915863.43345};
+
+
+
+
 
 // For School Test (학교 주차 좌표)
 // const float pk_coord1[2] = {955568.258427, 1956932.10464};48 87
@@ -105,6 +130,7 @@ void PurePursuitNode::initForROS() {
   // setup subscriber
   pose_sub = nh_.subscribe("current_pose", 1, &PurePursuitNode::callbackFromCurrentPose, this);
 
+
   // for main control
   static_obstacle_short_sub = nh_.subscribe("/static_obs_flag_short", 1, &PurePursuitNode::callbackFromStaticObstacleShort, this);
   static_obstacle_long_sub = nh_.subscribe("/static_obs_flag_long", 1, &PurePursuitNode::callbackFromStaticObstacleLong, this);
@@ -119,6 +145,9 @@ void PurePursuitNode::initForROS() {
   //delivery subscriber
   delivery_sub = nh_.subscribe("delivery", 1, &PurePursuitNode::callbackFromDelivery, this);
 
+  //UTURN subscriber
+  UTURN_sub = nh_.subscribe("U_TURN", 1, &PurePursuitNode::callback_U_TURN, this);
+
   // setup publisher
   drive_msg_pub = nh_.advertise<race::drive_values>("control_value", 1);
   steering_vis_pub = nh_.advertise<geometry_msgs::PoseStamped>("steering_vis", 1);
@@ -127,9 +156,27 @@ void PurePursuitNode::initForROS() {
   target_point_pub = nh_.advertise<geometry_msgs::PointStamped>("target_point", 1);
   current_point_pub = nh_.advertise<geometry_msgs::PointStamped>("current_point", 1);
 
-  // publisher for Tunnel
+  // publisher for Tunnel_end_point_flag
+
+  tunnel_end_point_pub = nh_.advertise<std_msgs::Int32>("tunnel_end_point_flag", 1);
 
   // lane_detector_switch_pub = nh_.advertise<std_msgs::Int32>("lane_detection_switch",1);
+
+
+  //for dynamic Lookahead Distance
+  gps_velocity_sub = nh_.subscribe("/gps_velocity", 1, &PurePursuitNode::callbackFromGpsVelocity, this);
+
+  //for Drive_Mode_switching_by_GPS_diagnostic
+
+  gps_drive_mode_switch_sub = nh_.subscribe("gps_drive_mode_switch", 1, &PurePursuitNode::callbackFromDriveModeChanger, this);
+
+  //for encoder speed
+  
+  encoder_sub = nh_.subscribe("current_speed", 1, &PurePursuitNode::callbackFromEncoder, this);
+
+  //for early lane change between mode 0 and mode 7
+
+  lane_switch_pub = nh_.advertise<std_msgs::Int32>("lane_switch", 1); 
 
 
 
@@ -141,9 +188,7 @@ void PurePursuitNode::run(char** argv) {
 
   ROS_INFO_STREAM("pure pursuit2 start");
 
-  pp_.mode = 7;
-
-  
+  // pp_.mode = 7;
 
 
 
@@ -182,6 +227,9 @@ void PurePursuitNode::run(char** argv) {
       index_flag = true;
       tf_idx_1 = pp_.getPosIndex(tf_coord1[0], tf_coord1[1]);
       slow_down_tf_idx_1 = pp_.getPosIndex(slow_down_tf_coord1[0] , slow_down_tf_coord1[1]);
+
+      tunnel_end_idx = pp_.getPosIndex(tunnel_end_coord[0], tunnel_end_coord[1]);
+
     }
 
     //ROS_INFO("MODE=%d, MISSION_FLAG=%d", pp_.mode, pp_.mission_flag);
@@ -196,11 +244,120 @@ void PurePursuitNode::run(char** argv) {
     // MODE 5 - 동적장애물
     // MODE 6 - Semi-Booster
     // MODE 7 - 터널 정적장애물 23년도 추가
-    // MODE 8 - 유턴
+    // MODE 8 - 과속방지
 
-    // MODE 8 - 유턴
+    //for test of Dynamic Lookahead distance
+
+    // MODE 222 - 과속모드
+    // MODE 111 - 저속모드
+
+    /////start of Dynamic Lookahead distance test
+
+
+
+    if(pp_.mode == 222)
+    { 
+
+      pp_.mission_flag = 0;
+
+      std::cout << "과속 모드 구간 FAST FAST FAST FAST FAST FAST"<< std::endl;
+      const_lookahead_distance_ = dynamic_lookahead_distance;
+      const_velocity_ = 20;
+      final_constant = 1.0;
+    }
+
+    if(pp_.mode == 111)
+    { 
+      pp_.mission_flag = 0;
+      std::cout << "저속 모드 구간 SLOW SLOW SLOW SLOW SLOW SLOW"<< std::endl;
+      const_lookahead_distance_ = dynamic_lookahead_distance;
+      const_velocity_ = 7;//10
+      final_constant = 1.0;
+    }    
+
+    // if(pp_.mode == 222)
+    // { 
+    //   pp_.mission_flag = 0;
+    //   std::cout << "과속 모드 구간 FAST FAST FAST FAST FAST FAST"<< std::endl;
+    //   const_lookahead_distance_ = 6;
+    //   const_velocity_ = 20;
+    //   final_constant = 1.0;
+    // }
+
+    // if(pp_.mode == 111)
+    // { 
+    //   pp_.mission_flag = 0;
+    //   std::cout << "저속 모드 구간 SLOW SLOW SLOW SLOW SLOW SLOW"<< std::endl;
+    //   const_lookahead_distance_ = 3;
+    //   const_velocity_ = 7;//10
+    //   final_constant = 1.0;
+    // }    
+   
+
+    ////end of Dynamic Lookahead distance test
+
+    // MODE 9 - UUU
+    if(pp_.mode == 9)
+    {    
+      //라이다 인지 
+      std::cout << "flag =" << pp_.ut_mission_flag << std::endl;
+      const_lookahead_distance_ = 5;
+      const_velocity_ = 10;//10
+      final_constant = 1.0;
+      if(pp_.U_obstacle_redcone_detected && pp_.ut_mission_flag == 0)
+      {
+        std::cout<<"for----------------------시작"<<std::endl;
+        pp_.ut_mission_flag = 1;
+        for(int i = 0; i < 30; i++) //dnjsfo 45였음
+        {
+          pulishControlMsg(10, 25);//10,30
+          usleep(100000);
+        }
+        
+        
+      }  
+      // 
+      // global path
+      else if(pp_.ut_mission_flag == 1)
+      {
+        pp_.setWaypoints(global_path);
+      }
+    }
+
+    // MODE 8 - 과속방지
 
     if (pp_.mode == 8) {
+
+      pp_.mission_flag = 0;
+
+
+      if(pp_.mission_flag == 0){
+
+        std::cout<<"감속 시작"<<std::endl;
+
+        for (int i = 0; i < 50; i++) {
+          publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.05);
+          usleep(100000);
+
+        }
+        
+        pp_.mission_flag = 1;
+
+      }
+
+      if(pp_.mission_flag == 1){
+
+        for (int i = 0; i < 3; i++) {
+          publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.03);
+          usleep(100000);
+
+        
+        }
+      }
+
+
+
+
       const_lookahead_distance_ = 3;
       const_velocity_ = 5;
       final_constant = 1.0;
@@ -258,27 +415,27 @@ void PurePursuitNode::run(char** argv) {
     // MODE 0 - 직진구간
     if (pp_.mode == 0) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 5;//원래 10이였음
-      const_velocity_ = 8;
+      const_lookahead_distance_ = 6;//원래 10이였음
+      const_velocity_ = 18;//18//6
       final_constant = 1.0;
      
         //동적장애물 멀리서 장애물 감지 -> 감속
-      while(pp_.is_dynamic_obstacle_detected_long) {
-        if (const_velocity_ > 5) {
-          const_velocity_ -= 0.1;
-          publishPurePursuitDriveMsg(can_get_curvature, kappa);
-          ros::spinOnce();
-          loop_rate.sleep();
-        }
-      }
+      // while(pp_.is_dynamic_obstacle_detected_long) {
+      //   if (const_velocity_ > 5) {
+      //     const_velocity_ -= 0.1;
+      //     publishPurePursuitDriveMsg(can_get_curvature, kappa);
+      //     ros::spinOnce();
+      //     loop_rate.sleep();
+      //   }
+      // }
 
-      // 동적장애물 멈춰야하는 거리
-      while(pp_.is_dynamic_obstacle_detected_short) {
-        publishPurePursuitDriveMsg(can_get_curvature, kappa, 1.0);
-        ROS_INFO_STREAM("OBSTACLE DETECT");
-        ros::spinOnce();
-        loop_rate.sleep();
-      }
+      // // 동적장애물 멈춰야하는 거리
+      // while(pp_.is_dynamic_obstacle_detected_short) {
+      //   publishPurePursuitDriveMsg(can_get_curvature, kappa, 1.0);
+      //   ROS_INFO_STREAM("OBSTACLE DETECT");
+      //   ros::spinOnce();
+      //   loop_rate.sleep();
+      // }
 
 
       ////////////////////////////////////////////
@@ -494,34 +651,36 @@ void PurePursuitNode::run(char** argv) {
     // MODE 3 - 그냥 커브
     if (pp_.mode == 3) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 5;
-      const_velocity_ = 10;
+      const_lookahead_distance_ = 6;
+      const_velocity_ = 15;
       final_constant = 1.2;
 
-        //동적장애물 멀리서 장애물 감지 -> 감속
-        while(pp_.is_dynamic_obstacle_detected_long) {
-          if (const_velocity_ > 5) {
-            const_velocity_ -= 0.1;
-            publishPurePursuitDriveMsg(can_get_curvature, kappa);
-            ros::spinOnce();
-            loop_rate.sleep();
-          }
-        }
+        // //동적장애물 멀리서 장애물 감지 -> 감속
+        // while(pp_.is_dynamic_obstacle_detected_long) {
+        //   if (const_velocity_ > 5) {
+        //     const_velocity_ -= 0.1;
+        //     publishPurePursuitDriveMsg(can_get_curvature, kappa);
+        //     ros::spinOnce();
+        //     loop_rate.sleep();
+        //   }
+        // }
  
-        // 동적장애물 멈춰야하는 거리
-        while(pp_.is_dynamic_obstacle_detected_short) {
-          publishPurePursuitDriveMsg(can_get_curvature, kappa, 1.0);
-          ROS_INFO_STREAM("OBSTACLE DETECT");
-          ros::spinOnce();
-          loop_rate.sleep();
-        }
+        // // 동적장애물 멈춰야하는 거리
+        // while(pp_.is_dynamic_obstacle_detected_short) {
+        //   publishPurePursuitDriveMsg(can_get_curvature, kappa, 1.0);
+        //   ROS_INFO_STREAM("OBSTACLE DETECT");
+        //   ros::spinOnce();
+        //   loop_rate.sleep();
+        // }
 
 
         //////////////////////////////////////////////////////
 
 
       }
-    
+
+
+    //  MODE 4 : 정적장애물 감지되면 avoidance path로 진로변경 후 원래 global path로 복귀 (드럼통)
 
     //  MODE 4 : 정적장애물 감지되면 avoidance path로 진로변경 후 원래 global path로 복귀 (드럼통)
     if (pp_.mode == 4) {
@@ -546,10 +705,14 @@ void PurePursuitNode::run(char** argv) {
         }
 
         else if (pp_.mission_flag == 2 && !pp_.is_static_obstacle_detected_short) {
-          const_lookahead_distance_ = 5;
-          pp_.setWaypoints(right_path);
+          const_lookahead_distance_ = 3;//원래 5였음.
+          usleep(1000000);//이게 최적 슬립 값 0이 6개
+          pulishControlMsg(2.0, -26);
+          usleep(500000);
+          
+          pp_.setWaypoints(left_path);
           pp_.mission_flag = 3;
-          pulishControlMsg(2, -26);
+          //pulishControlMsg(2, -26);
           continue;
         }
 
@@ -569,58 +732,108 @@ void PurePursuitNode::run(char** argv) {
         }
       }
 
-      else if (left_right == 1) { // 장애물 왼오
-        if (pp_.mission_flag == 0) {
-          const_lookahead_distance_ = 3;
-          pp_.setWaypoints(right_path);
-          const_velocity_ = 5;
-          final_constant = 1.0;
-          pp_.mission_flag = 1;
-        }
+    }
 
-        if (pp_.mission_flag == 1 && pp_.is_static_obstacle_detected_short) {
-          pp_.mission_flag = 2;
-          pulishControlMsg(2.0, -26);
-          continue;
-        }
+    
 
-        else if (pp_.mission_flag == 2 && pp_.is_static_obstacle_detected_short) {
-          pulishControlMsg(2.0, -26);
-          continue;
-        }
+    // //  MODE 4 : 정적장애물 감지되면 avoidance path로 진로변경 후 원래 global path로 복귀 (드럼통)
+    // if (pp_.mode == 4) {
+    //   if (left_right == 0) { // 장애물 오왼
+    //     if (pp_.mission_flag == 0) {
+    //       pp_.setWaypoints(left_path);
+    //       const_lookahead_distance_ = 3;
+    //       const_velocity_ = 5;
+    //       final_constant = 1.0;
+    //       pp_.mission_flag = 1;
+    //     }
 
-        else if (pp_.mission_flag == 2  && !pp_.is_static_obstacle_detected_short) {
-          const_lookahead_distance_ = 5;
-          pp_.setWaypoints(left_path);
-          pp_.mission_flag = 3;
-          pulishControlMsg(2, 26);
-          continue;
-        }
+    //     if (pp_.mission_flag == 1 && pp_.is_static_obstacle_detected_short) {
+    //       pp_.mission_flag = 2;
+    //       pulishControlMsg(2.0, 26);
+    //       continue;
+    //     }
 
-        else if (pp_.mission_flag == 3 && !pp_.is_finish) {
-          const_lookahead_distance_ = 4;      publishPurePursuitDriveMsg(can_get_curvature, kappa);
+    //     else if (pp_.mission_flag == 2 && pp_.is_static_obstacle_detected_short) {
+    //       pulishControlMsg(2.0, 26);
+    //       continue;
+    //     }
 
-      is_pose_set_ = false;
-      loop_rate.sleep();
-          const_velocity_ = 7;
-          final_constant = 1.0;
-        }
+    //     else if (pp_.mission_flag == 2 && !pp_.is_static_obstacle_detected_short) {
+    //       const_lookahead_distance_ = 5;
+    //       pp_.setWaypoints(right_path);
+    //       pp_.mission_flag = 3;
+    //       pulishControlMsg(2, -26);
+    //       continue;
+    //     }
 
-        else if (pp_.mission_flag == 3 && pp_.is_finish) {
-          const_lookahead_distance_ = 4;
-          pp_.setWaypoints(global_path);          
-          const_velocity_ = 7;
-          final_constant = 1.0;
-          pp_.is_finish = false;
-          pp_.mission_flag = 4;
-        }
-      }
+    //     else if (pp_.mission_flag == 3 && !pp_.is_finish) {
+    //       const_lookahead_distance_ = 4;
+    //       const_velocity_ = 7;
+    //       final_constant = 1.0;
+    //     }
+
+    //     else if (pp_.mission_flag == 3 && pp_.is_finish) {
+    //       const_lookahead_distance_ = 4;
+    //       pp_.setWaypoints(global_path);
+    //       const_velocity_ = 7;
+    //       final_constant = 1.0;
+    //       pp_.is_finish = false;
+    //       pp_.mission_flag = 4;
+    //     }
+    //   }
+
+    //   else if (left_right == 1) { // 장애물 왼오
+    //     if (pp_.mission_flag == 0) {
+    //       const_lookahead_distance_ = 3;
+    //       pp_.setWaypoints(right_path);
+    //       const_velocity_ = 5;
+    //       final_constant = 1.0;
+    //       pp_.mission_flag = 1;
+    //     }
+
+    //     if (pp_.mission_flag == 1 && pp_.is_static_obstacle_detected_short) {
+    //       pp_.mission_flag = 2;
+    //       pulishControlMsg(2.0, -26);
+    //       continue;
+    //     }
+
+    //     else if (pp_.mission_flag == 2 && pp_.is_static_obstacle_detected_short) {
+    //       pulishControlMsg(2.0, -26);
+    //       continue;
+    //     }
+
+    //     else if (pp_.mission_flag == 2  && !pp_.is_static_obstacle_detected_short) {
+    //       const_lookahead_distance_ = 5;
+    //       pp_.setWaypoints(left_path);
+    //       pp_.mission_flag = 3;
+    //       pulishControlMsg(2, 26);
+    //       continue;
+    //     }
+
+    //     else if (pp_.mission_flag == 3 && !pp_.is_finish) {
+    //       const_lookahead_distance_ = 4;      publishPurePursuitDriveMsg(can_get_curvature, kappa);
+
+    //   is_pose_set_ = false;
+    //   loop_rate.sleep();
+    //       const_velocity_ = 7;
+    //       final_constant = 1.0;
+    //     }
+
+    //     else if (pp_.mission_flag == 3 && pp_.is_finish) {
+    //       const_lookahead_distance_ = 4;
+    //       pp_.setWaypoints(global_path);          
+    //       const_velocity_ = 7;
+    //       final_constant = 1.0;
+    //       pp_.is_finish = false;
+    //       pp_.mission_flag = 4;
+    //     }
+    //   }
 
 
 ///////////////////////////////////////////////
 
 
-    } 
+ //   } 
 
     // MODE 5 : 동적장애물 
     if (pp_.mode == 5) {
@@ -680,64 +893,51 @@ void PurePursuitNode::run(char** argv) {
 
 
     if(pp_.mode == 7){
-      
-      //         //동적장애물 멀리서 장애물 감지 -> 감속
-      
-              
-      // while(pp_.is_dynamic_obstacle_detected_long) {
-      //   if (const_velocity_ > 5) {
-      //     const_velocity_ -= 0.1;
-      //     publishPurePursuitDriveMsg(can_get_curvature, kappa);
-      //     ros::spinOnce();
-      //     loop_rate.sleep();
+      std::cout<<"모두 7 진입"<<std::endl;
+      std::cout<<"tunnel_flage"<<pp_.tunnel_mission_flag<<std::endl;
+
+
+      // if(pp_.tunnel_mission_flag == 0){
+
+      //   std::cout<<"감속 시작"<<std::endl;
+
+      //   // for (int i = 0; i < 100000; i++) {
+      //   //   // publishPurePursuitDriveMsg(can_get_curvature, kappa, 1);
+      //   //   // usleep(100);
+      //   //   race::drive_values drive_msg;
+      //   //   drive_msg.throttle = 0;
+      //   //   drive_msg.steering = 0;
+      //   //   drive_msg.brake = 1.0;
+      //   //   drive_msg_pub.publish(drive_msg);
+      //   //   std::cout<<"터널 진입 감속 제어 중,,,,"<<std::endl;
+      //   //   // usleep(5000);
+
+      //   // }
+      //   while(encoder_speed != 0){
+
+      //     race::drive_values drive_msg;
+      //     drive_msg.throttle = 0;
+      //     drive_msg.steering = 0;
+      //     drive_msg.brake = 1.0;
+      //     drive_msg_pub.publish(drive_msg);
+      //     std::cout<<"터널 진입 감속 제어 중,,,,"<<std::endl;          
+      //     std::cout<<"encoder speed = "<<encoder_speed<<std::endl;   
+
+
       //   }
+        
+      //   pp_.tunnel_mission_flag = 1;
+
       // }
 
-      // // 동적장애물 멈춰야하는 거리
-      // while(pp_.is_dynamic_obstacle_detected_short) {
-      //   publishPurePursuitDriveMsg(can_get_curvature, kappa, 1.0);
-      //   ROS_INFO_STREAM("OBSTACLE DETECT");
-      //   ros::spinOnce();
-      //   loop_rate.sleep();
-      // }
+      if(pp_.tunnel_mission_flag == 1){
 
-
-      ////////////////////////////////////////////
-
-      pp_.mission_flag = 0;
-
-      // lane_switch.data = 1;
-
-
-      // lane_bool.data = 1;
-
-      // lane_pub.publish(lane_bool);
-
-      // std::cout<<"Lane_Bool : "<<lane_bool.data<<std::endl;
-
-
-      if(pp_.mission_flag == 0){
-
-        std::cout<<"감속 시작"<<std::endl;
-
-        for (int i = 0; i < 3; i++) {
-          publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.03);
-          usleep(100000);
-
-        }
-        
-        pp_.mission_flag = 1;
-
-      }
-
-      if(pp_.mission_flag == 1){
-
-        for (int i = 0; i < 3; i++) {
-          publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.03);
-          usleep(100000);
+        // for (int i = 0; i < 3; i++) {
+        //   publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.03);
+        //   usleep(100);
 
         
-        }
+        // }
 
         std::cout<<"객체 생성 "<<std::endl;
 
@@ -749,7 +949,7 @@ void PurePursuitNode::run(char** argv) {
         f = boost::bind(&cfgCallback, _1, Tunnel_Static_Obstacle);
         server.setCallback(f);
 
-        pp_.mission_flag = 2;
+        pp_.tunnel_mission_flag = 2;
 
 
       }
@@ -757,96 +957,43 @@ void PurePursuitNode::run(char** argv) {
         
 
 
-      if(pp_.mission_flag == 2){
+      if(pp_.tunnel_mission_flag == 2){
+        //터널 장애물 인지 객체가 생성된 이후에 GPS수신감도가 좋으며, 
+        //터널 출구 index에 도달한 경우 lane_detection을 끄고 GPS제어모드로 간다.
+        if(drive_mode ==2 && pp_.reachMissionIdx(tunnel_end_idx)){ 
+          //우선 터널 장애물 회피 객체한테도 lane을 끄라고 flag를 보내줘야한다.
+          //퍼블리셔 만들어야함
 
-        // std::cout<<"mission_flag3: "<<*mission_flag<<std::endl;
-        
+          std_msgs::Int32 tunnel_end_point_flag;
+          for(int i = 0; i<5;i++){
+            tunnel_end_point_flag.data = 2;//2이면 차량이 터널 끝지점에 도달
+            tunnel_end_point_pub.publish(tunnel_end_point_flag);            
+          }
 
-        
-
-        // if(*mission_flag==3){
-        //   std::cout<<"mission_flag4: "<<*mission_flag<<std::endl;
-
-        //   std::cout<<"set Path set Path set Path set Path set Path set Path set Path set Path"<<std::endl;
-
-
-        //     pp_.setWaypoints(global_path);
-        //     std::cout<<"mission_flag5: "<<*mission_flag<<std::endl;
-
-          
+          pp_.tunnel_mission_flag = 3;
 
 
+          //그 다음 pp_.tunnel_mission_flag를 3으로 바꿔줘야한다. 
+          //tunnel_mission_flag가 3이면,아래의 최종 throttle 제어코드가 실행되도록 해야한다.
 
-        // }
-        // std::cout<<"mission_flag6: "<<*mission_flag<<std::endl;
 
+        }
 
 
       }
 
-        
+      if(pp_.tunnel_mission_flag == 3){
+        pp_.mission_flag = 0;
+        const_lookahead_distance_ = dynamic_lookahead_distance;
+        const_velocity_ = 18;
+        final_constant = 1.0;        
+        pp_.setWaypoints(global_path);
+      }
 
       
 
-        
+        // ros::spin();//이거 적으면 코드 여기서 멈춤 //절대 적으면 안됨
 
-
-
-        //ros::init(argc, argv, "waypoint_maker_static_obstacle");
-
-        // std::cout<<"노드 생성"<<endl;
-
-        // Static_Waypoint_Maker Tunnel_Static_Obstacle;
-
-        // if(Tunnel_Static_Obstacle.avoid_flag==3){
- 
-
-
-        // 프로그램 종료 전, 마지막으로 할당된 인스턴스를 메모리에서 해제
-        // if (Tunnel_Static_Obstacle != nullptr) {
-        //     delete Tunnel_Static_Obstacle;
-        //     Tunnel_Static_Obstacle = nullptr;
-        // }
-        //   std::cout<<"set Path set Path set Path set Path set Path set Path set Path set Path"<<std::endl;
-
-        //   pp_.setWaypoints(global_path);
-
-        // }
-
-
-
-        // dynamic_reconfigure::Server<waypoint_maker::waypointMakerConfig> server;
-        // dynamic_reconfigure::Server<waypoint_maker::waypointMakerConfig>::CallbackType f;
-        // f = boost::bind(&cfgCallback, _1, &Tunnel_Static_Obstacle);
-        // server.setCallback(f);
-
-        // ros::spin(); 
-
-        // Tunnel_Static_Obstacle 동적으로 할당
-        // Static_Waypoint_Maker* Tunnel_Static_Obstacle = new Static_Waypoint_Maker();
-
-        //   // avoid_flag의 값을 설정해야 하므로, Static_Waypoint_Maker 클래스에 적절한 초기화 방법이 있어야 합니다.
-        //   if (Tunnel_Static_Obstacle->avoid_flag == 3) {
-
-
-        //       delete Tunnel_Static_Obstacle;
-        //       Tunnel_Static_Obstacle = nullptr; // 포인터를 nullptr로 설정
-        //       std::cout << "set Path set Path set Path set Path set Path set Path set Path set Path" << std::endl;
-        //       pp_.setWaypoints(global_path);
-        //   }
-
-          
-
-        
-
-        ros::spin();
-
-
-        // 프로그램 종료 전, 마지막으로 할당된 인스턴스를 메모리에서 해제
-        // if (Tunnel_Static_Obstacle != nullptr) {
-        //     delete Tunnel_Static_Obstacle;
-        //     Tunnel_Static_Obstacle = nullptr;
-        // }
     }
 
 
@@ -869,8 +1016,29 @@ void PurePursuitNode::run(char** argv) {
       //////////////////////////////////
 
     }
+    // if(pp_.mode !=7){
 
-    publishPurePursuitDriveMsg(can_get_curvature, kappa);
+    //   if(drive_mode == 2 && pp_.mode != 9){ //GPS 수신감도도 좋고, 미션상황도 아닌경우
+    //     publishPurePursuitDriveMsg(can_get_curvature, kappa); //GPS Drive Mode로 주행해라
+    //     std::cout<<"GPS 주행 모드"<<std::endl;
+    //   }
+    //   else{
+    //     std::cout<<"차선인식 주행 모드"<<std::endl;
+    //   }
+
+    // }
+
+    if(pp_.mode !=7){//터널 구간이 아닌경우에만 GPS를 통한 purepursuit 주행
+      publishPurePursuitDriveMsg(can_get_curvature, kappa); //GPS Drive Mode로 주행해라      
+    }
+
+    else if(pp_.mode == 7 && pp_.tunnel_mission_flag == 3){ //터널 구간이면서 터널 출구지점에 도달한 경우
+
+      publishPurePursuitDriveMsg(can_get_curvature, kappa); //GPS Drive Mode로 주행해라
+
+    }
+
+    //publishPurePursuitDriveMsg(can_get_curvature, kappa);
 
     is_pose_set_ = false;
     loop_rate.sleep();
@@ -1003,6 +1171,10 @@ void PurePursuitNode::callbackFromDynamicObstacleShort(const std_msgs::Bool& msg
   pp_.is_dynamic_obstacle_detected_short = msg.data;
 }
 
+void PurePursuitNode::callback_U_TURN(const std_msgs::Bool& msg) {
+  pp_.U_obstacle_redcone_detected = msg.data;
+}
+
 void PurePursuitNode::callbackFromDynamicObstacleLong(const std_msgs::Bool& msg) {
   pp_.is_dynamic_obstacle_detected_long = msg.data;
 }
@@ -1023,9 +1195,65 @@ void PurePursuitNode::callbackFromDeliveryObstacleStop(const lidar_team_erp42::D
   return;
 }
 
-void PurePursuitNode::callbackFromDelivery(const vision_distance::DeliveryArray& msg) {
+void PurePursuitNode::callbackFromDelivery(const std_msgs::Int32& msg) {
   return;
 }
+
+void PurePursuitNode::callbackFromGpsVelocity(const std_msgs::Float64& msg){
+  gps_velocity = msg.data;
+  dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
+  // std::cout<<"dynamic_lookahead_distance : "<<dynamic_lookahead_distance<<std::endl;
+}
+
+void PurePursuitNode::callbackFromDriveModeChanger(const std_msgs::Int32& msg) {
+  drive_mode = msg.data;  // 1이면 lane detection Mode && 2이면 GPS Drive Mode
+}
+
+void PurePursuitNode::callbackFromEncoder(const std_msgs::Float64& msg) {
+  encoder_speed = msg.data;  // km/h
+  // std::cout<<"업데이트 ///////////// "<<std::endl;
+  if(pp_.mode == 7 && pp_.tunnel_mission_flag == 0){
+      // std::cout<<"모두 7 진입"<<std::endl;
+
+
+      if(pp_.tunnel_mission_flag == 0){
+
+        std::cout<<"감속 시작"<<std::endl;
+
+        if(encoder_speed > 6.0){
+
+          race::drive_values drive_msg;
+          drive_msg.throttle = 0;
+          drive_msg.steering = 0;
+          drive_msg.brake = 1.0;
+          drive_msg_pub.publish(drive_msg);
+          std::cout<<"터널 진입 감속 제어 중,,,,"<<std::endl;          
+          std::cout<<"encoder speed = "<<encoder_speed<<std::endl;   
+
+        }
+        else
+        {
+          std::cout<<"encoder speed = "<<encoder_speed<<std::endl; 
+          std_msgs::Int32 lane_flag;
+          for(int i = 0;i<5;i++){
+
+            lane_flag.data = 1;
+            lane_switch_pub.publish(lane_flag);
+
+
+          }
+
+
+  
+          pp_.tunnel_mission_flag = 1;
+        }
+
+      }
+  }
+
+}
+
+
 
 void PurePursuitNode::callbackFromTrafficLight(const darknet_ros_msgs::BoundingBoxes& msg) {
   std::vector<darknet_ros_msgs::BoundingBox> yoloObjects = msg.bounding_boxes;
