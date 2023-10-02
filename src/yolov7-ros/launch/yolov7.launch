@@ -1,0 +1,52 @@
+<launch>
+    <!-- usb_cam -->
+    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+        <param name="video_device" value="/dev/video0" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="pixel_format" value="yuyv" />
+        <param name="camera_frame_id" value="usb_cam" />
+        <param name="io_method" value="mmap"/>
+    </node>
+    <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/usb_cam/image_raw"/>
+        <param name="autosize" value="true" />
+    </node>
+    
+    <!-- yolov7 -->
+    <node pkg="yolov7_ros" type="detect_ros_traffic.py" name="detect" output="screen" ns="yolov7">
+        <!-- Download the official weights from the original repo -->
+        <param name="weights_path" type="str"
+        value="/home/foscar/camera_traffic/src/yolov7-ros/weights/traffic.pt"/>
+        
+        <!-- Path to a class_labels.txt file containing your desired class labels. The i-th entry corresponds to the i-th class id. 
+        For example, in coco class label 0 corresponds to 'person'. Files for the coco and berkeley deep drive datasets are provided in the 'class_labels/' directory. 
+        If you leave it empty then no class labels are visualized.-->
+        <param name="classes_path" type="str" value="/home/foscar/ISCC_2023/src/yolov7-ros/class_labels/Classes_traffic.txt" />
+        <!-- topic name to subscribe to -->
+        <param name="img_topic" type="str" value="/usb_cam/image_raw" />
+         <!-- topic name for the detection output -->
+        <param name="out_topic" type="str" value="yolov7" />
+        <!-- confidence threshold -->
+        <param name="conf_thresh" type="double" value="0.35" />
+        <!-- intersection over union threshold -->
+        <param name="iou_thresh" type="double" value="0.45" />
+        <!-- queue size for publishing --> 
+        <param name="queue_size" type="int" value="1" />
+        <!-- image size to which to resize each input image before feeding into the
+        network (the final output is rescaled to the original image size) -->
+        <param name="img_size" type="int" value="640" />
+        <!-- flag whether to also publish image with the visualized detections -->
+        <param name="visualize" type="bool" value="true" />
+        <!-- 'cuda' or 'cpu' -->
+        <param name="device" type="str" value="cuda" />
+        <!-- <we make> -->
+        <!-- <param name="class" type="int" value="-1"> -->
+    </node>
+
+    <!-- yolov7 visualization -->
+    <node name="YOLOV7" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/yolov7/yolov7/visualization"/>
+        <param name="autosize" value="true" />
+    </node>
+</launch>

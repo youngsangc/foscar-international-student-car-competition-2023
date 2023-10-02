@@ -1,0 +1,15 @@
+3 red
+3 yellow
+3 green
+3 redleft
+4 red
+4 green
+4 yellow
+4 redleft
+4 greenleft
+4 redyellow
+
+
+
+
+

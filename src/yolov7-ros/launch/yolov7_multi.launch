@@ -1,0 +1,129 @@
+<launch>
+    <!-- 1 : delivery -->
+    <!-- 2 : Traffic -->
+
+
+    <!-- Delivery -->
+    <group ns="camera1">
+    <node name="usb_cam1" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <!--  카메라 연결된 usb포트 설정 -->
+        <param name="video_device" value="/dev/video2" />  
+    <!--  이미지 크기 바꿔서 해도 가능함 근데 학습할 때 사진크기를 잘 설정해야 잘 됨 -->
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="pixel_format" value="yuyv" />
+    <!--  높으면 높을수록 처리 속도 빠른데 gpu부담이 됨 30으로해도 잘 됨 -->
+        <param name="framerate" value="30"/>
+        <param name="camera_frame_id" value="usb_cam" />
+        <param name="io_method" value="mmap"/>
+    <!--  상황에 따라 바꿔서 실험을 해보는 것을 추천 -->
+        <param name="brightness" value="180"/>
+        <param name="saturation" value="150"/>
+
+    </node>
+    <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image1" to="/camera1/usb_cam1/image_raw"/>
+        <param name="autosize" value="true" />
+    </node>
+    </group>
+    
+    <!-- Traffic -->
+    <group ns="camera2">
+    <node name="usb_cam2" pkg="usb_cam" type="usb_cam_node" output="screen" >
+        <param name="video_device" value="/dev/video4" />
+        <param name="image_width" value="1280" />
+        <param name="image_height" value="720" />
+        <param name="pixel_format" value="yuyv" />
+        <param name="framerate" value="30"/>
+        <param name="camera_frame_id" value="usb_cam" />
+        <param name="io_method" value="mmap"/>
+        <param name="brightness" value="180"/>
+        <param name="saturation" value="150"/>
+    </node>
+    <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image2" to="/camera2/usb_cam2/image_raw"/>
+        <param name="autosize" value="true" />
+    </node>
+    </group>
+    
+    <!-- yolov7 for cam 1 -->
+    <!-- cam1을 실행할 파이썬 파일과 weight파일을 설정함 -->
+    <node pkg="yolov7_ros" type="detect_ros_delivery_multi.py" name="detect" output="screen" ns="yolov7">
+        <!-- Download the official weights from the original repo -->
+        <param name="weights_path" type="str"
+        value="/home/foscar/camera_traffic/src/yolov7-ros/weights/bestof73deli.pt"/>
+        
+        <!-- Path to a class_labels.txt file containing your desired class labels. The i-th entry corresponds to the i-th class id. 
+        For example, in coco class label 0 corresponds to 'person'. Files for the coco and berkeley deep drive datasets are provided in the 'class_labels/' directory. 
+        If you leave it empty then no class labels are visualized.-->
+        <!--  cam1에서 사용할 class labels 경로 설정해 줌 -->
+        <param name="classes_path" type="str" value="/home/foscar/ISCC_2023/src/yolov7-ros/class_labels/classes_classic.txt" />
+        <!-- topic name to subscribe to -->
+        <param name="image1" type="str" value="/camera1/usb_cam1/image_raw" />
+         <!-- topic name for the detection output -->
+        <param name="out_topic" type="str" value="yolov7" />
+        <!-- confidence threshold 0.35 -->
+        <param name="conf_thresh" type="double" value="0.35"/> 
+        <!-- intersection over union threshold 0.45 -->
+        <param name="iou_thresh" type="double" value="0.45" />
+        <!-- queue size for publishing --> 
+        <param name="queue_size" type="int" value="1" />
+        <!-- image size to which to resize each input image before feeding into the
+        network (the final output is rescaled to the original image size) -->
+        <param name="img_size" type="int" value="640" />
+        <!-- flag whether to also publish image with the visualized detections -->
+        <param name="visualize" type="bool" value="true" />
+        <!-- 'cuda' or 'cpu' -->
+        <param name="device" type="str" value="cuda" />
+        <!-- <we make> -->
+        <!-- <param name="class" type="int" value="-1"> -->
+    </node>
+
+    <!-- yolov7 for cam 2 -->
+    <!-- cam2를 실행할 파이썬 파일과 weight파일을 설정함 -->
+    <node pkg="yolov7_ros" type="detect_ros_traffic_multi.py" name="detect2" output="screen" ns="yolov7">
+        <!-- Download the official weights from the original repo -->
+        <param name="weights_path" type="str"
+        value="/home/foscar/camera_traffic/src/yolov7-ros/weights/traffic.pt"/>
+        
+        <!-- Path to a class_labels.txt file containing your desired class labels. The i-th entry corresponds to the i-th class id. 
+        For example, in coco class label 0 corresponds to 'person'. Files for the coco and berkeley deep drive datasets are provided in the 'class_labels/' directory. 
+        If you leave it empty then no class labels are visualized.-->
+        <!--  cam2에서 사용할 class labels 경로 설정해 줌 -->
+        <param name="classes_path" type="str" value="/home/foscar/ISCC_2023/src/yolov7-ros/class_labels/Classes_traffic.txt" />
+        <!-- topic name to subscribe to -->
+        <param name="image2" type="str" value="/camera2/usb_cam2/image_raw" />
+         <!-- topic name for the detection output -->
+        <param name="out_topic" type="str" value="yolov7" />
+        <!-- confidence threshold -->
+        <param name="conf_thresh" type="double" value="0.35" />
+        <!-- intersection over union threshold -->
+        <param name="iou_thresh" type="double" value="0.45" />
+        <!-- queue size for publishing --> 
+        <param name="queue_size" type="int" value="1" />
+        <!-- image size to which to resize each input image before feeding into the
+        network (the final output is rescaled to the original image size) -->
+        <param name="img_size" type="int" value="640" />
+        <!-- flag whether to also publish image with the visualized detections -->
+        <param name="visualize" type="bool" value="true" />
+        <!-- 'cuda' or 'cpu' -->
+        <param name="device" type="str" value="cuda" />
+        <!-- <we make> -->
+        <!-- <param name="class" type="int" value="-1"> -->
+    </node>
+
+
+
+
+
+    <!-- yolov7 visualization -->
+    <node name="YOLOV7" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/yolov7/yolov7/visualization_traffic"/>
+        <param name="autosize" value="true" />
+    </node>
+    
+    <node name="YOLOV71" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/yolov7/yolov7/visualization_delivery"/>
+        <param name="autosize" value="true" />
+    </node>
+</launch>
