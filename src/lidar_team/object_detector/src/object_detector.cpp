@@ -28,6 +28,8 @@
 #include <vector>
 // include MSG
 #include <object_detector/ObjectInfo.h>
+// #include <obstacle_detector/ObjectInfo.h>
+#include <pcl/filters/extract_indices.h>
 
 // pcl point type
 typedef pcl::PointXYZ PointT;
@@ -87,37 +89,50 @@ pcl::PointCloud<PointT>::Ptr ROI (const sensor_msgs::PointCloud2ConstPtr& input)
     //filter.setFilterLimitsNegative (true);     //적용할 값 외 
     filter.filter(*cloud_filtered);             //필터 적용 
 
-    // X축 ROI
-    filter.setInputCloud(cloud_filtered);
-    filter.setFilterFieldName("x");
-    filter.setFilterLimits(-2, 8); // x > -2 && x < 8
-    filter.filter(*cloud_filtered);
 
-    // Y축 ROI (Advanced filtering)
-    pcl::PointCloud<PointT>::Ptr cloud_y_filtered(new pcl::PointCloud<PointT>);
-    for (size_t i = 0; i < cloud_filtered->points.size(); i++) {
-        PointT point = cloud_filtered->points[i];
-        if (std::abs(point.y) > 1.5) {
-            cloud_y_filtered->points.push_back(point);
+    // X축 ROI
+    // pcl::PassThrough<PointT> filter;
+    filter.setInputCloud(cloud_filtered);                //입력 
+    filter.setFilterFieldName("x");             //적용할 좌표 축 (eg. X축)
+    filter.setFilterLimits(xMin, xMax);          //적용할 값 (최소, 최대 값)
+    //filter.setFilterLimitsNegative (true);     //적용할 값 외 
+    filter.filter(*cloud_filtered);             //필터 적용 
+
+    // Y축 ROI
+    // pcl::PassThrough<PointT> filter;
+    filter.setInputCloud(cloud_filtered);                //입력 
+    filter.setFilterFieldName("y");             //적용할 좌표 축 (eg. Y축)
+    filter.setFilterLimits(yMin, yMax);          //적용할 값 (최소, 최대 값)
+    //filter.setFilterLimitsNegative (true);     //적용할 값 외 
+    filter.filter(*cloud_filtered);             //필터 적용 
+
+
+    // 새로 추가해줬어~~
+    std::vector<int> indices_to_remove;
+    for (size_t i = 0; i < cloud_filtered->points.size(); i++)
+    {
+        float x = cloud_filtered->points[i].x;
+        float y = cloud_filtered->points[i].y;
+    //     if ((x < 0) && (y < 0.65) && (y > -0.65))
+    //     {
+    //     indices_to_remove.push_back(i);
+    //     }
+    // }
+        if ((x < 0) && (y < 3) && (y > -0.65))
+        {
+        indices_to_remove.push_back(i);
         }
     }
+    pcl::PointIndices::Ptr indices(new pcl::PointIndices);
+    indices->indices = indices_to_remove;
+    
+    pcl::ExtractIndices<pcl::PointXYZ> extract;
+    extract.setInputCloud(cloud_filtered);
+    extract.setIndices(indices);
+    extract.setNegative(true); // Remove the indices
+    extract.filter(*cloud_filtered);
 
 
-    // // X축 ROI
-    // // pcl::PassThrough<PointT> filter;
-    // filter.setInputCloud(cloud_filtered);                //입력 
-    // filter.setFilterFieldName("x");             //적용할 좌표 축 (eg. X축)
-    // filter.setFilterLimits(xMin, xMax);          //적용할 값 (최소, 최대 값)
-    // //filter.setFilterLimitsNegative (true);     //적용할 값 외 
-    // filter.filter(*cloud_filtered);             //필터 적용 
-
-    // // Y축 ROI
-    // // pcl::PassThrough<PointT> filter;
-    // filter.setInputCloud(cloud_filtered);                //입력 
-    // filter.setFilterFieldName("y");             //적용할 좌표 축 (eg. Y축)
-    // filter.setFilterLimits(yMin, yMax);          //적용할 값 (최소, 최대 값)
-    // //filter.setFilterLimitsNegative (true);     //적용할 값 외 
-    // filter.filter(*cloud_filtered);             //필터 적용 
 
     // 포인트수 출력
     std::cout << "ROI Filtered :" << cloud_filtered->width * cloud_filtered->height  << '\n'; 
@@ -128,6 +143,67 @@ pcl::PointCloud<PointT>::Ptr ROI (const sensor_msgs::PointCloud2ConstPtr& input)
     pubROI.publish(roi_raw);
 
     return cloud_filtered;
+
+
+            
+            
+    // // 차 범위만큼 제거해주기!!
+    // std::vector<int> indices_to_remove;
+    // for (size_t i = 0; i < cloud_filtered->points.size(); i++)
+    // {
+    //     float x = cloud_filtered->points[i].x;
+    //     float y = cloud_filtered->points[i].y;
+
+    //     float z = cloud_filtered->points[i].z;
+
+    //     if ((x < 0) && (y < 0.65) && (y > -0.65) && (z<-0.28) && (z>1))
+    //     {
+    //     indices_to_remove.push_back(i);
+    //     }
+    // }
+
+    // pcl::PointIndices::Ptr indices(new pcl::PointIndices);
+    // indices->indices = indices_to_remove;
+
+    // pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_xyz(new pcl::PointCloud<pcl::PointXYZ>);
+    // pcl::ExtractIndices<pcl::PointXYZ> extract;
+    // extract.setInputCloud(cloud_filtered);
+    // extract.setIndices(indices);
+    // extract.setNegative(true); // Remove the indices
+    // extract.filter(*cloud_xyz);
+
+
+
+
+    // // 포인트수 출력
+    // std::cout << "ROI Filtered :" << cloud_xyz->width * cloud_xyz->height  << '\n'; 
+
+    // sensor_msgs::PointCloud2 roi_raw;
+    // pcl::toROSMsg(*cloud_xyz, roi_raw);
+    
+    // pubROI.publish(roi_raw);
+
+    // return cloud_xyz;
+
+
+
+
+
+// // X축 ROI
+    // filter.setInputCloud(cloud_filtered);
+    // filter.setFilterFieldName("x");
+    // filter.setFilterLimits(xMin, xMax); // x > -2 && x < 8
+    // filter.filter(*cloud_filtered);
+
+    // // Y축 ROI (Advanced filtering)
+    // pcl::PointCloud<PointT>::Ptr cloud_y_filtered(new pcl::PointCloud<PointT>);
+    // for (size_t i = 0; i < cloud_filtered->points.size(); i++) {
+    //     PointT point = cloud_filtered->points[i];
+    //     if (std::abs(point.y) > 0.7 && std::abs(point.y) < 3 && point.z>-0.28 && point.z<1)  {
+    //         cloud_y_filtered->points.push_back(point);
+    //     }
+    // }
+
 }
 
 pcl::PointCloud<PointT>::Ptr voxelGrid(pcl::PointCloud<PointT>::Ptr input) {
@@ -201,7 +277,7 @@ void cluster(pcl::PointCloud<PointT>::Ptr input) {
 
     sensor_msgs::PointCloud2 cluster_point;
     pcl::toROSMsg(totalcloud_clustered, cluster_point);
-    cluster_point.header.frame_id = "/velodyne";
+    cluster_point.header.frame_id = "velodyne";
     pubCluster.publish(cluster_point);
 }
 
@@ -210,7 +286,7 @@ void visualizeCar() {
     visualization_msgs::Marker carShape;
 
     // Set the frame ID and timestamp.  See the TF tutorials for information on these.
-    carShape.header.frame_id = "/velodyne"; 
+    carShape.header.frame_id = "velodyne"; 
     carShape.header.stamp = ros::Time::now();
 
     // Set the namespace and id for this marker.  This serves to create a unique ID
@@ -255,7 +331,7 @@ void visualizeObject() {
     visualization_msgs::Marker objectShape;
     uint32_t shape = visualization_msgs::Marker::CUBE; // Set our initial shape type to be a cube
     // Set the frame ID and timestamp.  See the TF tutorials for information on these.
-    objectShape.header.frame_id = "/velodyne"; 
+    objectShape.header.frame_id = "velodyne"; 
     objectShape.ns = "object_shape";
     // Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
     objectShape.type = shape;

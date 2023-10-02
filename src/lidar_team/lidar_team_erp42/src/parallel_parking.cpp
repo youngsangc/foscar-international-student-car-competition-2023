@@ -1,8 +1,13 @@
 #include "header.h"
 #include "dbscan.h"
+#include <geometry_msgs/Point.h>
+#include <std_msgs/Float64.h>
 
 using namespace std;
 
+
+int pubcount=0; //&&
+int pubcount1=0;
 int minPoints; //10          //Core Point 기준 필요 인접점 최소 개수
 double epsilon; //0.3        //Core Point 기준 주변 탐색 반경 
 
@@ -23,6 +28,7 @@ ros::Publisher parkingRubberConeMarkerPub; //Bounnding Box Visualization Publish
 ros::Publisher parkingRubberConePosePub; //Bounding Box Position Publisher
 ros::Publisher parkingRubberConeCropboxPub; //Cropbox Publishser
 ros::Publisher parkingRubberConeDetectedPub; //Bounnding Box Visualization Publisher
+ros::Publisher parkingRubberConeDistancePub; //&&
 
 void dynamicParamCallback(lidar_team_erp42::pk_hyper_parameterConfig &config, int32_t level) {
   xMinROI = config.pk_xMinROI;
@@ -44,6 +50,15 @@ void dynamicParamCallback(lidar_team_erp42::pk_hyper_parameterConfig &config, in
   zMinBoundingBox = config.pk_zMinBoundingBox;
   zMaxBoundingBox = config.pk_zMaxBoundingBox;
 }
+
+void callbackfromdistancecount(const std_msgs::Float64& msg) 
+{
+  if(pubcount1==0)
+    {
+      pubcount=1;
+    }
+}
+
 
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   //ROS message 변환
@@ -192,7 +207,37 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
     cluster_id++; //intensity 증가
 
   }
+  
+  
+  // if (BoxArray.markers.size()>0&&pubcount==1&&pubcount1==0)
+  // {
+  //   pubcount1=1;
+  //   geometry_msgs::Point p;
+  //   double min_x = BoxArray.markers[0].pose.position.x;
+  //   double min_y = BoxArray.markers[0].pose.position.y;
+  //   double min_z = BoxArray.markers[0].pose.position.z;
 
+  //   // 인덱스를 이용한 for 루프
+  //   for (size_t i = 0; i < BoxArray.markers.size(); i++) {
+  //       const visualization_msgs::Marker& rbox = BoxArray.markers[i];
+  //       double x = rbox.pose.position.x;
+  //       double y = rbox.pose.position.y;
+  //       double z = rbox.pose.position.z;
+
+  //       // 현재 박스의 xyz 값과 최소값을 비교하여 갱신
+  //       if (x < min_x)
+  //           min_x = x;
+  //           min_y = y;
+  //           min_z = z;
+    
+  //   p.x=min_x;
+  //   p.y=min_y;
+  //   p.z=min_z;
+  //   parkingRubberConeDistancePub.publish(p);
+  //   std::cout<<"xyz는"<<p.x<<p.y<<p.z<<std::endl;
+  //   pubcount=0;
+  //  }
+  // }
   //Convert To ROS data type
   pcl::PCLPointCloud2 cloud_p;
   pcl::toPCLPointCloud2(totalcloud_clustered, cloud_p);
@@ -213,6 +258,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   parkingRubberConePosePub.publish(BoxPosition);
   parkingRubberConeCropboxPub.publish(cropbox);
   parkingRubberConeDetectedPub.publish(isParkingRubberCone);
+
 }
 
 
@@ -227,12 +273,13 @@ int main(int argc, char **argv) {
   server.setCallback(f);
 
   ros::Subscriber rawDataSub = nh.subscribe("/velodyne_points", 1, cloud_cb);  // velodyne_points 토픽 구독. velodyne_points = 라이다 raw data
-
+  ros::Subscriber pubcountSub = nh.subscribe("/distance_count", 1, callbackfromdistancecount); //&&
   parkingRubberConeClusterPub = nh.advertise<sensor_msgs::PointCloud2>("/parking_rubbercone_cluster", 0.001);                  
   parkingRubberConeMarkerPub = nh.advertise<visualization_msgs::MarkerArray>("/parking_rubbercone_marker", 0.001);  
   parkingRubberConePosePub = nh.advertise<lidar_team_erp42::Boundingbox>("/parking_rubbercone_position", 0.001);    
   parkingRubberConeCropboxPub = nh.advertise<sensor_msgs::PointCloud2>("/parking_rubbercone_cropbox", 0.001); 
   parkingRubberConeDetectedPub = nh.advertise<std_msgs::Bool>("/is_parking_rubbercone", 0.001);
+  parkingRubberConeDistancePub = nh.advertise<geometry_msgs::Point>("/parking_rubbercone_distance", 0.001); //&&
 
   ros::spin();
 

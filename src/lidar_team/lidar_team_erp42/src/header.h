@@ -58,7 +58,7 @@
 #include "lidar_team_erp42/large_st_hyper_parameterConfig.h"
 #include "lidar_team_erp42/de_hyper_parameterConfig.h"
 #include "lidar_team_erp42/pk_hyper_parameterConfig.h"
-
+#include "lidar_team_erp42/uturn_hyper_parameterConfig.h"
 #include <race/drive_values.h>
 
 

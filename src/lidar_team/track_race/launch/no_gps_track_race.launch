@@ -8,15 +8,11 @@
 
     <!-- LiDAR -->
     <node pkg="object_detector" type="object_detector" name="object_detector"/>
-    <!-- <node pkg="waypoint_maker" type="waypoint_maker" name="waypoint_maker" output="screen"/> -->
-    <node pkg="waypoint_maker" type="waypoint_maker_static_obstacle" name="waypoint_maker_static_obstacle" output="screen"/>
-
-
-    <!-- 방금 주석처리함 -->
-    <!-- <node pkg="waypoint_maker" type="drawing_path.py" name="drawing_path" />
+    <node pkg="waypoint_maker" type="waypoint_maker" name="waypoint_maker" output="screen"/>
+    <node pkg="waypoint_maker" type="drawing_path.py" name="drawing_path" />
     <node pkg="track_race" type="no_gps_pure_pursuit_lidar.py" name="no_gps_pure_pursuit_lidar" />
     <node pkg="track_race" type="dynamic_velocity.py" name="dynamic_velocity" />
-    <node pkg="track_race" type="controller.py" name="controller" args="1" /> -->
+    <node pkg="track_race" type="controller.py" name="controller" args="1" />
 
     <!-- With Camera -->
     <!-- <node pkg="lidar_team_erp42" type="pure_pursuit_camera.py" name="pure_pursuit_camera" output="screen"/> -->

@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   message_generation
   dynamic_reconfigure
+  morai_msgs
 )
 
 ## Generate messages in the 'msg' folder
@@ -26,6 +27,7 @@ add_message_files(
    Boundingbox.msg
    DynamicVelocity.msg
    ObjectInfo.msg
+  
 )
 
 generate_messages(
@@ -34,6 +36,7 @@ generate_messages(
   std_msgs
   geometry_msgs
   nav_msgs
+  morai_msgs
 )
 
 ## System dependencies are found with CMake's conventions

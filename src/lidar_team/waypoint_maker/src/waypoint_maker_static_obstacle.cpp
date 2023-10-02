@@ -415,12 +415,12 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     //실제 자동차 ERP42 환경에서 제어메세지 전달 
     drive_info.steering =atan2(way_y,way_x)*(-1)*(180/3.14)*0.7;
 
-    if( drive_info.steering<0){//우리 차량이 오른쪽으로 꺽을때 더 큰값을 줘야함
+    // if( drive_info.steering<0){//우리 차량이 오른쪽으로 꺽을때 더 큰값을 줘야함
 
-        drive_info.steering =atan2(way_y,way_x)*(-1)*(180/3.14);
+    //     drive_info.steering =atan2(way_y,way_x)*(-1)*(180/3.14);
 
 
-    }
+    // }
     drive_info.throttle = 5;
     drive_msg_pub.publish(drive_info);
     

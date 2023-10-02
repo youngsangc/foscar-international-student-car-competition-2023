@@ -24,6 +24,8 @@ ros::Publisher staticObsPosePub; //Bounding Box Position Publisher
 ros::Publisher staticObsCropboxPub; //Cropbox Publishser
 ros::Publisher staticObsShortFlagPub;
 ros::Publisher staticObsLongFlagPub;
+ros::Publisher pubROI;
+ros::Publisher UTURN_DETECT_Pub;
 
 void dynamicParamCallback(lidar_team_erp42::small_st_hyper_parameterConfig &config, int32_t level) {
   xMinROI = config.small_st_xMinROI;
@@ -62,8 +64,10 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   //static Obstacle Detected Message
   std_msgs::Bool staticObsLongDetected;
   std_msgs::Bool staticObsShortDetected;
+  std_msgs::Bool UTURN_DETECT;
   staticObsLongDetected.data = false;
   staticObsShortDetected.data = false;
+  UTURN_DETECT.data = false;
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_xf(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PassThrough<pcl::PointXYZ> xfilter;
@@ -88,6 +92,13 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   zfilter.setFilterLimits(zMinROI, zMaxROI); // -0.62, 0.0
   zfilter.setFilterLimitsNegative(false);
   zfilter.filter(*cloud_xyzf);
+
+
+  sensor_msgs::PointCloud2 roi_raw;
+  pcl::toROSMsg(*cloud_xyzf, roi_raw);
+    
+  pubROI.publish(roi_raw);
+
 
   // //Voxel Grid를 이용한 DownSampling
   // pcl::VoxelGrid<pcl::PointXYZ> vg;    // VoxelGrid 선언
@@ -195,6 +206,10 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
       
       sort(obstacle_vec.begin(), obstacle_vec.end());
       //2.5, 5
+      if (obstacle_vec[0][0] < 5)
+      {
+        UTURN_DETECT.data = true;
+      }
       if (4 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 15) {
         staticObsLongDetected.data = true;
       }
@@ -202,6 +217,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
       else if (obstacle_vec[0][0] < 4) {
         staticObsShortDetected.data = true;
       }
+      
     }
 
     vector< vector<float> >().swap(obstacle_vec);   
@@ -231,6 +247,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   staticObsCropboxPub.publish(cropbox);
   staticObsShortFlagPub.publish(staticObsShortDetected); 
   staticObsLongFlagPub.publish(staticObsLongDetected);
+  UTURN_DETECT_Pub.publish(UTURN_DETECT);
 }
 
 
@@ -246,13 +263,14 @@ int main(int argc, char **argv) {
 
   ros::Subscriber rawDataSub = nh.subscribe("/velodyne_points", 1, cloud_cb);  // velodyne_points 토픽 구독. velodyne_points = 라이다 raw data
 
-  staticObsClusterPub = nh.advertise<sensor_msgs::PointCloud2>("/static_obs_cluster", 0.001);                  
-  staticObsMarkerPub = nh.advertise<visualization_msgs::MarkerArray>("/static_obs_marker", 0.001);  
+  staticObsClusterPub = nh.advertise<sensor_msgs::PointCloud2>("/small_static_obs_cluster", 0.001);                  
+  staticObsMarkerPub = nh.advertise<visualization_msgs::MarkerArray>("/small_static_obs_marker", 0.001);  
   staticObsPosePub = nh.advertise<lidar_team_erp42::Boundingbox>("/static_obs_position", 0.001);    
   staticObsCropboxPub = nh.advertise<sensor_msgs::PointCloud2>("/static_obs_cropbox", 0.001); 
-  staticObsShortFlagPub = nh.advertise<std_msgs::Bool>("/static_obs_flag_short", 0.001); 
-  staticObsLongFlagPub = nh.advertise<std_msgs::Bool>("/static_obs_flag_long", 0.001); 
-
+  staticObsShortFlagPub = nh.advertise<std_msgs::Bool>("/small_static_obs_flag_short", 0.001); 
+  staticObsLongFlagPub = nh.advertise<std_msgs::Bool>("/small_static_obs_flag_long", 0.001); 
+  pubROI = nh.advertise<sensor_msgs::PointCloud2> ("roi_raw", 1);
+  UTURN_DETECT_Pub = nh.advertise<std_msgs::Bool>("/U_TURN", 0.001);
   ros::spin();
 
   return 0;

@@ -25,6 +25,7 @@ ros::Publisher staticObsCropboxPub; //Cropbox Publishser
 ros::Publisher staticObsShortFlagPub;
 ros::Publisher staticObsLongFlagPub;
 
+
 void dynamicParamCallback(lidar_team_erp42::large_st_hyper_parameterConfig &config, int32_t level) {
   xMinROI = config.large_st_xMinROI;
   xMaxROI = config.large_st_xMaxROI;
@@ -62,8 +63,13 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   //static Obstacle Detected Message
   std_msgs::Bool staticObsLongDetected;
   std_msgs::Bool staticObsShortDetected;
+  
+
   staticObsLongDetected.data = false;
   staticObsShortDetected.data = false;
+  staticObsShortDetected.data = false;
+  
+
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_xf(new pcl::PointCloud<pcl::PointXYZ>);
   pcl::PassThrough<pcl::PointXYZ> xfilter;
@@ -195,12 +201,14 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
       
       sort(obstacle_vec.begin(), obstacle_vec.end());
       //2.5, 5
-      if (6 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 10) {
+      cout<<"aaaaaaaaaa"<<obstacle_vec[0][0]<<endl;
+      if (4.5 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8) {
         staticObsLongDetected.data = true;
       }
 
-      else if (obstacle_vec[0][0] < 6) {
+      else if (obstacle_vec[0][0] < 4.5) {
         staticObsShortDetected.data = true;
+        
       }
     }
 
@@ -231,6 +239,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
   staticObsCropboxPub.publish(cropbox);
   staticObsShortFlagPub.publish(staticObsShortDetected); 
   staticObsLongFlagPub.publish(staticObsLongDetected);
+  
 }
 
 
@@ -252,7 +261,6 @@ int main(int argc, char **argv) {
   staticObsCropboxPub = nh.advertise<sensor_msgs::PointCloud2>("/static_obs_cropbox", 0.001); 
   staticObsShortFlagPub = nh.advertise<std_msgs::Bool>("/static_obs_flag_short", 0.001); 
   staticObsLongFlagPub = nh.advertise<std_msgs::Bool>("/static_obs_flag_long", 0.001); 
-
   ros::spin();
 
   return 0;

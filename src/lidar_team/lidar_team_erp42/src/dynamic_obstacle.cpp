@@ -1,5 +1,6 @@
 #include "header.h"
 #include "dbscan.h"
+#include <cmath>
 
 using namespace std;
 
@@ -9,6 +10,10 @@ double epsilon; //0.3        //Core Point 기준 주변 탐색 반경
 int minClusterSize; //10     //Cluster 최소 사이즈
 int maxClusterSize; //10000  //Cluster 최대 사이즈
 
+int vecSaveCount = 0;
+
+bool obstacleFlag = false;
+
 double xMinROI, xMaxROI, yMinROI, yMaxROI, zMinROI, zMaxROI; // ROI(PassThrough) 범위 지정 변수
 
 double xMinBoundingBox, xMaxBoundingBox, yMinBoundingBox, yMaxBoundingBox, zMinBoundingBox, zMaxBoundingBox; // BoundingBox 크기 범위 지정 변수 
@@ -17,6 +22,8 @@ typedef pcl::PointXYZ PointT;
 
 vector<float> obstacle;
 vector< vector<float> > obstacle_vec;
+vector< vector<float> > obstacle_prev;
+vector<pair<int, float>> obstacle_pair_vec;
 
 ros::Publisher dynamicObsClusterPub; //Cluster Publishser
 ros::Publisher dynamicObsMarkerPub; //Bounnding Box Visualization Publisher
@@ -44,6 +51,10 @@ void dynamicParamCallback(lidar_team_erp42::dy_hyper_parameterConfig &config, in
   yMaxBoundingBox = config.dy_yMaxBoundingBox;
   zMinBoundingBox = config.dy_zMinBoundingBox;
   zMaxBoundingBox = config.dy_zMaxBoundingBox;
+}
+
+bool compare_pair_vec(pair<int, float>& a, pair<int, float>& b) {
+    return a.second < b.second;
 }
 
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
@@ -185,7 +196,10 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
       BoxPosition.distance = distance;
     }
 
+    vecSaveCount ++;
+
     if (BoxArray.markers.size() > 0) {
+      cout << "obstacle_vec_size" << obstacle_vec.size() << endl;
       for (int i = 0; i < BoxArray.markers.size(); i++) {
         vector<float>().swap(obstacle);
         obstacle.emplace_back(BoxArray.markers[i].pose.position.x);
@@ -193,52 +207,60 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& inputcloud) {
         obstacle.emplace_back(BoxArray.markers[i].pose.position.z);
         obstacle.emplace_back(distance);
         obstacle_vec.emplace_back(obstacle);
+        obstacle_pair_vec.emplace_back(make_pair(vecSaveCount,BoxArray.markers[i].pose.position.y));
       } 
       
       sort(obstacle_vec.begin(), obstacle_vec.end());
-      // if (3.5 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8) {
-      // if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0) {
-      //   DynamicObsLongDetected.data = true;
-      // }
-      // // else if (obstacle_vec[0][0] < 3) {
-      // else if (obstacle_vec[0][0] < 5.0) {
-      //   DynamicObsShortDetected.data = true;
-      // }
-
-    if (obstacle_vec.size() >= 10)
-      {
-        if (abs(obstacle_vec[0][1] - obstacle_vec[1][1] >= 0.5))
-        {
-          if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0)
-          {
+      sort(obstacle_pair_vec.begin(), obstacle_pair_vec.end(), compare_pair_vec);
+      
+      if (obstacle_vec.size() == 1){
+        if (abs(obstacle_pair_vec.begin()->second - obstacle_pair_vec.end()->second) >= 0.4){
+          cout << "obstacle_pair_vec 첫번째 두번째 객체 간 y축 변화량: " << abs(obstacle_pair_vec.begin()->second - obstacle_pair_vec.end()->second) << endl;
+          obstacleFlag = true;
+          if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0){
             DynamicObsLongDetected.data = true;
+            cout << "멀리서 동적 장애물 감지" << endl;
           }
-          else if (obstacle_vec[0][0] < 5.0)
-          {
+          else if (obstacle_vec[0][0] < 5.0){
             DynamicObsShortDetected.data = true;
+            cout << "가까운데서 동적 장애물 감지" << endl;
+          }
+        }
+        else {
+          if ((obstacleFlag == true) && (obstacle_vec[0][0] < 3)){
+            DynamicObsShortDetected.data = true;
+            cout << "동적 장애물인데 잠깐 멈춘거임." << endl;
+            
+            // for (int c=0; c<600; c++){ //0.4초 delay
+            //     usleep(1000);
+            // }
+          }
+          else {
+            obstacleFlag = false;
+            cout << "정적 장애물 " << endl;
           }
         }
       }
-      else
-      { // obstacle_vec == 1
-        if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0)
-        {
+      else{ // 인지된 장애물이 여러개일 때
+        if (5.0 <= obstacle_vec[0][0] && obstacle_vec[0][0] < 8.0){
           DynamicObsLongDetected.data = true;
-        }
-        else if (obstacle_vec[0][0] < 5.0)
-        {
+        } 
+        else if (obstacle_vec[0][0] < 5.0){
           DynamicObsShortDetected.data = true;
         }
       }
-
-
     }
 
     vector< vector<float> >().swap(obstacle_vec);   
 
     cluster_id++; //intensity 증가
 
-  }
+    if (vecSaveCount >= 3){
+            vector<pair<int, float>>().swap(obstacle_pair_vec);
+            vecSaveCount = 0;
+    }
+
+  }   
 
   //Convert To ROS data type
   pcl::PCLPointCloud2 cloud_p;

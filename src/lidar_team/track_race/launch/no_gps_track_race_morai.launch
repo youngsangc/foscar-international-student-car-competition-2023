@@ -8,11 +8,13 @@
 
     <!-- LiDAR -->
     <node pkg="object_detector" type="object_detector" name="object_detector"/>
-    <node pkg="waypoint_maker" type="waypoint_maker" name="waypoint_maker"  />
+    <!-- <node pkg="waypoint_maker" type="waypoint_maker" name="waypoint_maker"  /> -->
+    <node pkg="waypoint_maker" type="waypoint_maker_static_obstacle" name="waypoint_maker_static_obstacle"  />
+
     <node pkg="waypoint_maker" type="drawing_path.py" name="drawing_path" />
     <node pkg="track_race" type="no_gps_pure_pursuit_lidar_morai.py" name="no_gps_pure_pursuit_lidar_morai" output="screen"/>
     <node pkg="track_race" type="dynamic_velocity.py" name="dynamic_velocity" />
-    <node pkg="track_race" type="controller.py" name="controller" args="0" />
+    <!-- <node pkg="track_race" type="controller.py" name="controller" args="0" /> -->
 
     <!-- With Camera -->
     <!-- <node pkg="lidar_team_erp42" type="pure_pursuit_camera.py" name="pure_pursuit_camera" output="screen"/> -->

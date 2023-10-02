@@ -21,7 +21,6 @@ class DynamicVelocity:
         self.r = [0.0 for _ in range(30)]
         self.range = 1.16  # 탐색 폭 1.16 = 차량 폭 길이
         self.velocity = 10
-        
         # scan Range
         self.minYRange = -self.range / 2
         self.maxYRange = self.range / 2
@@ -96,9 +95,7 @@ class DynamicVelocity:
 
     def publishVelocity(self):
         velocityMsg = Velocity()
-        #velocityMsg.velocity = self.velocity
-
-        velocityMsg.velocity = 5############################
+        velocityMsg.velocity = self.velocity
         self.velocityPub.publish(velocityMsg)
 
     def visualizeInRange(self):
