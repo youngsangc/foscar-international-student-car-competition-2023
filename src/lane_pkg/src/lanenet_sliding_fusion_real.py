@@ -44,6 +44,8 @@ x_location = 320
 last_x_location = 320
 is_detected = True
 current_lane = "LEFT"
+global previous_angle
+previous_angle = 0
 
 def image_callback(img_data):
 	global bridge
@@ -185,11 +187,12 @@ if __name__ == "__main__":
             else :
                 last_x_location = x_location
                 is_detected = True
-
-            #angle = (x_location-320)*0.15 #*3 값 angle 조정
-            # except:
+            global previous_angle
+            angle = (x_location-320)*0.14 #*3 값 angle 조정
+            previous_angle = angle
+            #except:
             #     pass
-            angle = 0.6
+            #angle = 0.6
 
             speed =8
             
@@ -205,6 +208,9 @@ if __name__ == "__main__":
             
             if (lane_drive_mode == 3):
                 speed = 11 # 터널에서 장애물 등장 순서가 정적 -> 동적이므로 drive_mode가 3일때만 보면 됨.
+                if angle >= 3:
+                    speed = 8
+
 
                 # print("lane drive mode 3 진입!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11")
 
