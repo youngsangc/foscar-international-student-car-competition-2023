@@ -25,6 +25,8 @@
 
 ## 대회 소개
 
+본선 주행 영상(49:27 ~ 1:03:30) : https://www.youtube.com/watch?app=desktop&v=g-u4luKR8nU 
+
 ![image](https://github.com/youngsangc/ISCC_2023/assets/111215413/582d0c50-2e19-4da4-a750-100370d35e11)
 
 
