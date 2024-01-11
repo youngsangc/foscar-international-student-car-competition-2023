@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import rospy
@@ -6,7 +6,7 @@ import rospkg
 from geometry_msgs.msg import PoseStamped
 from tf.transformations import euler_from_quaternion
 
-# from race.msg import lane_info, drive_values
+from race.msg import lane_info, drive_values
 
 import sys
 import math
@@ -314,14 +314,14 @@ def pid_control(target, current):
 
 def drive(angle, speed):
     drive_value = drive_values()
-    drive_value.throttle = speed
+    drive_value.throttle = int(speed)
     drive_value.steering = angle
 
     drive_pub.publish(drive_value)
 
 
 if __name__ == "__main__":
-    global velocity
+    #global velocity
 
     # ROS INIT
     rospy.init_node('stanley_controller')
@@ -330,7 +330,7 @@ if __name__ == "__main__":
 
     # model = VehicleModel()
     stanley = None
-    vel = 2.0
+    vel = 5
     constant = 4.25
 
     if len(sys.argv) > 2:

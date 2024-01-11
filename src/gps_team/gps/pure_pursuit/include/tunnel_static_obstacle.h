@@ -503,9 +503,11 @@ void Static_Waypoint_Maker::callbackFromIMU(const geometry_msgs::Vector3& msg){
 
         if(current_angle < 10 && current_angle > -10 ){
             imu_return_cnt++;
+            std::cout << "imu_return_cnt : "<<imu_return_cnt << std::endl;
         }
 
-        if(imu_return_cnt>=100){
+        if(imu_return_cnt>=1){
+
             avoid_flag=3;
         }
     } 
@@ -671,21 +673,80 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
 
         // 첫번째 장애물이 차량으로부터 1m ~ 0.5m 이내에 있을때
 
-        if(semi_avoid_flag == 0 && abs(y_1)>(tread /2) && 0.7 < x_1 && x_1 < 1){
+        // if(semi_avoid_flag == 0 && abs(y_1)>(tread /2) && 0.7 < x_1 && x_1 < 1){
+
+        //     semi_avoid_flag = 1;
+        // }
+        // if(semi_avoid_flag == 1 && abs(y_1)>(tread /2) && 0.5 < x_1 && x_1 <= 0.7){
+        //     semi_avoid_flag = 2;
+        // }
+        // if(semi_avoid_flag == 2 && abs(y_1)>(tread /2) && x_1 <= 0.5){//원래 0.4였음
+        //     semi_avoid_flag = 0;
+        //     avoid_flag = 1;
+        //     // x_1 = x_2;
+        //     // y_1 = y_2;
+        // }
+
+        if(semi_avoid_flag == 0 && abs(y_1)>(tread /2) && 1.1 < x_1 && x_1 < 1.3){
+            if (brake_flag == 1) {
+
+            race::drive_values brake_info;
+            brake_info.brake = 0.6;
+
+            for(int i = 0; i<25000;i++){
+                drive_msg_pub.publish(brake_info);
+                std::cout<<"Brake"<<std::endl;// 이부분 절대 지우면 안됨. 퍼블리쉬 한 이후에 잠깐의 딜레이를 주기위해 cout 함수사요하야함. 
+
+            }
+            
+            brake_flag =2;
+        }
+        
 
             semi_avoid_flag = 1;
         }
-        if(semi_avoid_flag == 1 && abs(y_1)>(tread /2) && 0.4 < x_1 && x_1 <= 0.7){
+        if(semi_avoid_flag == 1 && abs(y_1)>(tread /2) && 0.8 < x_1 && x_1 <= 1.1){
+
+        if (brake_flag == 2) {
+
+            race::drive_values brake_info;
+            brake_info.brake = 0.6;
+
+            for(int i = 0; i<25000;i++){
+                drive_msg_pub.publish(brake_info);
+                std::cout<<"Brake"<<std::endl;// 이부분 절대 지우면 안됨. 퍼블리쉬 한 이후에 잠깐의 딜레이를 주기위해 cout 함수사요하야함. 
+
+            }
+            
+            brake_flag =3;
+        }
+
             semi_avoid_flag = 2;
         }
-        if(semi_avoid_flag == 2 && abs(y_1)>(tread /2) && x_1 <= 0.4){
+        if(semi_avoid_flag == 2 && abs(y_1)>(tread /2) && x_1 <= 0.8){//원래 0.4였음
+
+            if (brake_flag == 3) {
+
+            race::drive_values brake_info;
+            brake_info.brake = 0.6;
+
+            for(int i = 0; i<25000;i++){
+                drive_msg_pub.publish(brake_info);
+                std::cout<<"Brake"<<std::endl;// 이부분 절대 지우면 안됨. 퍼블리쉬 한 이후에 잠깐의 딜레이를 주기위해 cout 함수사요하야함. 
+
+            }
+            
+            brake_flag =4;
+        }
+
             semi_avoid_flag = 0;
             avoid_flag = 1;
             // x_1 = x_2;
             // y_1 = y_2;
         }
 
-        
+
+
         // if(semi_avoid_flag == 0 && abs(current_angle)<10){
         //     semi_avoid_flag = 1;
 
@@ -770,19 +831,19 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
     if (avoid_flag == 1){
         sleep_cnt++;
 
-    if (brake_flag == 1) {
+    // if (brake_flag == 1) {
 
-            race::drive_values brake_info;
-            brake_info.brake = 1.0;
+    //         race::drive_values brake_info;
+    //         brake_info.brake = 1.0;
 
-            for(int i = 0; i<200000;i++){
-                drive_msg_pub.publish(brake_info);
-                std::cout<<"Brake"<<std::endl;// 이부분 절대 지우면 안됨. 퍼블리쉬 한 이후에 잠깐의 딜레이를 주기위해 cout 함수사요하야함. 
+    //         for(int i = 0; i<200000;i++){
+    //             drive_msg_pub.publish(brake_info);
+    //             std::cout<<"Brake"<<std::endl;// 이부분 절대 지우면 안됨. 퍼블리쉬 한 이후에 잠깐의 딜레이를 주기위해 cout 함수사요하야함. 
 
-            }
+    //         }
             
-            brake_flag =2;
-        }
+    //         brake_flag =2;
+    //     }
 
         // 첫번째 장애물이 차량으로부터 1m ~ 0.5m 이내에 있을때
 
@@ -801,14 +862,28 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
         //     // x_1 = x_2;
         //     // y_1 = y_2;
         // }
-        if(semi_avoid_flag == 0 && abs(y_1)>(tread /2) && 1< x_1 && x_1 < 2){
+        // if(semi_avoid_flag == 0 && abs(y_1)>(tread /2) && 1< x_1 && x_1 < 2){
+
+        //     semi_avoid_flag = 1;
+        // }
+        // if(semi_avoid_flag == 1 && abs(y_1)>(tread /2) && 0.5 < x_1 && x_1 <= 1){
+        //     semi_avoid_flag = 2;
+        // }
+        // if(semi_avoid_flag == 2 && abs(y_1)>(tread /2) && x_1 <= 0.5){ //원래 0.5였음
+        //     semi_avoid_flag = 0;
+        //     avoid_flag = 2;
+        //     // x_1 = x_2;
+        //     // y_1 = y_2;
+        // }
+
+        if(semi_avoid_flag == 0 &&  1< x_1 && x_1 < 2){
 
             semi_avoid_flag = 1;
         }
-        if(semi_avoid_flag == 1 && abs(y_1)>(tread /2) && 0.5 < x_1 && x_1 <= 1){
+        if(semi_avoid_flag == 1  && 0.5 < x_1 && x_1 <= 1){
             semi_avoid_flag = 2;
         }
-        if(semi_avoid_flag == 2 && abs(y_1)>(tread /2) && x_1 <= 0.5){ //원래 0.5였음
+        if(semi_avoid_flag == 2  && x_1 <= 0.5){ //원래 0.5였음
             semi_avoid_flag = 0;
             avoid_flag = 2;
             // x_1 = x_2;
@@ -841,9 +916,26 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
         // }
 
 
-        // 왼 -> 오
-        if(left_cnt > right_cnt){
-            cout << "왼 -> 오" << '\n';
+        // // 왼 -> 오
+        // if(left_cnt > right_cnt){
+        //     cout << "왼 -> 오" << '\n';
+
+        //     // way_y = y_1+cell_size_y*(pull_push_cell);//그리드의 왼쪽 끝을 추종한다. 
+        //     // way_x = x_1;             
+
+        //     //그리드 안에 있는 경우
+        //     if(y_1>-1*(grid_size_y/2)){
+        //         way_y = y_1+cell_size_y*(pull_push_cell);//그리드의 왼쪽 끝을 추종한다. 
+        //         way_x = x_1; 
+        //     }
+        //     //그리드 밖에 있는 경우
+        //     else if(y_1<-1*(grid_size_y/2)){// /rosout
+        //         way_y = y_1+cell_size_y*(pull_push_cell); //다시 그리드안에 들어오도록 한다. way_y = y_1
+        //         way_x = x_1;
+        //     }
+        // }
+
+             cout << "왼 -> 오" << '\n';
 
             // way_y = y_1+cell_size_y*(pull_push_cell);//그리드의 왼쪽 끝을 추종한다. 
             // way_x = x_1;             
@@ -857,32 +949,31 @@ void Static_Waypoint_Maker::publish_Local_Path2() {
             else if(y_1<-1*(grid_size_y/2)){// /rosout
                 way_y = y_1+cell_size_y*(pull_push_cell); //다시 그리드안에 들어오도록 한다. way_y = y_1
                 way_x = x_1;
-            }
-        }
+            }       
 
 
 
 
-        // 오 -> 왼
+        // // 오 -> 왼
 
         
-        else if(right_cnt > left_cnt){
-            cout << "오 -> 왼" << '\n';
+        // else if(right_cnt > left_cnt){
+        //     cout << "오 -> 왼" << '\n';
 
-            //그리드 안에 있는 경우
-            if(y_1<(grid_size_y/2)){
+        //     //그리드 안에 있는 경우
+        //     if(y_1<(grid_size_y/2)){
                 
-                way_y = y_1-1*cell_size_y*(pull_push_cell);
-                way_x = x_1;
-            }
+        //         way_y = y_1-1*cell_size_y*(pull_push_cell);
+        //         way_x = x_1;
+        //     }
 
-            //그리드 밖에 있는 경우
-            else if(y_1>(grid_size_y/2) ){
+        //     //그리드 밖에 있는 경우
+        //     else if(y_1>(grid_size_y/2) ){
                 
-                way_y = y_1-1*cell_size_y*(pull_push_cell);
-                way_x = x_1;
-            }
-        }
+        //         way_y = y_1-1*cell_size_y*(pull_push_cell);
+        //         way_x = x_1;
+        //     }
+        // }
         
         // if(semi_avoid_flag == 0 && abs(current_angle)<10){
         //     semi_avoid_flag = 1;

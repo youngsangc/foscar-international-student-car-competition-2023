@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -64,7 +64,7 @@ class pm:
 
         self.f.close()
 
-        self.is_one_lap_finished = True # GPS 주행까지 보고싶으면 True 값, 라이다 주행만 보고 싶으면 False
+        self.is_one_lap_finished = False # GPS 주행까지 보고싶으면 True 값, 라이다 주행만 보고 싶으면 False
         
         while self.first_lap:
             self.oneLapPub.publish(self.is_one_lap_finished)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import numpy as np
@@ -10,7 +10,7 @@ import os
 import signal
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Bool, Float64
-from ar_track_alvar_msgs.msg import AlvarMarkers
+# from ar_track_alvar_msgs.msg import AlvarMarkers
 from tf.transformations import euler_from_quaternion
 from track_race.msg import Velocity, Steering
 
@@ -28,8 +28,8 @@ from track_race.msg import Velocity, Steering
 # Lfc = 1.0 # [m] look-ahead distance     // 3.2
 # WB = 1.04  # [m] wheel base of vehicle
 
-k = 0.3  # look forward gain // 0.25 4.85 6.6
-Lfc = 1.5 # [m] look-ahead distance     // 3.2
+k = 0.1725  # look forward gain // 0.25 4.85 6.6
+Lfc = 2.0 # [m] look-ahead distance     // 3.2
 WB = 1.04  # [m] wheel base of vehicle
 
 
@@ -42,7 +42,7 @@ dynamic_velocity = 7
 MAX_VELOCITY = 13
 current_velocity = 0
 throttle = 0
-
+currentSpeed = 0
 present_x = 0
 present_y = 0
 present_yaw = 0
@@ -113,8 +113,15 @@ class TargetCourse:
                 distance_this_index = distance_next_index
             self.old_nearest_point_index = ind
 
-        Lf = k * current_velocity + Lfc  # update look ahead distance
-
+        # Lf = k * current_velocity + Lfc  # update look ahead distance
+        if current_velocity < 8:
+            Lf = 3.3
+        # elif currentSpeed >= 6 and currentSpeed <8:
+            # Lf = 3.1
+        elif current_velocity >= 8 and current_velocity <10:
+            Lf = 3.6
+        else:
+            Lf = 4.0
 
         # search look ahead target point index
         while Lf > state.calc_distance(self.cx[ind], self.cy[ind]):
@@ -252,7 +259,7 @@ if __name__ == '__main__':
             # print("Lf = ", _)
             # print("di = ", di)
 
-            throttle = dynamic_velocity * 2 - 9 # 현재 dynamic_velocity 속도 (최저: 9, 최대: 12) // 계산식 적용하면 (최저: 10, 최대: 15)
+            throttle = dynamic_velocity * 2 - 8 # 현재 dynamic_velocity 속도 (최저: 9, 최대: 12) // 계산식 적용하면 (최저: 10, 최대: 15)
             if(throttle < 10.0):
                 throttle = 10
 

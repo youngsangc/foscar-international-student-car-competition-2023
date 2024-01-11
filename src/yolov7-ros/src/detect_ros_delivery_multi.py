@@ -192,45 +192,54 @@ class Yolov7Publisher:
             bboxes = [[int(x1), int(y1), int(x2), int(y2)]
                       for x1, y1, x2, y2 in detections[:, :4].tolist()]
             classes = [int(c) for c in detections[:, 5].tolist()]
-            # print(classes)
+            #print(classes)
 
-            close_delivery = []
-            delivery_middle = 0
+            right_delivery = []
+            biggest_delivery = []
+            delivery_sign = 0
             delivery_msg =0
-            for xofclass in range (len(classes)):
-                close_delivery.append([classes[xofclass], bboxes[xofclass][0]+bboxes[xofclass][2]//2])
-            close_delivery.sort(key = lambda x: x[1], reverse = True)
-            # if abs(close_delivery[0][1] - close_delivery[1][1])<=50 and close_delivery[0][0]==16:
-            #     close_delivery.pop(0)
-            # print(close_delivery)
-                
 
-                
-                
+            if len(classes)>=1:
 
-            
-            
-            for i in range(len(close_delivery)):
-                if(close_delivery[i][0] == 14 or close_delivery[i][0]==16 or close_delivery[i][0]==17 or close_delivery[i][0]==18 or close_delivery[i][0]==19 or close_delivery[i][0] == 20):
-                    delivery_middle = close_delivery[i][0]
-                    break
-            #print(f'오른쪽 놈: {delivery_middle}')
-            if delivery_middle ==14:
-                delivery_msg = 1
-            elif delivery_middle == 16:
-                delivery_msg = 2
-            elif delivery_middle == 17:
-                delivery_msg =3 
-            elif delivery_middle == 18:
-                delivery_msg =4
-            elif delivery_middle == 19:
-                delivery_msg = 5
-            elif delivery_middle == 20:
-                delivery_msg = 6
-            else :
-                pass
-            self.delivery_publisher.publish(delivery_msg)
-            # print(delivery_msg)
+                for xofclass in range (len(classes)):
+                    right_delivery.append([classes[xofclass], (bboxes[xofclass][2]+bboxes[xofclass][0])/2,bboxes[xofclass][3]-bboxes[xofclass][1]])
+                biggest_delivery = right_delivery.copy()
+                right_delivery.sort(key = lambda x: x[1], reverse = True)
+                # print('오른쪽', right_delivery)
+                biggest_delivery.sort(key=lambda x: x[2], reverse = True)
+                # print('오른쪽', right_delivery)
+                # print('큰놈', biggest_delivery)
+                delivery_sign = right_delivery[0][0]
+                # print("기본   ", delivery_sign)
+
+                if right_delivery[0][0] == biggest_delivery[0][0]:
+                    delivery_sign = right_delivery[0][0]
+                    # print("rkxdmfEo   ", delivery_sign)
+                elif right_delivery[0][1] >= biggest_delivery[0][1]+70:
+                    if right_delivery[0][2]+15 <= biggest_delivery[0][2]:
+
+                        delivery_sign = biggest_delivery[0][0]
+                        # print(f"다를때: {delivery_sign}")
+                # print("최종",delivery_sign)
+            # publish
+
+            # print(f'오른쪽 놈: {delivery_sign}')
+                if delivery_sign ==14:
+                    delivery_msg = 1
+                elif delivery_sign == 16:
+                    delivery_msg = 2
+                elif delivery_sign == 17:
+                    delivery_msg =3 
+                elif delivery_sign == 18:
+                    delivery_msg =4
+                elif delivery_sign == 19:
+                    delivery_msg = 5
+                elif delivery_sign == 20:
+                    delivery_msg = 6
+                else:
+                    pass
+                # print(delivery_msg)
+                self.delivery_publisher.publish(delivery_msg)
 
 
 

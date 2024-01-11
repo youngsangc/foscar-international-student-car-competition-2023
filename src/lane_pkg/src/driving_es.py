@@ -72,6 +72,7 @@ def drive(angle, speed):
     motor_info.steering = angle
     motor_info.throttle = speed
     drive_values_pub.publish(motor_info)
+    print('간닫')
 
 def publishBrakeMsg(brake):
     motor_info = drive_values()

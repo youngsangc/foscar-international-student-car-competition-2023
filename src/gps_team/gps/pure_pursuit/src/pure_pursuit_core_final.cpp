@@ -37,6 +37,14 @@ PurePursuitNode::PurePursuitNode()
 // Destructor
 PurePursuitNode::~PurePursuitNode() {}
 
+//for dyanmic_lookahead_distance
+
+double gps_velocity = 0;
+double k = 0.15;
+// double default_lookahead_distance = 1.75;
+double default_lookahead_distance = 3.0;
+double dynamic_lookahead_distance = 0.0;
+
 
 //for parking
 double first_time=0;
@@ -121,15 +129,29 @@ int deliverySign = 0;
 
 
 //0915 신호등 앞 정지 시점 
+//0922 화성 테스트
+// const float tf_coord1[2] = {935561.2023379378, 1915954.8071212273}; //직진신호 정지 시점
+// const float tf_coord2[2] = {935598.9132225584, 1915970.396686629}; //좌회전 신호 정지 시점
 
-const float tf_coord1[2] = {935561.2023379378, 1915954.8071212273}; //직진신호 정지 시점
-const float tf_coord2[2] = {935598.9132225584, 1915970.396686629}; //좌회전 신호 정지 시점
+
+//최종 신호등 인덱스 값 대회용
+// const float tf_coord1[2] = {935561.8152911853, 1915954.4681886036}; //직진신호 정지 시점
+// const float tf_coord2[2] = {935599.2098832679, 1915970.9482202097}; //좌회전 신호 정지 시점
 
 
 
-const float tf_coord3[2] = {935653.5165727475, 1916094.056272998};
+////1011 FMTC
+const float tf_coord1[2] = {931256.1870204532, 1929800.1353484953}; //직진신호 정지 시점
+////1011 FMTC
+const float tf_coord2[2] = {931281.23596085, 1929809.3490767276}; //좌회전 신호 정지 시점
+
+//최종 신호등 인덱스 값 대회용
+// const float tf_coord1[2] = {935561.8152911853, 1915954.4681886036}; //직진신호 정지 시점
+// const float tf_coord2[2] = {935599.2098832679, 1915970.9482202097}; //좌회전 신호 정지 시점
+
+const float tf_coord3[2] = {935653.5513106079, 1916094.9740257617};
 const float tf_coord4[2] = {935649.3021320016, 1916199.5799759603};
-const float tf_coord5[2] = {935606.7840876362, 1916237.7838036048};
+const float tf_coord5[2] = {935605.6534305997, 1916237.7652695905};
 const float tf_coord6[2] = {935612.1418985411, 1916010.438160931};
 const float tf_coord7[2] = {935591.7312843322, 1915967.8527924863};
 
@@ -142,12 +164,23 @@ int slow_down_tf_idx_6 = 1000;
 int slow_down_tf_idx_7 = 1000;
 
 
-// Positions where car should slow down before traffic lights
+// // Positions where car should slow down before traffic lights
+// const float slow_down_tf_coord1[2] = {935552.7741907057, 1915959.5247081039}; //직진신호 slow down 시점
+
+//const float slow_down_tf_coord2[2] = {935594.7322462655, 1915962.5959436172}; // 좌회전 신호 slow down 시점
+
+
+
+////1011 FMTC
 const float slow_down_tf_coord1[2] = {935552.7741907057, 1915959.5247081039}; //직진신호 slow down 시점
-const float slow_down_tf_coord2[2] = {935594.7322462655, 1915962.5959436172}; // 좌회전 신호 slow down 시점
+////1011 FMTC
+const float slow_down_tf_coord2[2] = {931294.8054189042, 1929826.8897323736}; // 좌회전 신호 slow down 시점
 
 
+// // Positions where car should slow down before traffic lights
+//const float slow_down_tf_coord1[2] = {935552.7741907057, 1915959.5247081039}; //직진신호 slow down 시점
 
+//const float slow_down_tf_coord2[2] = {935594.7322462655, 1915962.5959436172}; // 좌회전 신호 slow down 시점
 const float slow_down_tf_coord3[2] = {935647.0298199531, 1916068.5422118772};
 const float slow_down_tf_coord4[2] = {935655.9261823313, 1916174.464488085};
 const float slow_down_tf_coord5[2] = {935623.4310166059, 1916241.047400325};
@@ -171,13 +204,25 @@ int cw_idx_2 = 1000;
 int cw_idx_3 = 1000;
 int cw_idx_4 = 1000;
 
-// FMTC
-const float cw_coord_1[2] = {935530.4793888987, 1915950.8535133603};
-const float cw_coord_2[2] = {935540.1245098013, 1915963.741670124};
 
-// FMTC
-const float cw_coord_3[2] = {935625.0349235233, 1916113.5933389266};
+//대회용 인덱스//////////////////////// // 
+// const float cw_coord_1[2] = {935530.4793888987, 1915950.8535133603};
+// const float cw_coord_2[2] = {935540.1245098013, 1915963.741670124};
+
+// // 
+// const float cw_coord_3[2] = {935625.0349235233, 1916113.5933389266};
+// const float cw_coord_4[2] = {0,0};
+
+
+//아래는 FMTC 인덱스임 대회때는 주석 해제해야함 cw인덱스들
+// 
+const float cw_coord_1[2] = {931170.3922106136, 1929663.4959186865};
+const float cw_coord_2[2] = {931143.9636333198, 1929663.1809958313};
+
+// 
+const float cw_coord_3[2] = {931224.0479685044, 1929788.1064106154};
 const float cw_coord_4[2] = {0,0};
+
 
 /* Parking index */
 int pk_idx[7] = {0, 0, 0, 0, 0, 0, 0};
@@ -390,6 +435,8 @@ void PurePursuitNode::run(char** argv) {
     }
 
     // ROS_INFO("MODE=%d, MISSION_FLAG=%d", pp_.mode, pp_.mission_flag);
+    
+    //Dynamic_LookaHead_적용 mode 리스트 = [0,1,4,6,14,12,,,,,,,,,,5,8]
 
     // MODE 0 - 직진
     // MODE 1 - 신호등(직진)
@@ -474,15 +521,16 @@ void PurePursuitNode::run(char** argv) {
     // MODE 0 : 직진
     if (pp_.mode == 0) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 6;//원래 6이였음
-      const_velocity_ = 18;  //원래 15 //20일때 LHD = 6
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 6이였음
+      const_velocity_ = 18;  //원래 18 //20일때 LHD = 6
       final_constant = 1.0;
+      std::cout<<"모드 0에서 _lookahead_distance_ : "<<const_lookahead_distance_<<std::endl;
     }
 
     // MODE 12 : 그냥 커브
     if (pp_.mode == 12) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 6;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 6이였음.
       const_velocity_ = 10;  
       final_constant = 1.0;
     }
@@ -491,15 +539,15 @@ void PurePursuitNode::run(char** argv) {
     // MODE 13 : 방지턱 모드//테스트용
     if (pp_.mode == 13) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 4;//원래 6이였음
-      const_velocity_ = 5;  //원래 15 //20일때 LHD = 6
+      const_lookahead_distance_ = 4;//원래 4이였음
+      const_velocity_ = 5;  //원래 5 //20일때 LHD = 6
       final_constant = 1.0;
     }
 
     // MODE 1 : 신호등(직진)
     if (pp_.mode == 1) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 6;
+      const_lookahead_distance_ = dynamic_lookahead_distance; //원래 6
       const_velocity_ = 15;
       final_constant = 1.0;
 
@@ -654,8 +702,8 @@ void PurePursuitNode::run(char** argv) {
 
       // 1001
       // const_lookahead_distance_ = 3;
-      const_lookahead_distance_ = 4;
-      const_velocity_ = 7;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 4였음
+      const_velocity_ = 6;
       final_constant = 1.0;
 
       if (delivery_A_brake_flag == false) {
@@ -676,6 +724,7 @@ void PurePursuitNode::run(char** argv) {
         if ((move_distance > delivery_x_distance + 0.5 - (velocity * 0.55))) { //원래 -5가 +0.5
         // if ((move_distance > delivery_x_distance -0.1 - (velocity * 0.55) )) { //원래 -5가 +0.5
           for (int i = 0; i < 5500; i++) {
+            printf("배달 a 브레이크");
             pulishControlMsg(0, 0, 1);
             usleep(1000);
           }
@@ -705,7 +754,7 @@ void PurePursuitNode::run(char** argv) {
     // MODE 4 : 신호등(커브)
     if (pp_.mode == 4) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 5;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 5였음
       const_velocity_ = 13;
       final_constant = 1.0;
 
@@ -735,7 +784,7 @@ void PurePursuitNode::run(char** argv) {
 
     // MODE 5 : 유턴구간 (STOP 존재)
     if (pp_.mode == 5) {
-      const_lookahead_distance_ = 3;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 3이였음.
       const_velocity_ = 5;
       final_constant = 1.0;
       
@@ -786,8 +835,8 @@ void PurePursuitNode::run(char** argv) {
     // MODE 6 : 비보호 우회전 및 횡단보도 정지
     if (pp_.mode == 6) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 5;
-      const_velocity_ = 7;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 5였음
+      const_velocity_ = 10; //9월22일에는 7이었음
       final_constant = 1.2;
 
       if(pp_.reachMissionIdx(cw_idx_1) && !first_cw){
@@ -811,7 +860,7 @@ void PurePursuitNode::run(char** argv) {
     // MODE 14 : 비보호 우회전 및 횡단보도 정지 second
     if (pp_.mode == 14) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 5;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 5였음
       const_velocity_ = 7;
       final_constant = 1.2;
 
@@ -836,9 +885,9 @@ void PurePursuitNode::run(char** argv) {
     // MODE 7 : 배달 B
     if (pp_.mode == 7) 
     { // 1001
-      const_lookahead_distance_ = 3;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래는 3이였음
       // const_lookahead_distance_ = 3.5;
-      const_velocity_ = 7;
+      const_velocity_ = 6;
       final_constant = 1.0;
 
       if(start_of_mode7_flag) {
@@ -939,7 +988,7 @@ void PurePursuitNode::run(char** argv) {
     // MODE 8 : Semi-Booster
     if (pp_.mode == 8) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 8;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 8이였음
       const_velocity_ = 12;
       final_constant = 1.0;
     }
@@ -1002,14 +1051,14 @@ void PurePursuitNode::run(char** argv) {
           result_time=current_time-first_time;
           if(step==1)
           {
-            if(result_time<5.45) //endcoder_moved_distance를 받아오는 방법과 target_distance 받아오는 방법만 구현하면 끝
+            if(result_time<5.43) //endcoder_moved_distance를 받아오는 방법과 target_distance 받아오는 방법만 구현하면 끝 원래 5.45초 -> 5.55
             {
               std::cout<<"스탭1"<<std::endl;
                std::cout<<result_time<<std::endl;
               pulishControlMsg(5, 0);
               continue;
             }
-            else if(result_time>=5.45)
+            else if(result_time>=5.43)
             {
                std::cout<<result_time<<std::endl;
               
@@ -1044,15 +1093,15 @@ void PurePursuitNode::run(char** argv) {
             continue;
           }
           
-          // 좌측 후진
-          if (result_time < 6.5&& step == 3) {
+          // 좌측 후진 원래 6.5->6.6->6.65->6.7->6.73
+          if (result_time < 6.8&& step == 3) {
                std::cout<<result_time<<std::endl;
             
               std::cout<<"스탭3"<<std::endl;
             pulishControlMsg(-6.5, -30);
             continue;
           } 
-          else if (6.5 <= result_time && step == 3) {
+          else if (6.8 <= result_time && step == 3) {
                std::cout<<result_time<<std::endl;
             std::cout<<"스탑"<<std::endl;
             for(int i = 0; i < 110; i++) {
@@ -1285,6 +1334,7 @@ void PurePursuitNode::run(char** argv) {
       {
         for( int i=0; i<3; i++)
         {
+           
           pulishControlMsg(7,0,1);
         }
         eleven_brake_flag=true;
@@ -1579,6 +1629,30 @@ void PurePursuitNode::publishSteeringVisualizationMsg (const double& steering_ra
 void PurePursuitNode::callbackFromGpsVelocity(const std_msgs::Float64& msg) {
   pp_.gps_velocity = msg.data / 3.6;
   moved_distance += pp_.gps_velocity * 0.125;
+  
+  gps_velocity = msg.data;
+  //dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
+  double k_d = 0.12;
+  if(gps_velocity<6){
+    dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
+
+  }
+  else if(gps_velocity>=6 && gps_velocity<12){
+    dynamic_lookahead_distance = 3.9 + (gps_velocity-6)*0.3;
+
+  }
+  else if(gps_velocity>=12 && gps_velocity<18){
+    dynamic_lookahead_distance = 5.7 + (gps_velocity-12)*0.35;
+
+  }
+  else if(gps_velocity>=18){
+    dynamic_lookahead_distance = 7.8+ (gps_velocity-18)*0.45;
+
+  }
+
+  std::cout<<"GPS vel : "<<gps_velocity<<std::endl;
+  std::cout<<"dynamic_lookahead_distance : "<<dynamic_lookahead_distance<<std::endl;
+
 }
 
 void PurePursuitNode::callbackFromYaw(const std_msgs::Float64& msg) {

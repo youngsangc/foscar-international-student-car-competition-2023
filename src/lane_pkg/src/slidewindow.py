@@ -31,6 +31,7 @@ class SlideWindow:
         # out_img = img # added 
         height = img.shape[0]
         width = img.shape[1]
+        # print(width)
 
         # num of windows and init the height
         window_height = 10

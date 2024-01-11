@@ -21,7 +21,6 @@
 
 
 
-
 namespace waypoint_follower
 {
 // Constructor
@@ -71,7 +70,7 @@ const float slow_down_tf_coord1[2] = {935565.651362, 1915908.8576};
 /* Tunnel Index manager */
 int tunnel_end_idx = 1000;
 
-const float tunnel_end_coord[2] = {0,0};
+const float tunnel_end_coord[2] = {931381.2730781802, 1929858.2330417088};
 
 bool index_flag = false;
 bool is_parked = false;
@@ -84,6 +83,12 @@ int end_parking_backward_idx = 0;
 int end_parking_full_steer_backward_idx = 0;
 
 //for dynamic Lookahead Distance
+
+// double gps_velocity = 0;
+// double k = 0.15;
+// // double default_lookahead_distance = 1.75;
+// double default_lookahead_distance = 3.0;
+// double dynamic_lookahead_distance = 0.0;
 
 double gps_velocity = 0;
 double k = 0.15;
@@ -308,9 +313,9 @@ void PurePursuitNode::run(char** argv) {
       {
         std::cout<<"for----------------------시작"<<std::endl;
         pp_.ut_mission_flag = 1;
-        for(int i = 0; i < 30; i++) //dnjsfo 45였음
+        for(int i = 0; i < 35; i++) //kcity 마지막 테스트 값 : 30이였음//
         {
-          pulishControlMsg(10, 25);//10,30
+          pulishControlMsg(10, 25);//kcity 마지막 테스트 값 : 10,25//
           usleep(100000);
         }
         
@@ -335,9 +340,9 @@ void PurePursuitNode::run(char** argv) {
 
         std::cout<<"감속 시작"<<std::endl;
 
-        for (int i = 0; i < 50; i++) {
-          publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.05);
-          usleep(100000);
+        for (int i = 0; i < 1000; i++) {
+          publishPurePursuitDriveMsg(can_get_curvature, kappa, 1);
+          
 
         }
         
@@ -349,7 +354,7 @@ void PurePursuitNode::run(char** argv) {
 
         for (int i = 0; i < 3; i++) {
           publishPurePursuitDriveMsg(can_get_curvature, kappa, 0.03);
-          usleep(100000);
+    
 
         
         }
@@ -358,7 +363,7 @@ void PurePursuitNode::run(char** argv) {
 
 
 
-      const_lookahead_distance_ = 3;
+      const_lookahead_distance_ = dynamic_lookahead_distance;
       const_velocity_ = 5;
       final_constant = 1.0;
       
@@ -415,8 +420,9 @@ void PurePursuitNode::run(char** argv) {
     // MODE 0 - 직진구간
     if (pp_.mode == 0) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 6;//원래 10이였음
-      const_velocity_ = 18;//18//6
+      const_lookahead_distance_ = dynamic_lookahead_distance;//원래 6이였음, dynamic_lookahead_distance
+      std::cout<<"dynamic_lookahead_distance : "<<dynamic_lookahead_distance<<std::endl;
+      const_velocity_ = 20;//18//6
       final_constant = 1.0;
      
         //동적장애물 멀리서 장애물 감지 -> 감속
@@ -651,7 +657,8 @@ void PurePursuitNode::run(char** argv) {
     // MODE 3 - 그냥 커브
     if (pp_.mode == 3) {
       pp_.mission_flag = 0;
-      const_lookahead_distance_ = 6;
+      const_lookahead_distance_ = dynamic_lookahead_distance;//6
+      std::cout<<"dynamic_lookahead_distance : "<<dynamic_lookahead_distance<<std::endl;
       const_velocity_ = 15;
       final_constant = 1.2;
 
@@ -893,8 +900,8 @@ void PurePursuitNode::run(char** argv) {
 
 
     if(pp_.mode == 7){
-      std::cout<<"모두 7 진입"<<std::endl;
-      std::cout<<"tunnel_flage"<<pp_.tunnel_mission_flag<<std::endl;
+      //std::cout<<"모두 7 진입"<<std::endl;
+      //std::cout<<"tunnel_flage"<<pp_.tunnel_mission_flag<<std::endl;
 
 
       // if(pp_.tunnel_mission_flag == 0){
@@ -1201,8 +1208,27 @@ void PurePursuitNode::callbackFromDelivery(const std_msgs::Int32& msg) {
 
 void PurePursuitNode::callbackFromGpsVelocity(const std_msgs::Float64& msg){
   gps_velocity = msg.data;
-  dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
-  // std::cout<<"dynamic_lookahead_distance : "<<dynamic_lookahead_distance<<std::endl;
+  //dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
+  double k_d = 0.12;
+  if(gps_velocity<6){
+    dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
+
+  }
+  else if(gps_velocity>=6 && gps_velocity<12){
+    dynamic_lookahead_distance = 3.9 + (gps_velocity-6)*0.3;
+
+  }
+  else if(gps_velocity>=12 && gps_velocity<18){
+    dynamic_lookahead_distance = 5.7 + (gps_velocity-12)*0.35;
+
+  }
+  else if(gps_velocity>=18){
+    dynamic_lookahead_distance = 7.8+ (gps_velocity-18)*0.45;
+
+  }
+
+  std::cout<<"GPS vel : "<<gps_velocity<<std::endl;
+  std::cout<<"dynamic_lookahead_distance : "<<dynamic_lookahead_distance<<std::endl;
 }
 
 void PurePursuitNode::callbackFromDriveModeChanger(const std_msgs::Int32& msg) {
@@ -1210,6 +1236,7 @@ void PurePursuitNode::callbackFromDriveModeChanger(const std_msgs::Int32& msg) {
 }
 
 void PurePursuitNode::callbackFromEncoder(const std_msgs::Float64& msg) {
+  // dynamic_lookahead_distance = default_lookahead_distance + gps_velocity*k;
   encoder_speed = msg.data;  // km/h
   // std::cout<<"업데이트 ///////////// "<<std::endl;
   if(pp_.mode == 7 && pp_.tunnel_mission_flag == 0){
@@ -1220,12 +1247,12 @@ void PurePursuitNode::callbackFromEncoder(const std_msgs::Float64& msg) {
 
         std::cout<<"감속 시작"<<std::endl;
 
-        if(encoder_speed > 6.0){
+        if(encoder_speed > 12.0){
 
           race::drive_values drive_msg;
-          drive_msg.throttle = 0;
+          drive_msg.throttle = 8;
           drive_msg.steering = 0;
-          drive_msg.brake = 1.0;
+          drive_msg.brake = 0.6;
           drive_msg_pub.publish(drive_msg);
           std::cout<<"터널 진입 감속 제어 중,,,,"<<std::endl;          
           std::cout<<"encoder speed = "<<encoder_speed<<std::endl;   
